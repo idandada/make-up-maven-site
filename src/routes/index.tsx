@@ -47,7 +47,7 @@ function Hero() {
     <section className="relative z-10 overflow-hidden">
       {/* Top banner */}
       <div className="bg-[#1a1a1a] text-[#fdf4ee] text-center py-2.5 px-4 text-[11px] sm:text-xs tracking-[0.2em] font-bold">
-        ✦ מאיפה מגיעות המאפרות של הסלבריטאים? ✦
+        ✦ באורך 6–8 חודשים — דואגים לך לעבודה ✦
       </div>
 
       <div className="relative max-w-[1400px] mx-auto px-4 sm:px-8 pt-8 sm:pt-12 pb-10">
@@ -60,7 +60,7 @@ function Hero() {
 
             <h1 className="font-black leading-[0.95] tracking-tight">
               <span className="block text-[#1a1a1a] text-[2.8rem] sm:text-6xl lg:text-7xl">
-                רוב הבנות
+                קורס מאפרת
               </span>
               <span
                 className="block text-[3.5rem] sm:text-7xl lg:text-8xl mt-2 font-black"
@@ -73,16 +73,17 @@ function Hero() {
                   textShadow: "0 2px 0 rgba(0,0,0,0.04)",
                 }}
               >
-                אחרי צבא
+                מקצועית
               </span>
             </h1>
 
             <div className="mt-4 relative inline-block">
               <div className="absolute inset-0 bg-[#f5b8c4] -rotate-1 rounded-full blur-[2px] opacity-70" />
               <p className="relative font-bold text-[#1a1a1a] text-lg sm:text-2xl px-5 py-1.5">
-                שורפות את הפיקדון של שטויות..
+                לבנות שעשו צבא / שירות לאומי — בכל גיל
               </p>
             </div>
+
 
             {/* Black headline block */}
             <div className="mt-7 bg-[#1a1a1a] text-white rounded-2xl px-6 py-5 sm:py-6 inline-block shadow-2xl shadow-black/30">
