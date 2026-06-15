@@ -59,11 +59,11 @@ function Hero() {
             </div>
 
             <h1 className="font-black leading-[0.95] tracking-tight">
-              <span className="block text-[#1a1a1a] text-[2.8rem] sm:text-6xl lg:text-7xl">
+              <span className="block text-[#1a1a1a] text-[1.75rem] sm:text-6xl lg:text-7xl">
                 קורס מאפרת
               </span>
               <span
-                className="block text-[3.5rem] sm:text-7xl lg:text-8xl mt-2 font-black"
+                className="block text-[2.25rem] sm:text-7xl lg:text-8xl mt-2 font-black"
                 style={{
                   backgroundImage:
                     "linear-gradient(135deg,#c9a14a 0%,#f3d57e 30%,#a87435 60%,#e8c47a 100%)",
