@@ -148,10 +148,10 @@ function Hero() {
                 className="w-full h-auto rounded-3xl shadow-2xl object-cover"
               />
               {/* Floating badge — kit value */}
-              <div className="absolute -bottom-4 -right-4 sm:bottom-6 sm:right-6 w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-gradient-to-br from-[#f3d57e] via-[#c9a14a] to-[#a87435] text-[#1a1a1a] flex flex-col items-center justify-center shadow-2xl rotate-[-8deg] border-4 border-white">
-                <div className="text-[10px] sm:text-xs font-bold">בשווי</div>
-                <div className="font-black text-xl sm:text-3xl leading-none">11,000</div>
-                <div className="text-[10px] sm:text-xs font-bold mt-0.5">₪ מזוודה</div>
+              <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 w-24 h-24 sm:w-36 sm:h-36 rounded-full bg-gradient-to-br from-[#f3d57e] via-[#c9a14a] to-[#a87435] text-[#1a1a1a] flex flex-col items-center justify-center shadow-2xl rotate-[-8deg] border-4 border-white">
+                <div className="text-[9px] sm:text-xs font-bold">בשווי</div>
+                <div className="font-black text-lg sm:text-3xl leading-none">11,000</div>
+                <div className="text-[9px] sm:text-xs font-bold mt-0.5">₪ מזוודה</div>
               </div>
             </div>
           </div>
