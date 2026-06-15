@@ -37,27 +37,27 @@ function Hero() {
         <div className="absolute bottom-20 left-8 w-40 h-40 rounded-full bg-deep-rose opacity-15 blur-3xl" />
       </div>
 
-      <div className="relative max-w-xl mx-auto px-5 pt-8 pb-10">
+      <div className="relative max-w-xl mx-auto px-5 pt-10 pb-8">
         <div className="text-center animate-fade-up">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur border border-[var(--gold)]/40 text-xs font-semibold text-[var(--deep-rose)] mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)] animate-pulse" />
-            בשיתוף בית הספר הגדול בארץ לאיפור
-          </div>
-
-          <h1 className="text-5xl sm:text-6xl font-black leading-[1.05] mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>
-            <span className="block text-[var(--foreground)]">קורס</span>
-            <span className="block text-rose-gradient text-6xl sm:text-7xl">מאפרת</span>
-            <span className="block text-gold-gradient text-5xl sm:text-6xl mt-1">מקצועית</span>
+          <h1 className="font-black leading-[0.95]" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <span className="block text-foreground text-5xl sm:text-6xl tracking-tight">קורס</span>
+            <span className="block text-rose-gradient text-[5.5rem] sm:text-8xl my-1 leading-none">מאפרת</span>
+            <span className="block text-gold-gradient text-6xl sm:text-7xl">מקצועית</span>
           </h1>
 
-          <p className="text-base text-muted-foreground mt-4 mb-6 leading-relaxed font-medium">
-            הפכי את <span className="text-[var(--deep-rose)] font-bold">הפיקדון הצבאי</span> למקצוע מבוקש
-            <br />
-            עם שכר יומי של <span className="text-[var(--deep-rose)] font-bold">800-2,000 ₪</span>
-          </p>
+          <div className="w-20 h-px bg-gradient-gold mx-auto my-5" />
 
-          <div className="inline-flex items-center gap-2 bg-gradient-rose text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-soft">
-            <span>♥</span>
+          <p className="text-base sm:text-lg text-foreground/85 leading-relaxed font-medium px-2">
+            באורך <span className="font-black text-[var(--deep-rose)]">6-8 חודשים</span> ודואגים לך לעבודה
+            <br/>
+            עם שכר ממוצע יומי של
+          </p>
+          <div className="mt-1 font-black text-[var(--deep-rose)] text-3xl sm:text-4xl" style={{ fontFamily: "'Playfair Display', serif" }}>
+            800-2,000 ש״ח
+          </div>
+
+          <div className="mt-5 inline-flex items-center gap-2 bg-gradient-rose text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-soft">
+            <span className="text-[var(--gold)]">♥</span>
             <span>לבנות שעשו צבא / שירות לאומי · בכל גיל</span>
           </div>
         </div>
@@ -67,24 +67,28 @@ function Hero() {
           <div className="relative rounded-3xl overflow-hidden shadow-card border-4 border-white">
             <img
               src={heroModel}
-              alt="מאפרת מקצועית עם מכחולים"
+              alt="מאפרת מקצועית"
               width={1024}
               height={1280}
               className="w-full h-auto block"
             />
           </div>
-          <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-gradient-gold flex items-center justify-center text-white font-black text-center text-xs leading-tight shadow-glow animate-float">
+          <div className="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-gradient-gold flex items-center justify-center text-white font-black text-center text-sm leading-tight shadow-glow animate-float" style={{ fontFamily: "'Playfair Display', serif" }}>
             מלגה<br/>לנרשמות
           </div>
         </div>
 
+        <p className="text-center text-xs text-muted-foreground mt-6 leading-relaxed">
+          בשיתוף בית הספר הגדול בארץ לאיפור<br/>
+          <span className="font-semibold">בלי ניסיון · בלי רקע · רק רצון ללמוד מקצוע אמיתי</span>
+        </p>
+
         <a
           href="#lead-form"
-          className="mt-8 block w-full text-center bg-gradient-rose text-white text-lg font-black py-4 rounded-2xl shadow-soft active:scale-[0.98] transition-transform"
+          className="mt-6 block w-full text-center bg-gradient-rose text-white text-lg font-black py-4 rounded-2xl shadow-soft active:scale-[0.98] transition-transform"
         >
-          לפגישת ייעוץ ובדיקת מלגה ←
+          בואי לפגישת ייעוץ ←
         </a>
-        <p className="text-center text-xs text-muted-foreground mt-2">ללא התחייבות · חוזרים אליך תוך 24 שעות</p>
       </div>
     </section>
   );
@@ -112,12 +116,12 @@ function Stats() {
 
 function Benefits() {
   const benefits = [
-    { icon: "💎", title: "תשלום מהפיקדון הצבאי", desc: "ניתן לשלם דרך הפיקדון הצבאי או בכל דרך שתבחרי" },
     { icon: "👜", title: "מזוודת איפור בשווי 11,000 ₪", desc: "מזוודה מקצועית מלאה במוצרי איפור איכותיים — שלך לתמיד" },
     { icon: "🏆", title: "תעודת מאפרת בינלאומית", desc: "תעודה מוכרת שפותחת דלתות בכל העולם" },
+    { icon: "💼", title: "ליווי ועבודה בסיום הקורס", desc: "דואגים לך לעבודה אצל מקצוענים מובילים בתעשייה" },
     { icon: "🎁", title: "מלגה לנרשמות", desc: "מלגות אישיות לפי זכאות — בואי לבדוק כמה מגיע לך" },
-    { icon: "💼", title: "ליווי ועבודה בסיום", desc: "דואגים לך לעבודה אצל מקצוענים מובילים בתעשייה" },
-    { icon: "✨", title: "בלי ניסיון. בלי רקע.", desc: "רק רצון ללמוד מקצוע אמיתי שתאהבי" },
+    { icon: "💎", title: "אפשרויות תשלום גמישות", desc: "ניתן לשלם דרך הפיקדון הצבאי או בכל דרך שתבחרי" },
+    { icon: "✨", title: "בלי ניסיון · בלי רקע", desc: "רק רצון ללמוד מקצוע אמיתי שתאהבי לעשות" },
   ];
 
   return (
@@ -239,7 +243,7 @@ function Scholarship() {
 
 function LeadForm() {
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: "", phone: "", age: "", service: "" });
+  const [form, setForm] = useState({ name: "", phone: "", branch: "" });
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -291,39 +295,30 @@ function LeadForm() {
                     placeholder="050-0000000"
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-sm font-bold text-foreground mb-1.5">גיל</label>
-                    <input
-                      required
-                      type="number"
-                      value={form.age}
-                      onChange={(e) => setForm({ ...form, age: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-[var(--blush)]/50 border-2 border-transparent focus:border-[var(--gold)] focus:bg-white outline-none transition-all text-base"
-                      placeholder="22"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-bold text-foreground mb-1.5">סטטוס</label>
-                    <select
-                      required
-                      value={form.service}
-                      onChange={(e) => setForm({ ...form, service: e.target.value })}
-                      className="w-full px-3 py-3 rounded-xl bg-[var(--blush)]/50 border-2 border-transparent focus:border-[var(--gold)] focus:bg-white outline-none transition-all text-base"
-                    >
-                      <option value="">בחרי</option>
-                      <option>צבא</option>
-                      <option>שירות לאומי</option>
-                      <option>אחר</option>
-                    </select>
-                  </div>
+                <div>
+                  <label className="block text-sm font-bold text-foreground mb-1.5">סניף מועדף</label>
+                  <select
+                    required
+                    value={form.branch}
+                    onChange={(e) => setForm({ ...form, branch: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-[var(--blush)]/50 border-2 border-transparent focus:border-[var(--gold)] focus:bg-white outline-none transition-all text-base appearance-none"
+                  >
+                    <option value="">בחרי סניף</option>
+                    <option>תל אביב</option>
+                    <option>ירושלים</option>
+                    <option>חיפה</option>
+                    <option>ראשון לציון</option>
+                    <option>נתניה</option>
+                    <option>באר שבע</option>
+                    <option>אשדוד</option>
+                  </select>
                 </div>
 
                 <button
                   type="submit"
                   className="w-full bg-gradient-rose text-white text-lg font-black py-4 rounded-2xl shadow-soft active:scale-[0.98] transition-transform mt-2"
                 >
-                  שלחי ובדקי זכאות למלגה ←
+                  שלחי פרטים ←
                 </button>
                 <p className="text-center text-xs text-muted-foreground">
                   בלחיצה על הכפתור את מאשרת שניצור איתך קשר
