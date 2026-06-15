@@ -86,9 +86,9 @@ function Hero() {
 
 
             {/* Black headline block */}
-            <div className="mt-7 bg-[#1a1a1a] text-white rounded-2xl px-6 py-5 sm:py-6 inline-block shadow-2xl shadow-black/30">
+            <div className="mt-7 bg-[#1a1a1a] text-white rounded-2xl px-6 py-5 sm:py-6 block sm:inline-block shadow-2xl shadow-black/30">
               <div className="text-sm sm:text-base opacity-90 mb-1">אצלנו תוכלי לעשות</div>
-              <div className="font-black text-2xl sm:text-4xl leading-tight">
+              <div className="font-black text-xl sm:text-4xl leading-tight">
                 קורס איפור{" "}
                 <span
                   style={{
