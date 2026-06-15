@@ -122,7 +122,9 @@ function Hero() {
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
- 1 800-2,000
+                  }}
+                >
+                  800-2,000
                 </span>
                 <span className="font-black text-2xl sm:text-3xl text-[#1a1a1a]">₪</span>
               </div>
