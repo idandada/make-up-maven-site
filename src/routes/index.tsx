@@ -115,16 +115,14 @@ function Hero() {
               </div>
               <div className="flex items-baseline gap-2 mt-1">
                 <span
-                  className="font-black text-5xl sm:text-7xl leading-none"
+                  className="font-black text-4xl sm:text-7xl leading-none"
                   style={{
                     backgroundImage:
                       "linear-gradient(135deg,#c9a14a 0%,#f3d57e 50%,#a87435 100%)",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
-                  }}
-                >
-                  800-2,000
+ 1 800-2,000
                 </span>
                 <span className="font-black text-2xl sm:text-3xl text-[#1a1a1a]">₪</span>
               </div>
