@@ -712,55 +712,6 @@ footer{
   box-shadow:0 -4px 24px rgba(200,92,112,.3);
 }
 
-/* ── LEAD STRIP (top of page) ── */
-.lead-strip{
-  background:linear-gradient(135deg,#1a1008 0%,#2a1810 50%,#3a2618 100%);
-  position:relative;overflow:hidden;
-  border-bottom:1px solid rgba(199,154,67,.35);
-}
-.lead-strip::before{
-  content:'';position:absolute;inset:0;
-  background:
-    radial-gradient(circle at 12% 30%,rgba(245,216,140,.18),transparent 45%),
-    radial-gradient(circle at 88% 70%,rgba(200,92,112,.18),transparent 50%);
-  pointer-events:none;
-}
-.lead-strip-inner{
-  position:relative;
-  display:flex;align-items:center;gap:24px;
-  padding:22px 0;
-}
-.lead-strip-copy{flex:0 0 auto;max-width:300px}
-.lead-strip-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:11px;font-weight:900;letter-spacing:1.5px;
-  color:var(--gold2);text-transform:uppercase;
-  margin-bottom:6px;
-}
-.lead-strip-eyebrow::before{
-  content:'';width:24px;height:1px;background:var(--gold);
-}
-.lead-strip-title{
-  font-family:'Frank Ruhl Libre',serif;
-  font-size:22px;font-weight:900;color:#fff;line-height:1.25;
-  margin-bottom:4px;
-}
-.lead-strip-sub{
-  font-size:13px;font-weight:600;color:rgba(255,253,248,.7);
-}
-.lead-strip-form{
-  flex:1;display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:10px;
-}
-.lead-strip-form .form-input{
-  height:52px;background:rgba(255,255,255,.96);
-  border-color:transparent;border-radius:12px;
-  font-size:15px;
-}
-.lead-strip-form .btn-submit{
-  margin-top:0;padding:0 28px;height:52px;
-  font-size:15px;border-radius:12px;white-space:nowrap;
-  box-shadow:0 10px 28px rgba(200,92,112,.4);
-}
 
 /* ── TRUST BAR ── */
 .trust-bar{
