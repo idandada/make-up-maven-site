@@ -990,9 +990,9 @@ const BODY_HTML = `
       <h2 class="section-title">ממש ככה זה נראה</h2>
     </div>
     <div class="gallery">
-      <div class="gallery-item"><img src="/assets/hero_woman.jpg" alt="מאפרת מקצועית"/></div>
-      <div class="gallery-item"><img src="/assets/makeup_artist.jpg" alt="מאפרת בעבודה"/></div>
-      <div class="gallery-item"><img src="/assets/beauty_case.jpg" alt="מזוודת איפור מקצועית"/></div>
+      <div class="gallery-item"><img src="/assets/gallery_students.jpg" alt="סטודנטיות בקורס מאפרות"/></div>
+      <div class="gallery-item"><img src="/assets/gallery_bridal.jpg" alt="איפור כלות וערב"/></div>
+      <div class="gallery-item"><img src="/assets/gallery_products.jpg" alt="מוצרי איפור מקצועיים"/></div>
     </div>
   </div>
 </section>
