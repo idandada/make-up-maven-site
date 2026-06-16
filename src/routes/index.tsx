@@ -1031,17 +1031,27 @@ const BODY_HTML = `
 
       <!-- ART -->
       <div class="hero-art">
-        <div class="portrait">
+        <div class="hero-art-img">
           <img src="/assets/hero_woman.jpg" alt="מאפרת מקצועית"/>
+          <div class="hero-art-badge">
+            <div class="hero-art-badge-top">שווי ציוד</div>
+            <span class="hero-art-badge-num">11K ₪</span>
+            <div class="hero-art-badge-sub">כלול בקורס</div>
+          </div>
         </div>
-        <div class="case-float">
-          <img src="/assets/beauty_case.jpg" alt="מזוודת איפור"/>
-        </div>
-        <div class="badge-circle">
-          <div>
-            <div class="badge-circle-top">שווי ציוד</div>
-            <span class="badge-circle-num">11K</span>
-            <div class="badge-circle-sub">₪ כלול</div>
+        <div class="hero-form-card" id="lead-top">
+          <div class="hero-form-eyebrow">בדיקת זכאות למלגה</div>
+          <div class="hero-form-title">השאירי פרטים — נחזור תוך 24 שעות</div>
+          <div class="hero-form-sub">פגישת ייעוץ אישית, ללא עלות וללא התחייבות</div>
+          <form onsubmit="event.preventDefault(); const b=this.querySelector('button'); b.innerHTML='✓ נשלח — נחזור אלייך'; b.style.background='#1e6b3f';">
+            <input class="form-input" type="text" placeholder="שם מלא *" required/>
+            <input class="form-input" type="tel" placeholder="טלפון *" required dir="ltr"/>
+            <button type="submit" class="btn-submit">בדקי זכאות למלגה ←</button>
+          </form>
+          <div class="hero-form-trust">
+            <span>✓ ללא עלות</span>
+            <span>✓ ללא התחייבות</span>
+            <span>✓ דיסקרטי</span>
           </div>
         </div>
       </div>
