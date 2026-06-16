@@ -831,6 +831,14 @@ footer{
   .lead-card-title{font-size:22px}
   .form-input{height:50px;font-size:15px}
   .btn-submit{font-size:16px;padding:15px}
+  .lead-strip-inner{flex-direction:column;gap:10px;padding:18px}
+  .lead-strip-copy{text-align:center}
+  .lead-strip-title{font-size:18px}
+  .lead-strip-sub{font-size:13px}
+  .lead-strip-form{width:100%;grid-template-columns:1fr}
+  .trust-bar-inner{gap:18px;font-size:12px;padding:14px 8px;flex-wrap:wrap;justify-content:center}
+  .trust-item{gap:6px}
+  .trust-item svg{width:18px;height:18px}
 }
 </style>
 `;
