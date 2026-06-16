@@ -780,11 +780,8 @@ footer{
   .section{padding:56px 0}
   .hero{padding:32px 0 56px}
   .hero-grid{grid-template-columns:1fr;gap:32px}
-  .hero-art{order:-1;height:420px}
-  .portrait{width:65%;height:360px}
-  .case-float{width:60%;bottom:30px}
-  .badge-circle{width:130px;height:130px;right:24px;bottom:0}
-  .badge-circle-num{font-size:26px}
+  .hero-art{gap:14px}
+  .hero-art-img{height:240px}
   .how-grid{grid-template-columns:1fr}
   .how-section{padding:32px 24px;border-radius:28px}
   .how-img img{height:280px}
