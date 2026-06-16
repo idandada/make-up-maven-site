@@ -695,6 +695,76 @@ footer{
   box-shadow:0 -4px 24px rgba(200,92,112,.3);
 }
 
+/* ── LEAD STRIP (top of page) ── */
+.lead-strip{
+  background:linear-gradient(135deg,#1a1008 0%,#2a1810 50%,#3a2618 100%);
+  position:relative;overflow:hidden;
+  border-bottom:1px solid rgba(199,154,67,.35);
+}
+.lead-strip::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 12% 30%,rgba(245,216,140,.18),transparent 45%),
+    radial-gradient(circle at 88% 70%,rgba(200,92,112,.18),transparent 50%);
+  pointer-events:none;
+}
+.lead-strip-inner{
+  position:relative;
+  display:flex;align-items:center;gap:24px;
+  padding:22px 0;
+}
+.lead-strip-copy{flex:0 0 auto;max-width:300px}
+.lead-strip-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:900;letter-spacing:1.5px;
+  color:var(--gold2);text-transform:uppercase;
+  margin-bottom:6px;
+}
+.lead-strip-eyebrow::before{
+  content:'';width:24px;height:1px;background:var(--gold);
+}
+.lead-strip-title{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:22px;font-weight:900;color:#fff;line-height:1.25;
+  margin-bottom:4px;
+}
+.lead-strip-sub{
+  font-size:13px;font-weight:600;color:rgba(255,253,248,.7);
+}
+.lead-strip-form{
+  flex:1;display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:10px;
+}
+.lead-strip-form .form-input{
+  height:52px;background:rgba(255,255,255,.96);
+  border-color:transparent;border-radius:12px;
+  font-size:15px;
+}
+.lead-strip-form .btn-submit{
+  margin-top:0;padding:0 28px;height:52px;
+  font-size:15px;border-radius:12px;white-space:nowrap;
+  box-shadow:0 10px 28px rgba(200,92,112,.4);
+}
+
+/* ── TRUST BAR ── */
+.trust-bar{
+  background:rgba(255,253,248,.9);
+  border-bottom:1px solid rgba(199,154,67,.18);
+  backdrop-filter:blur(12px);
+}
+.trust-bar-inner{
+  display:flex;align-items:center;justify-content:center;
+  gap:42px;padding:14px 0;flex-wrap:wrap;
+}
+.trust-item{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:13px;font-weight:800;color:var(--ink2);
+  letter-spacing:.2px;
+}
+.trust-item svg{width:20px;height:20px;color:var(--gold);flex-shrink:0}
+.trust-divider{
+  width:1px;height:18px;background:rgba(199,154,67,.3);
+}
+
 /* ── ANIMATIONS ── */
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(32px)}
@@ -831,6 +901,14 @@ footer{
   .lead-card-title{font-size:22px}
   .form-input{height:50px;font-size:15px}
   .btn-submit{font-size:16px;padding:15px}
+  .lead-strip-inner{flex-direction:column;gap:10px;padding:18px}
+  .lead-strip-copy{text-align:center}
+  .lead-strip-title{font-size:18px}
+  .lead-strip-sub{font-size:13px}
+  .lead-strip-form{width:100%;grid-template-columns:1fr}
+  .trust-bar-inner{gap:18px;font-size:12px;padding:14px 8px;flex-wrap:wrap;justify-content:center}
+  .trust-item{gap:6px}
+  .trust-item svg{width:18px;height:18px}
 }
 </style>
 `;
@@ -853,6 +931,52 @@ const BODY_HTML = `
     </div>
   </div>
 </header>
+
+<!-- ══ LEAD STRIP ══ -->
+<section class="lead-strip">
+  <div class="wrap">
+    <div class="lead-strip-inner">
+      <div class="lead-strip-copy">
+        <div class="lead-strip-eyebrow">בדיקת זכאות למלגה</div>
+        <div class="lead-strip-title">השאירי פרטים — נחזור תוך 24 שעות</div>
+        <div class="lead-strip-sub">פגישת ייעוץ אישית, ללא עלות וללא התחייבות</div>
+      </div>
+      <form class="lead-strip-form" onsubmit="event.preventDefault(); const b=this.querySelector('button'); b.innerHTML='✓ נשלח'; b.style.background='#1e6b3f'; setTimeout(()=>{document.getElementById('form')?.scrollIntoView({behavior:'smooth'})},800);">
+        <input class="form-input" type="text" placeholder="שם מלא *" required/>
+        <input class="form-input" type="tel" placeholder="טלפון *" required dir="ltr"/>
+        <input class="form-input" type="email" placeholder="אימייל"/>
+        <button type="submit" class="btn-submit">בדקי זכאות ←</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRUST BAR ══ -->
+<section class="trust-bar">
+  <div class="wrap">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+        תעודה בינלאומית מוכרת
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg>
+        מאושר לפיקדון צבאי
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        מזוודת איפור בשווי 11,000 ₪
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+        השמה לעבודה בסיום
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ══ HERO ══ -->
 <section class="hero">
