@@ -855,12 +855,12 @@ footer{
   .tick{padding:10px 14px;font-size:13px}
   .tick-icon{width:22px;height:22px;font-size:10px}
   .btn-primary{padding:16px 28px;font-size:16px;width:100%}
-  .hero-art{height:340px}
-  .portrait{width:70%;height:280px;border-radius:28px;border-width:6px}
-  .case-float{width:62%;bottom:10px;border-radius:24px;border-width:6px}
-  .badge-circle{width:108px;height:108px;right:14px;bottom:-10px;border-width:5px}
-  .badge-circle-num{font-size:22px}
-  .badge-circle-top,.badge-circle-sub{font-size:10px}
+  .hero-art{height:360px;margin-top:8px}
+  .portrait{width:78%;height:320px;border-radius:28px;border-width:6px;right:0;top:0}
+  .case-float{width:50%;bottom:0;left:0;border-radius:20px;border-width:5px}
+  .badge-circle{width:92px;height:92px;right:auto;left:46%;bottom:8px;border-width:4px;transform:rotate(-6deg);z-index:3}
+  .badge-circle-num{font-size:20px}
+  .badge-circle-top,.badge-circle-sub{font-size:9px}
   .section{padding:44px 0}
   .section-title{font-size:30px}
   .section-sub{font-size:15px}
