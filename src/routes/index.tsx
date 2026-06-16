@@ -949,24 +949,6 @@ const BODY_HTML = `
   </div>
 </header>
 
-<!-- ══ LEAD STRIP ══ -->
-<section class="lead-strip">
-  <div class="wrap">
-    <div class="lead-strip-inner">
-      <div class="lead-strip-copy">
-        <div class="lead-strip-eyebrow">בדיקת זכאות למלגה</div>
-        <div class="lead-strip-title">השאירי פרטים — נחזור תוך 24 שעות</div>
-        <div class="lead-strip-sub">פגישת ייעוץ אישית, ללא עלות וללא התחייבות</div>
-      </div>
-      <form class="lead-strip-form" onsubmit="event.preventDefault(); const b=this.querySelector('button'); b.innerHTML='✓ נשלח'; b.style.background='#1e6b3f'; setTimeout(()=>{document.getElementById('form')?.scrollIntoView({behavior:'smooth'})},800);">
-        <input class="form-input" type="text" placeholder="שם מלא *" required/>
-        <input class="form-input" type="tel" placeholder="טלפון *" required dir="ltr"/>
-        <input class="form-input" type="email" placeholder="אימייל"/>
-        <button type="submit" class="btn-submit">בדקי זכאות ←</button>
-      </form>
-    </div>
-  </div>
-</section>
 
 <!-- ══ TRUST BAR ══ -->
 <section class="trust-bar">
