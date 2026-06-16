@@ -738,6 +738,9 @@ footer{
   .faq-grid{grid-template-columns:1fr}
 }
 @media(max-width:860px){
+  .wrap{width:min(1200px,94vw)}
+  .section{padding:56px 0}
+  .hero{padding:32px 0 56px}
   .hero-grid{grid-template-columns:1fr;gap:32px}
   .hero-art{order:-1;height:420px}
   .portrait{width:65%;height:360px}
@@ -745,28 +748,89 @@ footer{
   .badge-circle{width:130px;height:130px;right:24px;bottom:0}
   .badge-circle-num{font-size:26px}
   .how-grid{grid-template-columns:1fr}
-  .how-img{display:none}
-  .army-banner-inner{grid-template-columns:1fr}
-  .army-cta-wrap{display:none}
+  .how-section{padding:32px 24px;border-radius:28px}
+  .how-img img{height:280px}
+  .army-banner{padding:32px 24px;border-radius:28px}
+  .army-banner-inner{grid-template-columns:1fr;gap:24px}
+  .army-cta-wrap{display:flex;justify-content:center}
   .final-grid{grid-template-columns:1fr}
-  .final-section{padding:36px 24px}
+  .final-section{padding:36px 24px;border-radius:28px}
   .stats-inner{grid-template-columns:repeat(2,1fr);gap:20px}
   .stat:not(:last-child)::after{display:none}
+  .stat:nth-child(2)::after{display:none !important}
   .gallery{grid-template-columns:1fr}
-  .gallery-item img,.gallery-item:nth-child(2) img{height:220px}
+  .gallery-item img,.gallery-item:nth-child(2) img{height:240px}
   .testi-grid{grid-template-columns:1fr}
-  .how-section{padding:32px 24px;border-radius:28px}
-  .army-banner{padding:32px 24px;border-radius:28px}
   .sticky-mobile{display:block}
   body{padding-bottom:64px}
   .topbar-phone{display:none}
+  .section-head{margin-bottom:36px}
 }
 @media(max-width:520px){
+  .wrap{width:min(1200px,92vw)}
   .benefits-grid{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
-  .hero-art{height:360px}
-  .portrait{width:72%;height:310px}
-  .topbar-cta{padding:10px 16px;font-size:13px}
+  .topbar-inner{padding:10px 0}
+  .brand{font-size:16px;gap:8px}
+  .brand-mark{width:38px;height:38px;border-radius:11px;font-size:18px}
+  .brand small{display:none}
+  .topbar-cta{padding:10px 14px;font-size:12px;border-radius:40px}
+  .hero{padding:24px 0 40px}
+  .hero h1{font-size:42px;letter-spacing:-1px;margin-bottom:12px}
+  .hero-sub{font-size:15px;margin-bottom:18px}
+  .eyebrow{font-size:12px;padding:8px 14px;margin-bottom:16px}
+  .salary-highlight{padding:18px 20px;border-radius:18px}
+  .salary-amount{font-size:30px}
+  .salary-note{font-size:12px}
+  .tick{padding:10px 14px;font-size:13px}
+  .tick-icon{width:22px;height:22px;font-size:10px}
+  .btn-primary{padding:16px 28px;font-size:16px;width:100%}
+  .hero-art{height:340px}
+  .portrait{width:70%;height:280px;border-radius:28px;border-width:6px}
+  .case-float{width:62%;bottom:10px;border-radius:24px;border-width:6px}
+  .badge-circle{width:108px;height:108px;right:14px;bottom:-10px;border-width:5px}
+  .badge-circle-num{font-size:22px}
+  .badge-circle-top,.badge-circle-sub{font-size:10px}
+  .section{padding:44px 0}
+  .section-title{font-size:30px}
+  .section-sub{font-size:15px}
+  .section-tag{font-size:11px;letter-spacing:2px}
+  .stats-bar{padding:24px 0}
+  .stat-num{font-size:28px}
+  .stat-lbl{font-size:11px}
+  .benefit-card{padding:22px 18px}
+  .benefit-title{font-size:18px}
+  .benefit-val{font-size:20px}
+  .how-section{padding:24px 18px;border-radius:24px}
+  .how-img img{height:220px}
+  .how-title{font-size:28px}
+  .how-sub{font-size:14px;margin-bottom:20px}
+  .step{padding:14px;grid-template-columns:44px 1fr;gap:12px}
+  .step-num{width:44px;height:44px;font-size:18px;border-radius:13px}
+  .step-title{font-size:14px}
+  .step-text{font-size:12px}
+  .army-banner{padding:28px 20px;border-radius:24px}
+  .army-title{font-size:28px}
+  .army-text{font-size:14px}
+  .army-tag{font-size:12px;padding:8px 14px}
+  .btn-gold{font-size:15px;padding:14px 26px;width:100%;justify-content:center}
+  .gallery{gap:14px}
+  .gallery-item{border-width:5px;border-radius:24px}
+  .gallery-item img,.gallery-item:nth-child(2) img{height:200px}
+  .testi-card{padding:24px 20px}
+  .testi-text{font-size:14px}
+  .testi-quote{font-size:56px;top:8px;right:18px}
+  details{padding:18px}
+  summary{font-size:16px}
+  details p{font-size:14px}
+  .final-section{padding:28px 18px;border-radius:24px}
+  .final-title{font-size:32px}
+  .final-sub{font-size:15px;margin-bottom:22px}
+  .final-point{font-size:13px}
+  .lead-card{padding:22px 18px}
+  .lead-card-title{font-size:22px}
+  .form-input{height:50px;font-size:15px}
+  .btn-submit{font-size:16px;padding:15px}
 }
 </style>
 `;
