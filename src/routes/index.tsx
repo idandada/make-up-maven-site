@@ -978,9 +978,9 @@ const BODY_HTML = `
         <div class="hero-art-img">
           <img src="/assets/hero_woman.jpg" alt="מאפרת מקצועית"/>
           <div class="hero-art-badge">
-            <div class="hero-art-badge-top">שווי ציוד</div>
-            <span class="hero-art-badge-num">11K ₪</span>
-            <div class="hero-art-badge-sub">כלול בקורס</div>
+            <div class="hero-art-badge-top">מתנה מזוודה</div>
+            <span class="hero-art-badge-num">בשווי 11K ₪</span>
+            <div class="hero-art-badge-sub">לכל נרשמת</div>
           </div>
         </div>
         <div class="hero-form-card" id="lead-top">
@@ -1009,7 +1009,7 @@ const BODY_HTML = `
   <div class="wrap">
     <div class="stats-inner">
       <div class="stat"><div class="stat-num">6–8</div><div class="stat-lbl">חודשי לימוד מקצועי</div></div>
-      <div class="stat"><div class="stat-num">11K ₪</div><div class="stat-lbl">שווי ציוד כלול</div></div>
+      <div class="stat"><div class="stat-num">11K ₪</div><div class="stat-lbl">מתנה מזוודה כלולה</div></div>
       <div class="stat"><div class="stat-num">800+</div><div class="stat-lbl">בוגרות מועסקות</div></div>
       <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">ליווי לעבודה בסיום</div></div>
     </div>
