@@ -238,49 +238,66 @@ body::before{
 /* ART SIDE */
 .hero-art{
   position:relative;
-  height:620px;
+  display:flex;flex-direction:column;gap:18px;
 }
-.portrait{
-  position:absolute;
-  right:0;top:0;
-  width:62%;height:520px;
-  border-radius:40px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  border:8px solid white;
-}
-.portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
-.case-float{
-  position:absolute;
-  left:0;bottom:60px;
-  width:60%;
+.hero-art-img{
+  position:relative;
   border-radius:32px;
   overflow:hidden;
+  height:280px;
   border:7px solid white;
   box-shadow:var(--shadow);
-  background:white;
 }
-.case-float img{width:100%;display:block}
-.badge-circle{
+.hero-art-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
+.hero-art-badge{
   position:absolute;
-  right:52px;bottom:10px;
-  width:170px;height:170px;
-  border-radius:50%;
+  right:18px;bottom:18px;
   background:linear-gradient(145deg,var(--gold3),#b8850e);
-  border:7px solid white;
-  box-shadow:var(--shadow);
-  display:grid;place-items:center;
+  color:#1a1008;
+  border:4px solid white;
+  border-radius:18px;
+  padding:10px 16px;
   text-align:center;
-  transform:rotate(5deg);
-  z-index:2;
+  box-shadow:var(--shadow-sm);
+  transform:rotate(-3deg);
 }
-.badge-circle-top{font-size:12px;font-weight:800;color:rgba(255,255,255,.8)}
-.badge-circle-num{
+.hero-art-badge-top{font-size:10px;font-weight:800;letter-spacing:.6px;color:rgba(26,16,8,.7)}
+.hero-art-badge-num{
   font-family:'Frank Ruhl Libre',serif;
-  font-size:34px;font-weight:900;color:white;
-  line-height:1;display:block;
+  font-size:26px;font-weight:900;line-height:1;display:block;
+  color:#1a1008;
 }
-.badge-circle-sub{font-size:12px;font-weight:700;color:rgba(255,255,255,.8)}
+.hero-art-badge-sub{font-size:10px;font-weight:800;color:rgba(26,16,8,.75);margin-top:2px}
+
+/* HERO INLINE LEAD FORM */
+.hero-form-card{
+  background:linear-gradient(180deg,#fffdf9,#fff5ec);
+  border:1px solid rgba(199,154,67,.3);
+  border-radius:26px;
+  padding:24px 24px 22px;
+  box-shadow:var(--shadow);
+  position:relative;
+}
+.hero-form-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:900;letter-spacing:1.5px;
+  color:var(--rose-dark);text-transform:uppercase;
+  margin-bottom:8px;
+}
+.hero-form-eyebrow::before{content:'';width:18px;height:1px;background:var(--rose)}
+.hero-form-title{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:24px;font-weight:900;color:var(--ink);
+  line-height:1.2;margin-bottom:4px;
+}
+.hero-form-sub{font-size:14px;font-weight:600;color:var(--muted);margin-bottom:14px}
+.hero-form-card .form-input{height:48px;font-size:15px;margin-bottom:10px}
+.hero-form-card .btn-submit{margin-top:4px;padding:14px;font-size:16px}
+.hero-form-trust{
+  display:flex;flex-wrap:wrap;gap:10px 16px;justify-content:center;
+  margin-top:12px;font-size:12px;font-weight:700;color:var(--muted);
+}
+.hero-form-trust span{display:inline-flex;align-items:center;gap:5px}
 
 /* ── STATS BAR ── */
 .stats-bar{
@@ -695,55 +712,6 @@ footer{
   box-shadow:0 -4px 24px rgba(200,92,112,.3);
 }
 
-/* ── LEAD STRIP (top of page) ── */
-.lead-strip{
-  background:linear-gradient(135deg,#1a1008 0%,#2a1810 50%,#3a2618 100%);
-  position:relative;overflow:hidden;
-  border-bottom:1px solid rgba(199,154,67,.35);
-}
-.lead-strip::before{
-  content:'';position:absolute;inset:0;
-  background:
-    radial-gradient(circle at 12% 30%,rgba(245,216,140,.18),transparent 45%),
-    radial-gradient(circle at 88% 70%,rgba(200,92,112,.18),transparent 50%);
-  pointer-events:none;
-}
-.lead-strip-inner{
-  position:relative;
-  display:flex;align-items:center;gap:24px;
-  padding:22px 0;
-}
-.lead-strip-copy{flex:0 0 auto;max-width:300px}
-.lead-strip-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:11px;font-weight:900;letter-spacing:1.5px;
-  color:var(--gold2);text-transform:uppercase;
-  margin-bottom:6px;
-}
-.lead-strip-eyebrow::before{
-  content:'';width:24px;height:1px;background:var(--gold);
-}
-.lead-strip-title{
-  font-family:'Frank Ruhl Libre',serif;
-  font-size:22px;font-weight:900;color:#fff;line-height:1.25;
-  margin-bottom:4px;
-}
-.lead-strip-sub{
-  font-size:13px;font-weight:600;color:rgba(255,253,248,.7);
-}
-.lead-strip-form{
-  flex:1;display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:10px;
-}
-.lead-strip-form .form-input{
-  height:52px;background:rgba(255,255,255,.96);
-  border-color:transparent;border-radius:12px;
-  font-size:15px;
-}
-.lead-strip-form .btn-submit{
-  margin-top:0;padding:0 28px;height:52px;
-  font-size:15px;border-radius:12px;white-space:nowrap;
-  box-shadow:0 10px 28px rgba(200,92,112,.4);
-}
 
 /* ── TRUST BAR ── */
 .trust-bar{
@@ -796,10 +764,10 @@ footer{
 .testi-card:nth-child(3){animation-delay:.25s}
 
 @keyframes float{
-  0%,100%{transform:translateY(0) rotate(5deg)}
-  50%{transform:translateY(-8px) rotate(5deg)}
+  0%,100%{transform:translateY(0) rotate(-3deg)}
+  50%{transform:translateY(-6px) rotate(-3deg)}
 }
-.badge-circle{animation:float 5s ease-in-out infinite}
+.hero-art-badge{animation:float 5s ease-in-out infinite}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
@@ -812,11 +780,8 @@ footer{
   .section{padding:56px 0}
   .hero{padding:32px 0 56px}
   .hero-grid{grid-template-columns:1fr;gap:32px}
-  .hero-art{order:-1;height:420px}
-  .portrait{width:65%;height:360px}
-  .case-float{width:60%;bottom:30px}
-  .badge-circle{width:130px;height:130px;right:24px;bottom:0}
-  .badge-circle-num{font-size:26px}
+  .hero-art{gap:14px}
+  .hero-art-img{height:240px}
   .how-grid{grid-template-columns:1fr}
   .how-section{padding:32px 24px;border-radius:28px}
   .how-img img{height:280px}
@@ -855,12 +820,13 @@ footer{
   .tick{padding:10px 14px;font-size:13px}
   .tick-icon{width:22px;height:22px;font-size:10px}
   .btn-primary{padding:16px 28px;font-size:16px;width:100%}
-  .hero-art{height:360px;margin-top:8px}
-  .portrait{width:78%;height:320px;border-radius:28px;border-width:6px;right:0;top:0}
-  .case-float{width:50%;bottom:0;left:0;border-radius:20px;border-width:5px}
-  .badge-circle{width:92px;height:92px;right:auto;left:46%;bottom:8px;border-width:4px;transform:rotate(-6deg);z-index:3}
-  .badge-circle-num{font-size:20px}
-  .badge-circle-top,.badge-circle-sub{font-size:9px}
+  .hero-art{margin-top:8px;gap:12px}
+  .hero-art-img{height:200px;border-width:5px;border-radius:24px}
+  .hero-art-badge{padding:8px 12px;border-radius:14px;right:12px;bottom:12px;border-width:3px}
+  .hero-art-badge-num{font-size:20px}
+  .hero-form-card{padding:20px 18px;border-radius:22px}
+  .hero-form-title{font-size:20px}
+  .hero-form-sub{font-size:13px}
   .section{padding:44px 0}
   .section-title{font-size:30px}
   .section-sub{font-size:15px}
@@ -901,11 +867,6 @@ footer{
   .lead-card-title{font-size:22px}
   .form-input{height:50px;font-size:15px}
   .btn-submit{font-size:16px;padding:15px}
-  .lead-strip-inner{flex-direction:column;gap:10px;padding:18px}
-  .lead-strip-copy{text-align:center}
-  .lead-strip-title{font-size:18px}
-  .lead-strip-sub{font-size:13px}
-  .lead-strip-form{width:100%;grid-template-columns:1fr}
   .trust-bar-inner{gap:18px;font-size:12px;padding:14px 8px;flex-wrap:wrap;justify-content:center}
   .trust-item{gap:6px}
   .trust-item svg{width:18px;height:18px}
@@ -932,24 +893,6 @@ const BODY_HTML = `
   </div>
 </header>
 
-<!-- ══ LEAD STRIP ══ -->
-<section class="lead-strip">
-  <div class="wrap">
-    <div class="lead-strip-inner">
-      <div class="lead-strip-copy">
-        <div class="lead-strip-eyebrow">בדיקת זכאות למלגה</div>
-        <div class="lead-strip-title">השאירי פרטים — נחזור תוך 24 שעות</div>
-        <div class="lead-strip-sub">פגישת ייעוץ אישית, ללא עלות וללא התחייבות</div>
-      </div>
-      <form class="lead-strip-form" onsubmit="event.preventDefault(); const b=this.querySelector('button'); b.innerHTML='✓ נשלח'; b.style.background='#1e6b3f'; setTimeout(()=>{document.getElementById('form')?.scrollIntoView({behavior:'smooth'})},800);">
-        <input class="form-input" type="text" placeholder="שם מלא *" required/>
-        <input class="form-input" type="tel" placeholder="טלפון *" required dir="ltr"/>
-        <input class="form-input" type="email" placeholder="אימייל"/>
-        <button type="submit" class="btn-submit">בדקי זכאות ←</button>
-      </form>
-    </div>
-  </div>
-</section>
 
 <!-- ══ TRUST BAR ══ -->
 <section class="trust-bar">
@@ -1032,17 +975,27 @@ const BODY_HTML = `
 
       <!-- ART -->
       <div class="hero-art">
-        <div class="portrait">
+        <div class="hero-art-img">
           <img src="/assets/hero_woman.jpg" alt="מאפרת מקצועית"/>
+          <div class="hero-art-badge">
+            <div class="hero-art-badge-top">שווי ציוד</div>
+            <span class="hero-art-badge-num">11K ₪</span>
+            <div class="hero-art-badge-sub">כלול בקורס</div>
+          </div>
         </div>
-        <div class="case-float">
-          <img src="/assets/beauty_case.jpg" alt="מזוודת איפור"/>
-        </div>
-        <div class="badge-circle">
-          <div>
-            <div class="badge-circle-top">שווי ציוד</div>
-            <span class="badge-circle-num">11K</span>
-            <div class="badge-circle-sub">₪ כלול</div>
+        <div class="hero-form-card" id="lead-top">
+          <div class="hero-form-eyebrow">בדיקת זכאות למלגה</div>
+          <div class="hero-form-title">השאירי פרטים — נחזור תוך 24 שעות</div>
+          <div class="hero-form-sub">פגישת ייעוץ אישית, ללא עלות וללא התחייבות</div>
+          <form onsubmit="event.preventDefault(); const b=this.querySelector('button'); b.innerHTML='✓ נשלח — נחזור אלייך'; b.style.background='#1e6b3f';">
+            <input class="form-input" type="text" placeholder="שם מלא *" required/>
+            <input class="form-input" type="tel" placeholder="טלפון *" required dir="ltr"/>
+            <button type="submit" class="btn-submit">בדקי זכאות למלגה ←</button>
+          </form>
+          <div class="hero-form-trust">
+            <span>✓ ללא עלות</span>
+            <span>✓ ללא התחייבות</span>
+            <span>✓ דיסקרטי</span>
           </div>
         </div>
       </div>
