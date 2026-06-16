@@ -932,6 +932,52 @@ const BODY_HTML = `
   </div>
 </header>
 
+<!-- ══ LEAD STRIP ══ -->
+<section class="lead-strip">
+  <div class="wrap">
+    <div class="lead-strip-inner">
+      <div class="lead-strip-copy">
+        <div class="lead-strip-eyebrow">בדיקת זכאות למלגה</div>
+        <div class="lead-strip-title">השאירי פרטים — נחזור תוך 24 שעות</div>
+        <div class="lead-strip-sub">פגישת ייעוץ אישית, ללא עלות וללא התחייבות</div>
+      </div>
+      <form class="lead-strip-form" onsubmit="event.preventDefault(); const b=this.querySelector('button'); b.innerHTML='✓ נשלח'; b.style.background='#1e6b3f'; setTimeout(()=>{document.getElementById('form')?.scrollIntoView({behavior:'smooth'})},800);">
+        <input class="form-input" type="text" placeholder="שם מלא *" required/>
+        <input class="form-input" type="tel" placeholder="טלפון *" required dir="ltr"/>
+        <input class="form-input" type="email" placeholder="אימייל"/>
+        <button type="submit" class="btn-submit">בדקי זכאות ←</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRUST BAR ══ -->
+<section class="trust-bar">
+  <div class="wrap">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+        תעודה בינלאומית מוכרת
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg>
+        מאושר לפיקדון צבאי
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        מזוודת איפור בשווי 11,000 ₪
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+        השמה לעבודה בסיום
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ HERO ══ -->
 <section class="hero">
   <div class="wrap">
