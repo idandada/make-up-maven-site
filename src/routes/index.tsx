@@ -1,456 +1,1174 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import adHero from "@/assets/ad-hero.jpg";
-import adKit from "@/assets/ad-kit.jpg";
-import adCloseup from "@/assets/ad-closeup.jpg";
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "קורס מאפרת מקצועית — לבנות אחרי צבא ושירות לאומי" },
-      { name: "description", content: "באורך 6-8 חודשים, דואגים לך לעבודה עם שכר ממוצע יומי 800-2,000 ₪. מזוודה בשווי 11,000 ₪, תעודה בינלאומית ומלגה לנרשמות." },
+      { title: "קורס מאפרת מקצועית | בדיקת זכאות למלגה" },
+      { name: "description", content: "קורס מאפרת מקצועית — לבנות אחרי צבא / שירות לאומי. מזוודה בשווי 11,000 ₪, תעודה בינלאומית ומלגה לנרשמות." },
     ],
   }),
   component: LandingPage,
 });
 
-function LandingPage() {
-  return (
-    <main dir="rtl" className="min-h-screen bg-[#fdf4ee] text-[#1a1a1a] overflow-x-hidden font-[Heebo,sans-serif] relative">
-      <Sparkles />
-      <Hero />
-      <Benefits />
-      <KitSection />
-      <CelebritySection />
-      <Eligibility />
-      <LeadForm />
-      <Footer />
-      <StickyCTA />
-    </main>
-  );
+const STYLES = `:root{
+  --ink:#18120f;
+  --ink2:#3a2618;
+  --muted:#7a6a60;
+  --rose:#c85c70;
+  --rose-dark:#9e344b;
+  --rose-pale:#f7d9dc;
+  --gold:#c79a43;
+  --gold2:#f5d88c;
+  --gold3:#e8c778;
+  --cream:#fff8f3;
+  --paper:#fffdf9;
+  --shadow:0 28px 72px rgba(78,44,25,.16);
+  --shadow-sm:0 12px 32px rgba(78,44,25,.10);
+  --r:28px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Heebo',sans-serif;
+  background:linear-gradient(160deg,#fffdf8 0%,#fff4ef 50%,#fffaf5 100%);
+  color:var(--ink);
+  direction:rtl;
+  overflow-x:hidden;
+}
+/* noise texture */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:999;
 }
 
-/* ─────────── Decorative sparkle background ─────────── */
-function Sparkles() {
-  return (
-    <div aria-hidden className="fixed inset-0 pointer-events-none z-0 opacity-60">
-      <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,#f8d4d4_0%,transparent_70%)] blur-3xl" />
-      <div className="absolute top-1/3 -left-40 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,#fde6c4_0%,transparent_70%)] blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,#f5d4dc_0%,transparent_70%)] blur-3xl" />
+.wrap{width:min(1200px,92vw);margin:auto}
+
+/* ── TOPBAR ── */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,252,248,.85);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(199,154,67,.2);
+}
+.topbar-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 0;
+}
+.brand{
+  display:flex;align-items:center;gap:12px;
+  font-family:'Frank Ruhl Libre',serif;
+  font-weight:900;font-size:20px;color:var(--ink);
+}
+.brand-mark{
+  width:46px;height:46px;border-radius:14px;
+  background:linear-gradient(135deg,#1a1008,#3a2618);
+  display:grid;place-items:center;
+  color:var(--gold2);font-size:22px;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+}
+.topbar-nav{display:flex;align-items:center;gap:16px}
+.topbar-phone{
+  font-size:15px;font-weight:700;color:var(--muted);
+  text-decoration:none;
+}
+.topbar-cta{
+  background:linear-gradient(135deg,var(--rose),var(--rose-dark));
+  color:#fff;padding:12px 24px;border-radius:50px;
+  text-decoration:none;font-weight:900;font-size:15px;
+  box-shadow:0 10px 28px rgba(200,92,112,.32);
+  transition:transform .25s,box-shadow .25s;
+  white-space:nowrap;
+}
+.topbar-cta:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(200,92,112,.42)}
+
+/* ── HERO ── */
+.hero{
+  position:relative;
+  padding:56px 0 80px;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;
+  top:-100px;left:-10vw;
+  width:700px;height:700px;
+  background:radial-gradient(circle,rgba(247,217,220,.55) 0,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+.hero::after{
+  content:'';position:absolute;
+  bottom:-80px;right:5vw;
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(199,154,67,.12) 0,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  align-items:center;
+  position:relative;z-index:1;
+}
+
+/* COPY SIDE */
+.hero-copy{}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:10px 18px;
+  border:1px solid rgba(199,154,67,.4);
+  border-radius:50px;
+  background:rgba(255,250,240,.9);
+  font-weight:800;font-size:14px;color:#7c5521;
+  box-shadow:0 8px 24px rgba(199,155,66,.2);
+  margin-bottom:22px;
+}
+.eyebrow-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--rose);
+}
+.hero h1{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:clamp(46px,5.5vw,80px);
+  line-height:.95;
+  font-weight:900;
+  letter-spacing:-1.5px;
+  margin-bottom:14px;
+}
+.gold-text{
+  background:linear-gradient(180deg,var(--gold3) 0%,#a77824 55%,var(--gold2) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;display:block;
+}
+.hero-sub{
+  font-size:clamp(16px,1.6vw,20px);
+  font-weight:700;
+  color:var(--muted);
+  line-height:1.5;
+  margin-bottom:22px;
+  max-width:500px;
+}
+
+/* SALARY HIGHLIGHT BOX */
+.salary-highlight{
+  background:linear-gradient(135deg,#1a1008,#3a2218);
+  border-radius:22px;
+  padding:22px 28px;
+  margin-bottom:24px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.salary-highlight::before{
+  content:'';position:absolute;
+  top:-30px;left:-30px;width:160px;height:160px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(199,154,67,.2),transparent 70%);
+}
+.salary-label{
+  font-size:13px;font-weight:700;
+  color:rgba(255,255,255,.55);
+  margin-bottom:6px;letter-spacing:.5px;
+}
+.salary-amount{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:clamp(32px,3.5vw,48px);
+  font-weight:900;
+  background:linear-gradient(90deg,var(--gold3),var(--gold2));
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+  line-height:1;
+}
+.salary-note{
+  font-size:14px;font-weight:600;
+  color:rgba(255,255,255,.6);
+  margin-top:6px;
+}
+
+/* TICKS */
+.ticks{
+  display:flex;flex-direction:column;
+  gap:10px;margin-bottom:28px;
+}
+.tick{
+  display:flex;align-items:center;gap:12px;
+  background:white;
+  border:1px solid rgba(234,215,191,.8);
+  border-radius:50px;
+  padding:11px 18px;
+  font-weight:800;font-size:14px;
+  box-shadow:0 8px 20px rgba(78,44,25,.07);
+  transition:transform .2s,box-shadow .2s;
+}
+.tick:hover{transform:translateX(-4px);box-shadow:0 12px 28px rgba(78,44,25,.1)}
+.tick-icon{
+  width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,var(--rose),var(--rose-dark));
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-size:12px;font-weight:900;flex-shrink:0;
+}
+
+/* CTA BUTTON */
+.btn-primary{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(135deg,var(--rose),var(--rose-dark));
+  color:white;
+  font-family:'Heebo',sans-serif;
+  font-size:18px;font-weight:900;
+  padding:18px 44px;border-radius:50px;border:none;
+  cursor:pointer;text-decoration:none;
+  box-shadow:0 14px 36px rgba(200,92,112,.38);
+  transition:transform .25s,box-shadow .25s;
+  position:relative;overflow:hidden;
+}
+.btn-primary::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  transform:translateX(-100%);
+  transition:transform .6s ease;
+}
+.btn-primary:hover::after{transform:translateX(100%)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 48px rgba(200,92,112,.46)}
+.btn-note{
+  font-size:12px;color:var(--muted);
+  margin-top:10px;font-weight:600;
+}
+
+/* ART SIDE */
+.hero-art{
+  position:relative;
+  height:620px;
+}
+.portrait{
+  position:absolute;
+  right:0;top:0;
+  width:62%;height:520px;
+  border-radius:40px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  border:8px solid white;
+}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.case-float{
+  position:absolute;
+  left:0;bottom:60px;
+  width:60%;
+  border-radius:32px;
+  overflow:hidden;
+  border:7px solid white;
+  box-shadow:var(--shadow);
+  background:white;
+}
+.case-float img{width:100%;display:block}
+.badge-circle{
+  position:absolute;
+  right:52px;bottom:10px;
+  width:170px;height:170px;
+  border-radius:50%;
+  background:linear-gradient(145deg,var(--gold3),#b8850e);
+  border:7px solid white;
+  box-shadow:var(--shadow);
+  display:grid;place-items:center;
+  text-align:center;
+  transform:rotate(5deg);
+  z-index:2;
+}
+.badge-circle-top{font-size:12px;font-weight:800;color:rgba(255,255,255,.8)}
+.badge-circle-num{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:34px;font-weight:900;color:white;
+  line-height:1;display:block;
+}
+.badge-circle-sub{font-size:12px;font-weight:700;color:rgba(255,255,255,.8)}
+
+/* ── STATS BAR ── */
+.stats-bar{
+  background:linear-gradient(135deg,var(--gold),#a77824);
+  padding:30px 0;
+}
+.stats-inner{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;
+}
+.stat{text-align:center;padding:0 24px;position:relative}
+.stat:not(:last-child)::after{
+  content:'';position:absolute;
+  top:50%;right:0;transform:translateY(-50%);
+  width:1px;height:40px;
+  background:rgba(255,255,255,.25);
+}
+.stat-num{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:38px;font-weight:900;
+  color:#1a1008;line-height:1;
+}
+.stat-lbl{font-size:13px;font-weight:700;color:rgba(26,16,8,.7);margin-top:4px}
+
+/* ── BENEFITS ── */
+.section{padding:80px 0}
+.section-head{text-align:center;margin-bottom:52px}
+.section-tag{
+  display:inline-block;
+  font-size:12px;font-weight:800;
+  letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;
+}
+.section-title{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:clamp(32px,4vw,56px);
+  font-weight:900;line-height:1.05;
+  color:var(--ink);margin-bottom:14px;
+}
+.section-sub{
+  font-size:18px;font-weight:600;
+  color:var(--muted);max-width:560px;
+  margin:0 auto;line-height:1.6;
+}
+
+.benefits-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.benefit-card{
+  background:white;
+  border:1px solid rgba(234,215,191,.8);
+  border-radius:var(--r);
+  padding:28px 22px;
+  box-shadow:0 16px 40px rgba(78,44,25,.08);
+  transition:transform .3s,box-shadow .3s;
+  position:relative;overflow:hidden;
+}
+.benefit-card::after{
+  content:'';position:absolute;
+  top:0;right:0;width:80px;height:80px;
+  background:radial-gradient(circle at top right,rgba(199,154,67,.08),transparent 70%);
+}
+.benefit-card:hover{transform:translateY(-5px);box-shadow:0 24px 56px rgba(78,44,25,.13)}
+.benefit-icon{
+  width:54px;height:54px;border-radius:16px;
+  background:linear-gradient(135deg,#1a1008,#3a2218);
+  display:grid;place-items:center;
+  font-size:24px;margin-bottom:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,.2);
+}
+.benefit-title{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:21px;font-weight:700;
+  color:var(--ink);margin-bottom:8px;
+}
+.benefit-text{
+  font-size:14px;font-weight:600;
+  color:var(--muted);line-height:1.6;
+}
+.benefit-val{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:24px;font-weight:900;
+  color:var(--gold);margin-top:14px;
+}
+
+/* ── HOW IT WORKS ── */
+.how-section{
+  background:white;
+  border-radius:44px;
+  padding:60px;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(234,215,191,.6);
+}
+.how-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:48px;align-items:center;
+}
+.how-img{
+  border-radius:32px;overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.how-img img{width:100%;height:420px;object-fit:cover;object-position:right center;display:block}
+.how-title{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:clamp(32px,3.5vw,50px);
+  font-weight:900;line-height:1.05;
+  margin-bottom:10px;color:var(--ink);
+}
+.how-sub{
+  font-size:16px;font-weight:600;
+  color:var(--muted);margin-bottom:28px;line-height:1.6;
+}
+.steps{display:flex;flex-direction:column;gap:14px}
+.step{
+  display:grid;grid-template-columns:52px 1fr;
+  gap:16px;align-items:center;
+  background:linear-gradient(90deg,#fff,#fff9f3);
+  border:1px solid rgba(234,215,191,.8);
+  border-radius:20px;padding:16px 18px;
+  transition:transform .2s,box-shadow .2s;
+}
+.step:hover{transform:translateX(-4px);box-shadow:0 8px 24px rgba(78,44,25,.08)}
+.step-num{
+  width:52px;height:52px;border-radius:16px;
+  background:linear-gradient(135deg,var(--gold3),var(--gold));
+  display:grid;place-items:center;
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:22px;font-weight:900;color:white;
+  box-shadow:0 6px 16px rgba(199,154,67,.35);
+  flex-shrink:0;
+}
+.step-title{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:3px}
+.step-text{font-size:13px;font-weight:600;color:var(--muted);line-height:1.5}
+
+/* ── ARMY BANNER ── */
+.army-banner{
+  background:linear-gradient(135deg,#111,#2a1a14);
+  border-radius:40px;
+  padding:56px 60px;
+  position:relative;overflow:hidden;
+  box-shadow:var(--shadow);
+  color:white;
+}
+.army-banner::before{
+  content:'';position:absolute;
+  inset:auto -80px -120px auto;
+  width:380px;height:380px;border-radius:50%;
+  background:rgba(199,154,67,.15);
+}
+.army-banner::after{
+  content:'';position:absolute;
+  top:-60px;right:-60px;
+  width:280px;height:280px;border-radius:50%;
+  background:rgba(200,92,112,.1);
+}
+.army-banner-inner{
+  display:grid;grid-template-columns:1fr auto;
+  gap:40px;align-items:center;
+  position:relative;z-index:1;
+}
+.army-title{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:clamp(34px,4vw,56px);
+  font-weight:900;line-height:1.05;
+  margin-bottom:16px;
+}
+.army-text{
+  font-size:18px;font-weight:700;
+  color:rgba(255,255,255,.75);
+  max-width:640px;line-height:1.55;
+}
+.army-tags{
+  display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;
+}
+.army-tag{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:50px;
+  padding:10px 20px;
+  font-size:15px;font-weight:800;color:white;
+}
+.army-tag.gold{
+  background:rgba(199,154,67,.2);
+  border-color:rgba(199,154,67,.4);
+  color:var(--gold2);
+}
+.army-cta-wrap{flex-shrink:0}
+.btn-gold{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--gold3),var(--gold));
+  color:#1a1008;
+  font-size:17px;font-weight:900;
+  padding:18px 36px;border-radius:50px;
+  border:none;cursor:pointer;
+  text-decoration:none;white-space:nowrap;
+  box-shadow:0 12px 32px rgba(199,154,67,.4);
+  transition:transform .25s,box-shadow .25s;
+}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(199,154,67,.5)}
+
+/* ── GALLERY ── */
+.gallery{
+  display:grid;
+  grid-template-columns:1.2fr .85fr 1fr;
+  gap:18px;
+}
+.gallery-item{
+  border-radius:32px;overflow:hidden;
+  border:7px solid white;
+  box-shadow:0 20px 48px rgba(78,44,25,.12);
+  transition:transform .3s;
+}
+.gallery-item:hover{transform:scale(1.02)}
+.gallery-item img{
+  width:100%;height:300px;
+  object-fit:cover;display:block;
+}
+.gallery-item:nth-child(2) img{height:380px}
+
+/* ── TESTIMONIALS ── */
+.testi-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.testi-card{
+  background:white;
+  border:1px solid rgba(234,215,191,.7);
+  border-radius:var(--r);
+  padding:30px;
+  box-shadow:0 12px 36px rgba(78,44,25,.07);
+  position:relative;
+  transition:transform .3s,box-shadow .3s;
+}
+.testi-card:hover{transform:translateY(-4px);box-shadow:0 20px 52px rgba(78,44,25,.11)}
+.testi-quote{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:72px;line-height:1;
+  color:rgba(199,154,67,.2);
+  position:absolute;top:10px;right:24px;
+}
+.testi-stars{
+  color:var(--gold);font-size:15px;
+  letter-spacing:2px;margin-bottom:14px;
+}
+.testi-text{
+  font-size:15px;font-weight:600;
+  color:var(--muted);line-height:1.7;
+  margin-bottom:20px;
+}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+  background:linear-gradient(135deg,var(--rose-pale),rgba(199,154,67,.15));
+  flex-shrink:0;
+}
+.testi-name{font-size:14px;font-weight:800;color:var(--ink)}
+.testi-role{font-size:12px;font-weight:600;color:var(--muted);margin-top:2px}
+
+/* ── FAQ ── */
+.faq-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+}
+details{
+  background:white;
+  border:1px solid rgba(234,215,191,.8);
+  border-radius:22px;padding:22px;
+  box-shadow:0 10px 28px rgba(78,44,25,.07);
+  transition:box-shadow .2s;
+}
+details[open]{box-shadow:0 16px 40px rgba(78,44,25,.12)}
+summary{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:20px;font-weight:700;
+  cursor:pointer;
+  list-style:none;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;color:var(--ink);
+}
+summary::after{
+  content:'﹢';font-size:24px;color:var(--gold);
+  transition:transform .3s;flex-shrink:0;
+}
+details[open] summary::after{transform:rotate(45deg)}
+details p{
+  font-size:15px;font-weight:600;
+  color:var(--muted);line-height:1.65;
+  margin-top:14px;padding-top:14px;
+  border-top:1px solid rgba(234,215,191,.6);
+}
+
+/* ── FINAL FORM SECTION ── */
+.final-section{
+  background:linear-gradient(135deg,#fff,#fff0f3);
+  border-radius:44px;
+  padding:60px;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(199,154,67,.25);
+}
+.final-grid{
+  display:grid;grid-template-columns:1fr 420px;
+  gap:48px;align-items:center;
+}
+.final-title{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:clamp(36px,4.5vw,60px);
+  font-weight:900;line-height:1.02;
+  margin-bottom:14px;
+}
+.final-sub{
+  font-size:18px;font-weight:700;
+  color:var(--muted);line-height:1.55;
+  margin-bottom:28px;max-width:520px;
+}
+.final-points{display:flex;flex-direction:column;gap:10px}
+.final-point{
+  display:flex;align-items:center;gap:10px;
+  font-size:15px;font-weight:700;color:var(--ink2);
+}
+.final-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;
+}
+
+/* LEAD FORM CARD */
+.lead-card{
+  background:white;
+  border:1px solid rgba(199,154,67,.3);
+  border-radius:var(--r);
+  padding:32px;
+  box-shadow:var(--shadow);
+  position:relative;overflow:hidden;
+}
+.lead-card::before{
+  content:'';position:absolute;inset:0;
+  background:url('/assets/sparkles.svg') right top/240px auto no-repeat;
+  opacity:.25;pointer-events:none;
+}
+.lead-card-title{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:26px;font-weight:900;
+  color:var(--ink);margin-bottom:6px;
+}
+.lead-card-sub{
+  font-size:14px;font-weight:600;
+  color:var(--muted);margin-bottom:20px;line-height:1.5;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-field{position:relative;margin-bottom:12px}
+.form-input{
+  width:100%;height:54px;
+  border:1.5px solid rgba(234,215,191,.9);
+  border-radius:14px;
+  padding:0 16px;
+  font-family:'Heebo',sans-serif;
+  font-size:16px;font-weight:700;
+  background:#fff;color:var(--ink);
+  transition:border-color .2s,box-shadow .2s;
+  direction:rtl;outline:none;
+}
+.form-input:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(199,154,67,.12);
+}
+.form-input::placeholder{color:#bba898;font-weight:600}
+select.form-input{
+  appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c79a43' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:left 14px center;
+}
+.btn-submit{
+  width:100%;
+  background:linear-gradient(135deg,var(--rose),var(--rose-dark));
+  color:white;
+  font-family:'Heebo',sans-serif;
+  font-size:18px;font-weight:900;
+  padding:17px;border-radius:16px;border:none;cursor:pointer;
+  box-shadow:0 14px 32px rgba(200,92,112,.34);
+  transition:transform .25s,box-shadow .25s;
+  margin-top:4px;
+}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(200,92,112,.44)}
+.form-micro{
+  text-align:center;font-size:12px;font-weight:600;
+  color:var(--muted);margin-top:12px;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:#111;
+  padding:30px 0;
+  text-align:center;
+}
+.footer-text{
+  font-size:13px;font-weight:600;
+  color:rgba(255,255,255,.3);
+}
+
+/* ── STICKY MOBILE CTA ── */
+.sticky-mobile{
+  display:none;position:fixed;
+  bottom:0;left:0;right:0;z-index:200;
+}
+.sticky-mobile a{
+  display:block;text-align:center;
+  background:linear-gradient(135deg,var(--rose),var(--rose-dark));
+  color:white;text-decoration:none;
+  padding:16px;font-size:16px;font-weight:900;
+  box-shadow:0 -4px 24px rgba(200,92,112,.3);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(32px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero-copy > *{
+  animation:fadeUp .7s ease both;
+}
+.hero-copy > *:nth-child(1){animation-delay:.05s}
+.hero-copy > *:nth-child(2){animation-delay:.15s}
+.hero-copy > *:nth-child(3){animation-delay:.25s}
+.hero-copy > *:nth-child(4){animation-delay:.35s}
+.hero-copy > *:nth-child(5){animation-delay:.45s}
+.hero-copy > *:nth-child(6){animation-delay:.55s}
+.hero-art{animation:fadeUp .9s .2s ease both}
+
+@keyframes slideUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.benefit-card{animation:slideUp .6s ease both}
+.benefit-card:nth-child(1){animation-delay:.05s}
+.benefit-card:nth-child(2){animation-delay:.15s}
+.benefit-card:nth-child(3){animation-delay:.25s}
+.benefit-card:nth-child(4){animation-delay:.35s}
+.testi-card{animation:slideUp .6s ease both}
+.testi-card:nth-child(1){animation-delay:.05s}
+.testi-card:nth-child(2){animation-delay:.15s}
+.testi-card:nth-child(3){animation-delay:.25s}
+
+@keyframes float{
+  0%,100%{transform:translateY(0) rotate(5deg)}
+  50%{transform:translateY(-8px) rotate(5deg)}
+}
+.badge-circle{animation:float 5s ease-in-out infinite}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .benefits-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr 1fr}
+  .faq-grid{grid-template-columns:1fr}
+}
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:32px}
+  .hero-art{order:-1;height:420px}
+  .portrait{width:65%;height:360px}
+  .case-float{width:60%;bottom:30px}
+  .badge-circle{width:130px;height:130px;right:24px;bottom:0}
+  .badge-circle-num{font-size:26px}
+  .how-grid{grid-template-columns:1fr}
+  .how-img{display:none}
+  .army-banner-inner{grid-template-columns:1fr}
+  .army-cta-wrap{display:none}
+  .final-grid{grid-template-columns:1fr}
+  .final-section{padding:36px 24px}
+  .stats-inner{grid-template-columns:repeat(2,1fr);gap:20px}
+  .stat:not(:last-child)::after{display:none}
+  .gallery{grid-template-columns:1fr}
+  .gallery-item img,.gallery-item:nth-child(2) img{height:220px}
+  .testi-grid{grid-template-columns:1fr}
+  .how-section{padding:32px 24px;border-radius:28px}
+  .army-banner{padding:32px 24px;border-radius:28px}
+  .sticky-mobile{display:block}
+  body{padding-bottom:64px}
+  .topbar-phone{display:none}
+}
+@media(max-width:520px){
+  .benefits-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .hero-art{height:360px}
+  .portrait{width:72%;height:310px}
+  .topbar-cta{padding:10px 16px;font-size:13px}
+}
+</style>
+`;
+const BODY_HTML = `
+<!-- ══ TOPBAR ══ -->
+<header class="topbar">
+  <div class="wrap">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">✦</div>
+        <div>
+          <div>קורס מאפרת</div>
+          <small style="font-size:12px;font-weight:600;color:var(--muted)">המכללה המובילה בישראל</small>
+        </div>
+      </div>
+      <div class="topbar-nav">
+        <a href="tel:0500000000" class="topbar-phone">📞 להתקשרות</a>
+        <a href="#form" class="topbar-cta">לפגישת ייעוץ חינם ←</a>
+      </div>
     </div>
-  );
-}
+  </div>
+</header>
 
-/* ─────────── HERO ─────────── */
-function Hero() {
-  return (
-    <section className="relative z-10 overflow-hidden">
-      {/* Top banner */}
-      <div className="bg-[#1a1a1a] text-[#fdf4ee] text-center py-2.5 px-4 text-[11px] sm:text-xs tracking-[0.2em] font-bold">
-        ✦ באורך 6–8 חודשים — דואגים לך לעבודה ✦
-      </div>
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
 
-      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-8 pt-8 sm:pt-12 pb-10">
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
-          {/* Right column = text (RTL first) */}
-          <div className="order-2 lg:order-1 text-right relative z-10">
-            <div className="inline-block bg-white/80 backdrop-blur border border-[#d4a574]/40 rounded-full px-5 py-2 mb-5 text-[11px] sm:text-xs font-bold tracking-wider text-[#7a3b2a]">
-              ✦ קמפיין הגיוס 2026 ✦
-            </div>
-
-            <h1 className="font-black leading-[0.95] tracking-tight">
-              <span className="block text-[#1a1a1a] text-[1.75rem] sm:text-6xl lg:text-7xl">
-                קורס מאפרת
-              </span>
-              <span
-                className="block text-[2.25rem] sm:text-7xl lg:text-8xl mt-2 font-black"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(135deg,#c9a14a 0%,#f3d57e 30%,#a87435 60%,#e8c47a 100%)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  color: "transparent",
-                  textShadow: "0 2px 0 rgba(0,0,0,0.04)",
-                }}
-              >
-                מקצועית
-              </span>
-            </h1>
-
-            <div className="mt-4 relative inline-block">
-              <div className="absolute inset-0 bg-[#f5b8c4] -rotate-1 rounded-full blur-[2px] opacity-70" />
-              <p className="relative font-bold text-[#1a1a1a] text-lg sm:text-2xl px-5 py-1.5">
-                לבנות שעשו צבא / שירות לאומי — בכל גיל
-              </p>
-            </div>
-
-
-            {/* Black headline block */}
-            <div className="mt-7 bg-[#1a1a1a] text-white rounded-2xl px-6 py-5 sm:py-6 block sm:inline-block shadow-2xl shadow-black/30">
-              <div className="text-sm sm:text-base opacity-90 mb-1">אצלנו תוכלי לעשות</div>
-              <div className="font-black text-xl sm:text-4xl leading-tight">
-                קורס איפור{" "}
-                <span
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(135deg,#f3d57e 0%,#c9a14a 50%,#f3d57e 100%)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    color: "transparent",
-                  }}
-                >
-                  מקצועי
-                </span>
-              </div>
-              <div className="text-sm sm:text-base opacity-90 mt-1">בלי ניסיון. בלי רקע.</div>
-            </div>
-
-            {/* Salary highlight */}
-            <div className="mt-7 bg-white/90 backdrop-blur border-2 border-[#e8b8a8] rounded-2xl px-6 py-5 shadow-xl shadow-[#e8b8a8]/30">
-              <div className="text-sm sm:text-base text-[#1a1a1a] font-medium">
-                בסיום הלימודים <strong>דואגים לך לעבודה</strong>
-              </div>
-              <div className="text-[#c44569] font-bold text-sm sm:text-base mt-1">
-                עם שכר ממוצע יומי של
-              </div>
-              <div className="flex items-baseline gap-2 mt-1">
-                <span
-                  className="font-black text-4xl sm:text-7xl leading-none"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(135deg,#c9a14a 0%,#f3d57e 50%,#a87435 100%)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    color: "transparent",
-                  }}
-                >
-                  800-2,000
-                </span>
-                <span className="font-black text-2xl sm:text-3xl text-[#1a1a1a]">₪</span>
-              </div>
-            </div>
-
-            <a
-              href="#lead"
-              className="mt-7 group relative inline-flex items-center gap-3 bg-gradient-to-l from-[#c44569] via-[#d96a85] to-[#c44569] text-white font-bold text-base sm:text-lg px-8 py-4 rounded-full shadow-xl shadow-[#c44569]/40 hover:shadow-2xl hover:shadow-[#c44569]/60 transition-all hover:-translate-y-0.5"
-            >
-              <span className="w-7 h-7 rounded-full bg-white/95 text-[#c44569] flex items-center justify-center text-sm">♥</span>
-              בואי לפגישת ייעוץ — בדקי כמה מלגה מגיעה לך
-            </a>
-          </div>
-
-          {/* Hero image */}
-          <div className="order-1 lg:order-2 relative">
-            <div className="relative">
-              <img
-                src={adHero}
-                alt="קורס מאפרת מקצועית"
-                className="w-full h-auto rounded-3xl shadow-2xl object-cover"
-              />
-              {/* Floating badge — kit value */}
-              <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 w-24 h-24 sm:w-36 sm:h-36 rounded-full bg-gradient-to-br from-[#f3d57e] via-[#c9a14a] to-[#a87435] text-[#1a1a1a] flex flex-col items-center justify-center shadow-2xl rotate-[-8deg] border-4 border-white">
-                <div className="text-[9px] sm:text-xs font-bold">בשווי</div>
-                <div className="font-black text-lg sm:text-3xl leading-none">11,000</div>
-                <div className="text-[9px] sm:text-xs font-bold mt-0.5">₪ מזוודה</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─────────── BENEFITS strip ─────────── */
-function Benefits() {
-  const items = [
-    { icon: "🎓", title: "6-8 חודשי", desc: "לימוד מקצועי" },
-    { icon: "💼", title: "מזוודה", desc: "בשווי 11,000 ₪" },
-    { icon: "🌍", title: "תעודה", desc: "בינלאומית" },
-    { icon: "💖", title: "מלגה", desc: "לנרשמות" },
-  ];
-  return (
-    <section className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-8 py-10">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-        {items.map((it) => (
-          <div
-            key={it.title}
-            className="bg-white/80 backdrop-blur border border-[#e8b8a8]/40 rounded-2xl px-4 py-5 text-center shadow-lg shadow-[#e8b8a8]/20 hover:-translate-y-1 transition-transform"
-          >
-            <div className="w-12 h-12 mx-auto rounded-full bg-gradient-to-br from-[#1a1a1a] to-[#3a2a2a] flex items-center justify-center text-xl mb-2 shadow-lg">
-              <span className="filter brightness-150">{it.icon}</span>
-            </div>
-            <div className="font-black text-base sm:text-lg text-[#1a1a1a]">{it.title}</div>
-            <div className="text-xs sm:text-sm text-[#7a3b2a] font-semibold mt-0.5">{it.desc}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ─────────── KIT SECTION ─────────── */
-function KitSection() {
-  const checks = [
-    "ניתן לשלם דרך הפיקדון הצבאי או בכל דרך שתבחרי",
-    "מזוודת איפור מקצועית בשווי 11,000 ₪",
-    "תעודת מאפרת בינלאומית מוכרת",
-    "מלגה אישית לכל נרשמת",
-  ];
-  return (
-    <section className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-8 py-12 sm:py-16">
-      <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-        <div className="relative">
-          <img
-            src={adKit}
-            alt="מזוודת איפור מקצועית בשווי 11,000 ש״ח"
-            loading="lazy"
-            className="w-full h-auto rounded-3xl shadow-2xl"
-          />
+      <!-- COPY -->
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          מאיפה מגיעות המאפרות של הסלבריטאים?
         </div>
 
-        <div className="text-right">
-          <div className="inline-block bg-[#1a1a1a] text-[#f3d57e] px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-black tracking-[0.3em] mb-4">
-            ✦ מה את מקבלת ✦
-          </div>
-          <h2 className="font-black text-3xl sm:text-5xl leading-tight text-[#1a1a1a]">
-            הכל כלול —{" "}
-            <span
-              style={{
-                backgroundImage:
-                  "linear-gradient(135deg,#c44569 0%,#e8a7b6 50%,#c44569 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              ויוצאת מקצוענית
-            </span>
-          </h2>
-          <p className="mt-3 text-[#5a4a4a] text-base sm:text-lg">
-            בשיתוף בית הספר הגדול בארץ ללימודי איפור.
-          </p>
+        <h1>
+          קורס מאפרת
+          <span class="gold-text">מקצועית</span>
+        </h1>
 
-          <ul className="mt-6 space-y-3">
-            {checks.map((t) => (
-              <li
-                key={t}
-                className="flex items-start gap-3 bg-white/90 backdrop-blur border border-[#e8b8a8]/50 rounded-xl px-4 py-3.5 shadow-md shadow-[#e8b8a8]/20"
-              >
-                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-gradient-to-br from-[#c44569] to-[#a83454] text-white flex items-center justify-center text-sm font-black mt-0.5">
-                  ✓
-                </span>
-                <span className="text-[#1a1a1a] font-bold text-sm sm:text-base leading-snug">
-                  {t}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─────────── CELEBRITY / closeup section ─────────── */
-function CelebritySection() {
-  return (
-    <section className="relative z-10 py-12 sm:py-20">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
-        <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-          <img
-            src={adCloseup}
-            alt=""
-            loading="lazy"
-            className="w-full h-[400px] sm:h-[500px] object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-l from-[#1a1a1a]/95 via-[#1a1a1a]/60 to-transparent" />
-          <div className="absolute inset-0 flex items-center px-6 sm:px-16">
-            <div className="max-w-lg text-right text-white">
-              <div className="text-[#f3d57e] text-xs sm:text-sm font-black tracking-[0.3em] mb-3">
-                ✦ הרמה הכי גבוהה
-              </div>
-              <h3 className="font-black text-3xl sm:text-5xl leading-tight">
-                את לומדת{" "}
-                <span
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(135deg,#f3d57e 0%,#c9a14a 50%,#f3d57e 100%)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    color: "transparent",
-                  }}
-                >
-                  מהמקצוענים
-                </span>
-                <br />
-                שבתעשייה
-              </h3>
-              <p className="mt-4 text-base sm:text-lg opacity-90">
-                איפור כלות, אופנה, צילום ואירועים — מהמרצים שמאפרים את הסלבריטאים בארץ.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─────────── ELIGIBILITY ─────────── */
-function Eligibility() {
-  return (
-    <section className="relative z-10 max-w-[1100px] mx-auto px-4 sm:px-8 py-10 sm:py-14">
-      <div className="bg-gradient-to-bl from-white/90 via-[#fdf4ee] to-[#f8e3d4] border-2 border-[#d4a574]/40 rounded-3xl p-8 sm:p-12 text-center shadow-xl">
-        <div className="text-[10px] sm:text-xs font-black tracking-[0.4em] text-[#c44569] mb-3">
-          ✦ מתאים לך אם
-        </div>
-        <h3 className="font-black text-2xl sm:text-4xl text-[#1a1a1a] leading-tight">
-          עשית{" "}
-          <span className="bg-[#1a1a1a] text-[#f3d57e] px-3 py-0.5 rounded-lg">צבא / שירות לאומי</span>{" "}
-          — בכל גיל
-        </h3>
-        <p className="mt-4 text-base sm:text-lg text-[#5a4a4a] font-semibold">
-          ניתן להשתמש גם בפיקדון הצבאי לתשלום הקורס
-          <br />
-          <span className="text-[#c44569] font-bold">בלי ניסיון · בלי רקע · רק רצון ללמוד מקצוע אמיתי</span>
+        <p class="hero-sub">
+          6–8 חודשים תוכלי לרכוש מקצוע אמיתי — בלי ניסיון, בלי רקע, רק רצון קדים.
         </p>
-      </div>
-    </section>
-  );
-}
 
-/* ─────────── LEAD FORM ─────────── */
-function LeadForm() {
-  const [data, setData] = useState({ name: "", phone: "", branch: "" });
-  const [sent, setSent] = useState(false);
+        <div class="salary-highlight">
+          <div class="salary-label">פוטנציאל הכנסה יומי של מאפרות</div>
+          <div class="salary-amount">800 – 2,000 ₪</div>
+          <div class="salary-note">בסיום הלימודים דואגים לך לעבודה עם שכר ממוצע</div>
+        </div>
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSent(true);
-  };
-
-  return (
-    <section id="lead" className="relative z-10 py-16 sm:py-24 px-4 sm:px-8">
-      <div className="max-w-[640px] mx-auto">
-        <div className="bg-white/95 backdrop-blur border-2 border-[#d4a574]/40 rounded-3xl p-7 sm:p-10 shadow-2xl shadow-[#c44569]/15">
-          <div className="text-center mb-7">
-            <div className="inline-block bg-gradient-to-l from-[#c44569] to-[#a83454] text-white text-[10px] sm:text-xs font-black tracking-[0.3em] px-4 py-1.5 rounded-full mb-4">
-              ♥ בואי לפגישת ייעוץ ♥
-            </div>
-            <h2 className="font-black text-3xl sm:text-5xl leading-tight text-[#1a1a1a]">
-              בדקי כמה{" "}
-              <span
-                style={{
-                  backgroundImage:
-                    "linear-gradient(135deg,#c9a14a 0%,#f3d57e 50%,#a87435 100%)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  color: "transparent",
-                }}
-              >
-                מלגה
-              </span>{" "}
-              מגיעה לך
-            </h2>
-            <p className="mt-3 text-sm sm:text-base text-[#5a4a4a]">
-              השאירי פרטים — נחזור אליך תוך 24 שעות
-            </p>
+        <div class="ticks">
+          <div class="tick">
+            <span class="tick-icon">✓</span>
+            <span>ניתן לשלם דרך <strong>הפיקדון הצבאי</strong> או בכל דרך שתבחרי</span>
           </div>
+          <div class="tick">
+            <span class="tick-icon">✓</span>
+            <span><strong>מזוודת איפור בשווי 11,000 ₪</strong> כלולה בקורס</span>
+          </div>
+          <div class="tick">
+            <span class="tick-icon">✓</span>
+            <span><strong>תעודת מאפרת בינלאומית</strong> מוכרת</span>
+          </div>
+          <div class="tick">
+            <span class="tick-icon">✓</span>
+            <span><strong>מלגה לנרשמות</strong> — בדקי כמה מגיע לך</span>
+          </div>
+        </div>
 
-          {sent ? (
-            <div className="text-center py-10">
-              <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-[#c44569] to-[#a83454] flex items-center justify-center text-white text-3xl mb-4 shadow-lg">
-                ♥
-              </div>
-              <div className="font-black text-2xl text-[#1a1a1a]">תודה!</div>
-              <div className="mt-2 text-[#5a4a4a]">ניצור איתך קשר ממש בקרוב</div>
-            </div>
-          ) : (
-            <form onSubmit={submit} className="space-y-4">
-              <div>
-                <label className="block text-xs font-black tracking-wider text-[#1a1a1a] mb-1.5">
-                  שם מלא
-                </label>
-                <input
-                  required
-                  type="text"
-                  value={data.name}
-                  onChange={(e) => setData({ ...data, name: e.target.value })}
-                  placeholder="השם שלך"
-                  className="w-full bg-[#fdf4ee] border-2 border-[#e8d4c4] focus:border-[#c44569] outline-none rounded-xl px-4 py-3.5 text-base font-medium transition-colors"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-black tracking-wider text-[#1a1a1a] mb-1.5">
-                  טלפון
-                </label>
-                <input
-                  required
-                  type="tel"
-                  value={data.phone}
-                  onChange={(e) => setData({ ...data, phone: e.target.value })}
-                  placeholder="050-0000000"
-                  className="w-full bg-[#fdf4ee] border-2 border-[#e8d4c4] focus:border-[#c44569] outline-none rounded-xl px-4 py-3.5 text-base font-medium transition-colors"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-black tracking-wider text-[#1a1a1a] mb-1.5">
-                  סניף מועדף
-                </label>
-                <select
-                  required
-                  value={data.branch}
-                  onChange={(e) => setData({ ...data, branch: e.target.value })}
-                  className="w-full bg-[#fdf4ee] border-2 border-[#e8d4c4] focus:border-[#c44569] outline-none rounded-xl px-4 py-3.5 text-base font-medium cursor-pointer"
-                >
-                  <option value="">בחרי סניף</option>
-                  <option value="tel-aviv">תל אביב</option>
-                  <option value="jerusalem">ירושלים</option>
-                  <option value="haifa">חיפה</option>
-                  <option value="beer-sheva">באר שבע</option>
-                  <option value="netanya">נתניה</option>
-                  <option value="online">לא משנה / מקוון</option>
-                </select>
-              </div>
+        <a href="#form" class="btn-primary">
+          לפגישת ייעוץ חינם ←
+        </a>
+        <p class="btn-note">ללא עלות • ללא התחייבות • בדקי כמה מלגה מגיעה לך</p>
+      </div>
 
-              <button
-                type="submit"
-                className="w-full mt-4 bg-gradient-to-l from-[#c44569] via-[#d96a85] to-[#c44569] text-white font-black text-base sm:text-lg py-4 rounded-full shadow-xl shadow-[#c44569]/40 hover:shadow-2xl hover:-translate-y-0.5 transition-all"
-              >
-                ♥ שלחי וקבעי פגישה ♥
-              </button>
-
-              <p className="text-center text-xs text-[#7a3b2a] pt-1">
-                ללא התחייבות · פרטייך מאובטחים
-              </p>
-            </form>
-          )}
+      <!-- ART -->
+      <div class="hero-art">
+        <div class="portrait">
+          <img src="/assets/hero_woman.jpg" alt="מאפרת מקצועית"/>
+        </div>
+        <div class="case-float">
+          <img src="/assets/beauty_case.jpg" alt="מזוודת איפור"/>
+        </div>
+        <div class="badge-circle">
+          <div>
+            <div class="badge-circle-top">שווי ציוד</div>
+            <span class="badge-circle-num">11K</span>
+            <div class="badge-circle-sub">₪ כלול</div>
+          </div>
         </div>
       </div>
-    </section>
-  );
-}
 
-/* ─────────── FOOTER ─────────── */
-function Footer() {
-  return (
-    <footer className="relative z-10 bg-[#1a1a1a] text-[#fdf4ee] py-8 px-4 sm:px-8 text-center text-xs sm:text-sm">
-      <div className="max-w-[1400px] mx-auto opacity-80">
-        © 2026 קמפיין הגיוס · בשיתוף בית הספר הגדול בארץ ללימודי איפור
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS ══ -->
+<div class="stats-bar">
+  <div class="wrap">
+    <div class="stats-inner">
+      <div class="stat"><div class="stat-num">6–8</div><div class="stat-lbl">חודשי לימוד מקצועי</div></div>
+      <div class="stat"><div class="stat-num">11K ₪</div><div class="stat-lbl">שווי ציוד כלול</div></div>
+      <div class="stat"><div class="stat-num">800+</div><div class="stat-lbl">בוגרות מועסקות</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">ליווי לעבודה בסיום</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BENEFITS ══ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">מה מחכה לך בקורס</div>
+      <h2 class="section-title">כל מה שתצטרכי<br/>להצליח בתעשייה</h2>
+      <p class="section-sub">קורס שמלווה אותך מהרגע הראשון ועד שתמצאי עבודה ראשונה</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">🎓</div>
+        <div class="benefit-title">לימוד מקצועי מלא</div>
+        <div class="benefit-text">לומדות מהמומחים הגדולים. תכנית עדכנית שמכסה כל טכניקות האיפור.</div>
+        <div class="benefit-val">6–8 חודשים</div>
       </div>
-    </footer>
-  );
-}
+      <div class="benefit-card">
+        <div class="benefit-icon">💼</div>
+        <div class="benefit-title">ליווי לעבודה</div>
+        <div class="benefit-text">בסיום הקורס דואגים לך לעבודה. רשת קשרים ענפה עם סטודיואים ומעסיקים.</div>
+        <div class="benefit-val">100% מועסקות</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🌍</div>
+        <div class="benefit-title">תעודה בינלאומית</div>
+        <div class="benefit-text">תעודת מאפרת מוכרת בינלאומית שתפתח לך דלתות בכל מקום בעולם.</div>
+        <div class="benefit-val">מוכרת עולמית</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🎖️</div>
+        <div class="benefit-title">פיקדון ומלגה</div>
+        <div class="benefit-text">ניתן לשלם דרך הפיקדון הצבאי. בנוסף — מלגה לכל הנרשמות.</div>
+        <div class="benefit-val">השתמשי בפיקדון</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-/* ─────────── STICKY MOBILE CTA ─────────── */
-function StickyCTA() {
+<!-- ══ HOW IT WORKS ══ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="how-section">
+      <div class="how-grid">
+        <div>
+          <div class="section-tag">איך זה עובד</div>
+          <h2 class="how-title">מתחילה מאפס?<br/>זה בדיוק<br/>בשבילך.</h2>
+          <p class="how-sub">לא צריך ניסיון, לא צריך רקע — רק רצון ללמוד מקצוע שיפרנס אותך לכל החיים.</p>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <div class="step-title">משאירה פרטים בטופס</div>
+                <div class="step-text">שם וטלפון בלבד — בלי טפסים ארוכים ומייגעים</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <div class="step-title">בודקים זכאות למלגה</div>
+                <div class="step-text">נבדוק התאמה, פיקדון צבאי וגובה המלגה שמגיעה לך</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div>
+                <div class="step-title">מקבלת פגישת ייעוץ</div>
+                <div class="step-text">שיחה אישית שתספר לך בדיוק איך תיכנסי לתעשייה</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="how-img">
+          <img src="/assets/makeup_artist.jpg" alt="מאפרת בעבודה"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ARMY BANNER ══ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="army-banner">
+      <div class="army-banner-inner">
+        <div>
+          <h2 class="army-title">
+            עשית צבא<br/>
+            <span style="color:var(--gold2)">או שירות לאומי?</span>
+          </h2>
+          <p class="army-text">
+            בנות לבוגרות צבא ושירות לאומי — את יכולה להשתמש בפיקדון שלך לממן את הקורס.
+            ללמוד מקצוע ולהתחיל חיים חדשים, בשיתוף בית הספר הגדול ביותר לאיפור בארץ.
+          </p>
+          <div class="army-tags">
+            <span class="army-tag gold">מלגה מיוחדת</span>
+            <span class="army-tag">פיקדון</span>
+            <span class="army-tag">גיל 20–35</span>
+            <span class="army-tag">ללא ניסיון</span>
+          </div>
+        </div>
+        <div class="army-cta-wrap">
+          <a href="#form" class="btn-gold">בדקי כמה מלגה<br/>מגיעה לך ←</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALLERY ══ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">החוויה הנראית</div>
+      <h2 class="section-title">ממש ככה זה נראה</h2>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item"><img src="/assets/hero_woman.jpg" alt="מאפרת מקצועית"/></div>
+      <div class="gallery-item"><img src="/assets/makeup_artist.jpg" alt="מאפרת בעבודה"/></div>
+      <div class="gallery-item"><img src="/assets/beauty_case.jpg" alt="מזוודת איפור מקצועית"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">מה אומרות הבוגרות</div>
+      <h2 class="section-title">הצלחות אמיתיות<br/>של בוגרות שלנו</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-text">"סיימתי צבא ולא ידעתי מה לעשות עם הפיקדון. חברה סיפרה לי על הקורס הזה — היום אני עובדת בסטודיו מוביל בתל אביב ומרוויחה יפה מאוד."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">💄</div>
+          <div>
+            <div class="testi-name">שירה כ.</div>
+            <div class="testi-role">בוגרת הקורס • עובדת 2 שנים בתחום</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-text">"לא הייתה לי שום ידע קודם. הגעתי בגלל התשוקה, נשארתי בגלל המקצוענות. הצוות מדהים, הלמידה מעמיקה והמזוודה שקיבלתי שווה הרבה."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">✨</div>
+          <div>
+            <div class="testi-name">מיכל א.</div>
+            <div class="testi-role">מאפרת עצמאית • לקוחות VIP</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-text">"הפיקדון שלי הלך לדבר הכי טוב שיכולתי לעשות איתו. 8 חודשים אחרי — אני מאפרת בחתונות ומרוויחה 1,500 ש״ח ליום."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">🌸</div>
+          <div>
+            <div class="testi-name">נועה ר.</div>
+            <div class="testi-role">מאפרת חתונות • בת 22</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">שאלות נפוצות</div>
+      <h2 class="section-title">שאלות חשובות</h2>
+    </div>
+    <div class="faq-grid">
+      <details open>
+        <summary>צריך ניסיון קודם?</summary>
+        <p>בכלל לא. הקורס מתחיל מהבסיס ומלווה אותך צעד אחר צעד. מאות בוגרות הגיעו ללא כל ניסיון קודם.</p>
+      </details>
+      <details>
+        <summary>כמה עולה הקורס?</summary>
+        <p>עלות הקורס תלויה במסלול שתבחרי. בפגישת הייעוץ נבדוק יחד כמה מלגה מגיעה לך ואיך ניתן לממן דרך הפיקדון.</p>
+      </details>
+      <details>
+        <summary>אפשר לשלם בפיקדון הצבאי?</summary>
+        <p>כן! ניתן לשלם דרך הפיקדון הצבאי. נלווה אותך בתהליך מול הפיקדון כדי שיהיה פשוט ומהיר.</p>
+      </details>
+      <details>
+        <summary>מה השכר שאפשר לצפות לו?</summary>
+        <p>שכר ממוצע יומי של 800–1,700 ש"ח. מאפרות מנוסות בחתונות ופרודקשן מרוויחות עד 2,000 ש"ח ליום.</p>
+      </details>
+      <details>
+        <summary>האם דואגים לי לעבודה?</summary>
+        <p>כן. בסיום הקורס דואגים לך לעבודה ראשונה. יש לנו רשת קשרים ענפה עם מעסיקים בתחום.</p>
+      </details>
+      <details>
+        <summary>כמה זמן נמשך הקורס?</summary>
+        <p>הקורס נמשך 6–8 חודשים. ניתן לשלב עם לימודים אחרים ועם עבודה חלקית.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA + FORM ══ -->
+<section class="section" id="form" style="padding-top:0">
+  <div class="wrap">
+    <div class="final-section">
+      <div class="final-grid">
+        <div>
+          <div class="section-tag">הזמן לפעול</div>
+          <h2 class="final-title">
+            בואי לפגישת ייעוץ —<br/>
+            <span class="gold-text">גלי כמה מלגה<br/>מגיעה לך</span>
+          </h2>
+          <p class="final-sub">פגישה אישית, ללא עלות וללא התחייבות. נבדוק יחד כמה מלגה מגיעה לך ואיך לממן את הקורס.</p>
+          <div class="final-points">
+            <div class="final-point"><span class="final-dot"></span>מלגה מיוחדת לנרשמות</div>
+            <div class="final-point"><span class="final-dot"></span>ניתן לשלם דרך הפיקדון</div>
+            <div class="final-point"><span class="final-dot"></span>מזוודת איפור 11,000 ₪ כלולה</div>
+            <div class="final-point"><span class="final-dot"></span>ליווי לעבודה בסיום הקורס</div>
+            <div class="final-point"><span class="final-dot"></span>תעודה בינלאומית מוכרת</div>
+          </div>
+        </div>
+
+        <div class="lead-card" id="form">
+          <div class="lead-card-title">השאירי פרטים ונחזור אלייך</div>
+          <div class="lead-card-sub">תוך 24 שעות נחזור לתאם פגישת ייעוץ אישית</div>
+          <form onsubmit="submitForm(event)">
+            <div class="form-field">
+              <input class="form-input" type="text" placeholder="שם מלא *" required/>
+            </div>
+            <div class="form-field">
+              <input class="form-input" type="tel" placeholder="מספר טלפון *" required dir="ltr"/>
+            </div>
+            <div class="form-field">
+              <select class="form-input" required>
+                <option value="">בחרי סניף *</option>
+                <option>תל אביב</option>
+                <option>ירושלים</option>
+                <option>חיפה</option>
+                <option>באר שבע</option>
+                <option>נתניה</option>
+                <option>רמת גן</option>
+                <option>ראשון לציון</option>
+                <option>פתח תקווה</option>
+                <option>אחר</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-submit">
+              לפגישת ייעוץ חינם — בדקי כמה מלגה מגיעה לך ❤️
+            </button>
+            <p class="form-micro">הפרטים שלך מוגנים ולא יועברו לצד שלישי</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="footer-text">© 2025 המכללה המובילה לאיפור בישראל · כל הזכויות שמורות</p>
+  </div>
+</footer>
+
+<div class="sticky-mobile">
+  <a href="#form">לפגישת ייעוץ חינם — בדקי את המלגה שלך ←</a>
+</div>
+
+`;
+
+function LandingPage() {
+  useEffect(() => {
+    (window as any).submitForm = function (e: any) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-submit');
+      if (!btn) return;
+      btn.textContent = 'שולחת...';
+      btn.style.opacity = '.75';
+      setTimeout(() => {
+        btn.textContent = '✓ פרטייך נשלחו! נחזור אלייך בקרוב';
+        btn.style.background = 'linear-gradient(135deg,#2C8A4A,#1E6635)';
+        btn.style.opacity = '1';
+      }, 1300);
+    };
+  }, []);
+
   return (
-    <a
-      href="#lead"
-      className="lg:hidden fixed bottom-4 inset-x-4 z-50 bg-gradient-to-l from-[#c44569] via-[#d96a85] to-[#c44569] text-white font-black text-base py-4 rounded-full shadow-2xl shadow-[#c44569]/50 text-center backdrop-blur"
-    >
-      ♥ בואי לפגישת ייעוץ
-    </a>
+    <>
+      <style dangerouslySetInnerHTML={{ __html: STYLES }} />
+      <div dir="rtl" dangerouslySetInnerHTML={{ __html: BODY_HTML }} />
+    </>
   );
 }
