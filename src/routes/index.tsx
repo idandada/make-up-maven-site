@@ -238,49 +238,66 @@ body::before{
 /* ART SIDE */
 .hero-art{
   position:relative;
-  height:620px;
+  display:flex;flex-direction:column;gap:18px;
 }
-.portrait{
-  position:absolute;
-  right:0;top:0;
-  width:62%;height:520px;
-  border-radius:40px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  border:8px solid white;
-}
-.portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
-.case-float{
-  position:absolute;
-  left:0;bottom:60px;
-  width:60%;
+.hero-art-img{
+  position:relative;
   border-radius:32px;
   overflow:hidden;
+  height:280px;
   border:7px solid white;
   box-shadow:var(--shadow);
-  background:white;
 }
-.case-float img{width:100%;display:block}
-.badge-circle{
+.hero-art-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
+.hero-art-badge{
   position:absolute;
-  right:52px;bottom:10px;
-  width:170px;height:170px;
-  border-radius:50%;
+  right:18px;bottom:18px;
   background:linear-gradient(145deg,var(--gold3),#b8850e);
-  border:7px solid white;
-  box-shadow:var(--shadow);
-  display:grid;place-items:center;
+  color:#1a1008;
+  border:4px solid white;
+  border-radius:18px;
+  padding:10px 16px;
   text-align:center;
-  transform:rotate(5deg);
-  z-index:2;
+  box-shadow:var(--shadow-sm);
+  transform:rotate(-3deg);
 }
-.badge-circle-top{font-size:12px;font-weight:800;color:rgba(255,255,255,.8)}
-.badge-circle-num{
+.hero-art-badge-top{font-size:10px;font-weight:800;letter-spacing:.6px;color:rgba(26,16,8,.7)}
+.hero-art-badge-num{
   font-family:'Frank Ruhl Libre',serif;
-  font-size:34px;font-weight:900;color:white;
-  line-height:1;display:block;
+  font-size:26px;font-weight:900;line-height:1;display:block;
+  color:#1a1008;
 }
-.badge-circle-sub{font-size:12px;font-weight:700;color:rgba(255,255,255,.8)}
+.hero-art-badge-sub{font-size:10px;font-weight:800;color:rgba(26,16,8,.75);margin-top:2px}
+
+/* HERO INLINE LEAD FORM */
+.hero-form-card{
+  background:linear-gradient(180deg,#fffdf9,#fff5ec);
+  border:1px solid rgba(199,154,67,.3);
+  border-radius:26px;
+  padding:24px 24px 22px;
+  box-shadow:var(--shadow);
+  position:relative;
+}
+.hero-form-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:900;letter-spacing:1.5px;
+  color:var(--rose-dark);text-transform:uppercase;
+  margin-bottom:8px;
+}
+.hero-form-eyebrow::before{content:'';width:18px;height:1px;background:var(--rose)}
+.hero-form-title{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:24px;font-weight:900;color:var(--ink);
+  line-height:1.2;margin-bottom:4px;
+}
+.hero-form-sub{font-size:14px;font-weight:600;color:var(--muted);margin-bottom:14px}
+.hero-form-card .form-input{height:48px;font-size:15px;margin-bottom:10px}
+.hero-form-card .btn-submit{margin-top:4px;padding:14px;font-size:16px}
+.hero-form-trust{
+  display:flex;flex-wrap:wrap;gap:10px 16px;justify-content:center;
+  margin-top:12px;font-size:12px;font-weight:700;color:var(--muted);
+}
+.hero-form-trust span{display:inline-flex;align-items:center;gap:5px}
 
 /* ── STATS BAR ── */
 .stats-bar{
