@@ -978,9 +978,9 @@ const BODY_HTML = `
         <div class="hero-art-img">
           <img src="/assets/hero_woman.jpg" alt="מאפרת מקצועית"/>
           <div class="hero-art-badge">
-            <div class="hero-art-badge-top">שווי ציוד</div>
-            <span class="hero-art-badge-num">11K ₪</span>
-            <div class="hero-art-badge-sub">כלול בקורס</div>
+            <div class="hero-art-badge-top">מתנה מזוודה</div>
+            <span class="hero-art-badge-num">בשווי 11K ₪</span>
+            <div class="hero-art-badge-sub">לכל נרשמת</div>
           </div>
         </div>
         <div class="hero-form-card" id="lead-top">
