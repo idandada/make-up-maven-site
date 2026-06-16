@@ -820,12 +820,13 @@ footer{
   .tick{padding:10px 14px;font-size:13px}
   .tick-icon{width:22px;height:22px;font-size:10px}
   .btn-primary{padding:16px 28px;font-size:16px;width:100%}
-  .hero-art{height:360px;margin-top:8px}
-  .portrait{width:78%;height:320px;border-radius:28px;border-width:6px;right:0;top:0}
-  .case-float{width:50%;bottom:0;left:0;border-radius:20px;border-width:5px}
-  .badge-circle{width:92px;height:92px;right:auto;left:46%;bottom:8px;border-width:4px;transform:rotate(-6deg);z-index:3}
-  .badge-circle-num{font-size:20px}
-  .badge-circle-top,.badge-circle-sub{font-size:9px}
+  .hero-art{margin-top:8px;gap:12px}
+  .hero-art-img{height:200px;border-width:5px;border-radius:24px}
+  .hero-art-badge{padding:8px 12px;border-radius:14px;right:12px;bottom:12px;border-width:3px}
+  .hero-art-badge-num{font-size:20px}
+  .hero-form-card{padding:20px 18px;border-radius:22px}
+  .hero-form-title{font-size:20px}
+  .hero-form-sub{font-size:13px}
   .section{padding:44px 0}
   .section-title{font-size:30px}
   .section-sub{font-size:15px}
