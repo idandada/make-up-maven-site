@@ -764,10 +764,10 @@ footer{
 .testi-card:nth-child(3){animation-delay:.25s}
 
 @keyframes float{
-  0%,100%{transform:translateY(0) rotate(5deg)}
-  50%{transform:translateY(-8px) rotate(5deg)}
+  0%,100%{transform:translateY(0) rotate(-3deg)}
+  50%{transform:translateY(-6px) rotate(-3deg)}
 }
-.badge-circle{animation:float 5s ease-in-out infinite}
+.hero-art-badge{animation:float 5s ease-in-out infinite}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
