@@ -1009,7 +1009,7 @@ const BODY_HTML = `
   <div class="wrap">
     <div class="stats-inner">
       <div class="stat"><div class="stat-num">6–8</div><div class="stat-lbl">חודשי לימוד מקצועי</div></div>
-      <div class="stat"><div class="stat-num">11K ₪</div><div class="stat-lbl">שווי ציוד כלול</div></div>
+      <div class="stat"><div class="stat-num">11K ₪</div><div class="stat-lbl">מתנה מזוודה כלולה</div></div>
       <div class="stat"><div class="stat-num">800+</div><div class="stat-lbl">בוגרות מועסקות</div></div>
       <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">ליווי לעבודה בסיום</div></div>
     </div>
