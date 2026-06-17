@@ -371,7 +371,7 @@ h1{
 .section-sub{font-size:15px;color:var(--muted);font-weight:500;line-height:1.6}
 
 /* ── BENEFITS ── */
-.benefits-layout{display:grid;grid-template-columns:.85fr 1fr;gap:48px;align-items:center;max-width:1100px;margin:0 auto}
+.benefits-layout{display:grid;grid-template-columns:.9fr 1fr;gap:36px;align-items:center;max-width:1040px;margin:0 auto}
 .benefits-image{
   position:relative;border-radius:24px;overflow:hidden;
   border:1px solid var(--border-2);background:#16100f;
