@@ -621,8 +621,24 @@ footer{
   .gallery-grid{grid-template-columns:1fr;max-width:380px}
   .gallery-tile:nth-child(3){grid-column:auto;aspect-ratio:3/4}
 }
+@media(max-width:600px){
+  .hero-cards{grid-template-columns:1fr;gap:10px;max-width:320px}
+  .stats-inner{grid-template-columns:repeat(2,1fr);gap:24px}
+  .stat-num{font-size:32px}
+  .partners-band{padding:28px 0}
+  .testi-card,.benefit-card{padding:24px 20px}
+  .topbar-inner{padding:12px 0}
+  .brand{font-size:14px}
+  .brand small{font-size:10px}
+  .btn-primary{width:100%;justify-content:center;font-size:14px;padding:16px 22px}
+  .section-head{margin-bottom:36px}
+  details summary{font-size:15px;padding:18px 0}
+}
 @media(max-width:480px){
-  h1{font-size:38px}
+  h1{font-size:34px;letter-spacing:-1px}
+  .hero-sub{font-size:16px}
+  .section-title,.final-title{font-size:28px}
+  .wrap{width:94vw}
 }
 `;
 
