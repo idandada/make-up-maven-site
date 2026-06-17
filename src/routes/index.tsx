@@ -117,7 +117,7 @@ body{
 /* ── HERO ── */
 .hero{
   position:relative;
-  padding:72px 0 64px;
+  padding:56px 0 48px;
   overflow:hidden;
 }
 .hero::before{
