@@ -1039,15 +1039,6 @@ footer{
   .hero-brand-line{margin-left:auto;margin-right:auto}
 }
 @media(max-width:768px){
-  /* Partners → 2x2 compact grid */
-  .partners-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex-direction:initial;align-items:stretch}
-  .partner-divider{display:none}
-  .partner-logo{flex-direction:column;text-align:center;gap:8px;padding:14px 10px;border:1px solid var(--border);border-radius:14px;background:rgba(232,168,180,.03);justify-content:flex-start;align-items:center;min-height:120px}
-  .partner-emblem{width:42px;height:42px}
-  .partner-emblem img,.partner-emblem svg{width:26px;height:26px}
-  .partner-text{align-items:center;text-align:center}
-  .partner-name{font-size:13px;line-height:1.2}
-  .partner-sub{font-size:11px;line-height:1.3;margin-top:2px}
   .partners-label{font-size:11px;margin-bottom:18px}
 
   /* Hero collage appears immediately on mobile */
