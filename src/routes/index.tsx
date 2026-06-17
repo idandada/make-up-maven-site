@@ -962,7 +962,10 @@ footer{
   .stat-num{font-size:32px}
   .partners-band{padding:28px 0}
   .testi-card{padding:24px 20px}
-  .benefit-card,.step-card{min-height:auto;padding:14px 14px}
+  .compact-section{padding:30px 0}
+  .compact-section .section-tag{margin-bottom:6px;font-size:10px;letter-spacing:1.4px}
+  .compact-section .section-title{font-size:26px;line-height:1.1;margin-bottom:0;letter-spacing:-.5px}
+  .benefit-card,.step-card{min-height:82px;padding:12px 12px;border-radius:12px}
   .benefits-grid,.steps-grid{gap:10px;max-width:360px}
   .benefit-title,.step-title{font-size:15px}
   .benefit-text,.step-text{font-size:12.5px;line-height:1.45}
@@ -973,7 +976,7 @@ footer{
   .brand small{font-size:10px}
   .btn-primary{width:100%;justify-content:center;font-size:14px;padding:16px 22px}
   .section-head{margin-bottom:26px}
-  .compact-section .section-head{margin-bottom:18px}
+  .compact-section .section-head{margin-bottom:16px}
   details summary{font-size:15px;padding:18px 0}
 }
 @media(max-width:480px){
