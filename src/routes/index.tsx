@@ -1119,7 +1119,7 @@ const BODY_HTML = `
   <div class="wrap">
     <div class="section-head reveal">
       <div class="section-tag">מה מקבלים בקורס</div>
-      <h2 class="section-title">הטבות שלא תמצאי<br/>בשום מקום אחר</h2>
+      <h2 class="section-title">הטבות שלא תמצאי בשום מקום אחר</h2>
     </div>
     <div class="benefits-layout">
       <div class="benefits-image reveal-scale">
@@ -1166,7 +1166,7 @@ const BODY_HTML = `
   <div class="wrap">
     <div class="section-head reveal">
       <div class="section-tag">איך זה עובד</div>
-      <h2 class="section-title">3 צעדים<br/>למקצוע חדש</h2>
+      <h2 class="section-title">3 צעדים למקצוע חדש</h2>
     </div>
     <div class="steps-grid">
       <div class="step-card reveal-scale reveal-delay-1">
