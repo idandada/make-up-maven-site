@@ -693,15 +693,58 @@ const BODY_HTML = `
         <div class="step-title">השאירי פרטים</div>
         <div class="step-text">מלאי שם וטלפון בטופס — לוקח 10 שניות</div>
       </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <div class="step-title">פגישת ייעוץ חינמית</div>
-        <div class="step-text">ניצור קשר ונקבע פגישה אישית — בלי התחייבות</div>
+<!-- ══ HOW IT WORKS ══ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">איך זה עובד</div>
+      <h2 class="section-title">3 צעדים<br/>למקצוע חדש</h2>
+    </div>
+    <div class="how-with-image">
+      <div class="steps-vertical">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-title">השאירי פרטים</div>
+          <div class="step-text">מלאי שם וטלפון בטופס — לוקח 10 שניות</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-title">פגישת ייעוץ חינמית</div>
+          <div class="step-text">ניצור קשר ונקבע פגישה אישית — בלי התחייבות</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-title">מתחילה ללמוד ולהרוויח</div>
+          <div class="step-text">בסיום הקורס — דואגים לך לעבודה עם שכר גבוה</div>
+        </div>
       </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <div class="step-title">מתחילה ללמוד ולהרוויח</div>
-        <div class="step-text">בסיום הקורס — דואגים לך לעבודה עם שכר גבוה</div>
+      <div class="how-image-wrap">
+        <img src="/assets/makeup_artist.jpg" alt="מאפרת בעבודה"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALLERY ══ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">החוויה הנראית</div>
+      <h2 class="section-title">ככה זה נראה<br/>אצלנו</h2>
+      <p class="section-sub">לימוד מקצועי, ציוד פרימיום וקהילה תומכת</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-tile">
+        <img src="/assets/gallery_bridal.jpg" alt="איפור כלות"/>
+        <div class="gallery-cap"><small>איפור כלות</small>שוק עם ביקוש קבוע</div>
+      </div>
+      <div class="gallery-tile">
+        <img src="/assets/gallery_products.jpg" alt="מוצרי איפור"/>
+        <div class="gallery-cap"><small>הציוד שלך</small>מותגים מובילים</div>
+      </div>
+      <div class="gallery-tile">
+        <img src="/assets/gallery_students.jpg" alt="תלמידות הקורס"/>
+        <div class="gallery-cap"><small>הקהילה שלנו</small>בוגרות מצליחות</div>
       </div>
     </div>
   </div>
