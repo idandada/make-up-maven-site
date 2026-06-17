@@ -477,6 +477,57 @@ select.form-input option{background:#16100f;color:var(--text)}
 .btn-submit:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(232,168,180,.45),0 16px 40px rgba(232,168,180,.3)}
 .form-micro{font-size:12px;color:var(--dim);text-align:center;margin-top:14px}
 
+/* ── INLINE LEAD BAND (horizontal) ── */
+.inline-lead{
+  position:relative;
+  padding:64px 0;
+  background:
+    radial-gradient(ellipse 60% 100% at 50% 50%,rgba(232,168,180,.12) 0,transparent 70%),
+    linear-gradient(180deg,rgba(232,168,180,.04),transparent);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.inline-lead-card{
+  background:rgba(22,16,15,.7);
+  border:1px solid var(--border-2);
+  border-radius:24px;
+  padding:32px;
+  backdrop-filter:blur(14px);
+  box-shadow:0 30px 80px rgba(0,0,0,.4);
+  max-width:1080px;margin:0 auto;
+}
+.inline-lead-head{text-align:center;margin-bottom:24px}
+.inline-lead-title{
+  font-size:clamp(24px,3vw,32px);
+  font-weight:800;color:var(--text);
+  letter-spacing:-.8px;line-height:1.15;
+}
+.inline-lead-title .h1-accent{color:var(--rose)}
+.inline-lead-sub{
+  font-size:15px;color:var(--muted);
+  font-weight:500;margin-top:8px;
+}
+.inline-form{
+  display:grid;
+  grid-template-columns:1.2fr 1fr 1fr auto;
+  gap:12px;align-items:stretch;
+}
+.inline-form .form-input{margin:0;height:54px}
+.inline-form .btn-submit{
+  margin:0;height:54px;padding:0 26px;
+  white-space:nowrap;width:auto;
+}
+.inline-lead .form-micro{margin-top:16px}
+@media(max-width:860px){
+  .inline-form{grid-template-columns:1fr 1fr;gap:10px}
+  .inline-form .btn-submit{grid-column:1/-1}
+}
+@media(max-width:520px){
+  .inline-form{grid-template-columns:1fr}
+  .inline-lead{padding:48px 0}
+  .inline-lead-card{padding:24px 18px;border-radius:20px}
+}
+
 /* ── FOOTER ── */
 footer{
   border-top:1px solid var(--border);
@@ -570,8 +621,24 @@ footer{
   .gallery-grid{grid-template-columns:1fr;max-width:380px}
   .gallery-tile:nth-child(3){grid-column:auto;aspect-ratio:3/4}
 }
+@media(max-width:600px){
+  .hero-cards{grid-template-columns:1fr;gap:10px;max-width:320px}
+  .stats-inner{grid-template-columns:repeat(2,1fr);gap:24px}
+  .stat-num{font-size:32px}
+  .partners-band{padding:28px 0}
+  .testi-card,.benefit-card{padding:24px 20px}
+  .topbar-inner{padding:12px 0}
+  .brand{font-size:14px}
+  .brand small{font-size:10px}
+  .btn-primary{width:100%;justify-content:center;font-size:14px;padding:16px 22px}
+  .section-head{margin-bottom:36px}
+  details summary{font-size:15px;padding:18px 0}
+}
 @media(max-width:480px){
-  h1{font-size:38px}
+  h1{font-size:34px;letter-spacing:-1px}
+  .hero-sub{font-size:16px}
+  .section-title,.final-title{font-size:28px}
+  .wrap{width:94vw}
 }
 `;
 
@@ -787,6 +854,37 @@ const BODY_HTML = `
     </div>
   </div>
 </div>
+
+<!-- ══ INLINE LEAD BAND ══ -->
+<section class="inline-lead" id="quick-form">
+  <div class="wrap">
+    <div class="inline-lead-card">
+      <div class="inline-lead-head">
+        <h2 class="inline-lead-title">השאירי פרטים — <span class="h1-accent">גלי כמה מלגה מגיעה לך</span></h2>
+        <p class="inline-lead-sub">תוך 24 שעות נחזור אלייך לתאם פגישת ייעוץ חינמית · ללא התחייבות</p>
+      </div>
+      <form class="inline-form" onsubmit="submitForm(event)">
+        <input class="form-input" type="text" placeholder="שם מלא *" required/>
+        <input class="form-input" type="tel" placeholder="מספר טלפון *" required dir="ltr"/>
+        <select class="form-input" required>
+          <option value="">בחרי סניף *</option>
+          <option>תל אביב</option>
+          <option>ירושלים</option>
+          <option>חיפה</option>
+          <option>באר שבע</option>
+          <option>נתניה</option>
+          <option>רמת גן</option>
+          <option>ראשון לציון</option>
+          <option>פתח תקווה</option>
+          <option>אחר</option>
+        </select>
+        <button type="submit" class="btn-submit">בדקי זכאות ←</button>
+      </form>
+      <p class="form-micro">הפרטים שלך מוגנים ולא יועברו לצד שלישי</p>
+    </div>
+  </div>
+</section>
+
 
 <!-- ══ TESTIMONIALS ══ -->
 <section class="section">
