@@ -1082,22 +1082,28 @@ const BODY_HTML = `
           <div class="benefit-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
           </div>
-          <div class="benefit-title">מזוודת איפור מקצועית</div>
-          <div class="benefit-text">מתנה — מזוודת איפור בשווי 11,000 ₪, מלאה ומוכנה לעבודה</div>
+          <div class="benefit-body">
+            <div class="benefit-title">מזוודת איפור מקצועית</div>
+            <div class="benefit-text">מתנה — מזוודת איפור בשווי 11,000 ₪, מלאה ומוכנה לעבודה</div>
+          </div>
         </div>
         <div class="benefit-card reveal-scale reveal-delay-2">
           <div class="benefit-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5L7 22l5-3 5 3-2-8.5"/></svg>
           </div>
-          <div class="benefit-title">תעודת מאפרת בינלאומית</div>
-          <div class="benefit-text">תעודה מוכרת שפותחת לך דלתות בכל העולם</div>
+          <div class="benefit-body">
+            <div class="benefit-title">תעודת מאפרת בינלאומית</div>
+            <div class="benefit-text">תעודה מוכרת שפותחת לך דלתות בכל העולם</div>
+          </div>
         </div>
         <div class="benefit-card reveal-scale reveal-delay-3">
           <div class="benefit-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-3V5a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
           </div>
-          <div class="benefit-title">דואגים לך לעבודה</div>
-          <div class="benefit-text">בסיום הקורס — התחלת עבודה מיידית עם שכר גבוה</div>
+          <div class="benefit-body">
+            <div class="benefit-title">דואגים לך לעבודה</div>
+            <div class="benefit-text">בסיום הקורס — התחלת עבודה מיידית עם שכר גבוה</div>
+          </div>
         </div>
       </div>
     </div>
