@@ -140,6 +140,101 @@ h1{
 }
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 80px rgba(232,168,180,.55),0 16px 40px rgba(232,168,180,.35)}
 
+/* ── HERO PORTRAIT ── */
+.hero-portrait-wrap{
+  position:relative;
+  max-width:520px;margin:60px auto 0;
+  z-index:2;
+}
+.hero-portrait{
+  position:relative;
+  border-radius:28px;overflow:hidden;
+  border:1px solid var(--border-2);
+  box-shadow:0 30px 90px rgba(0,0,0,.5),0 0 80px rgba(232,168,180,.15);
+  aspect-ratio:16/10;
+  background:#16100f;
+}
+.hero-portrait img{width:100%;height:100%;object-fit:cover;display:block;opacity:.95}
+.hero-portrait::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(10,6,6,.6) 100%);
+  pointer-events:none;
+}
+.hero-floater{
+  position:absolute;
+  bottom:-30px;left:-30px;
+  width:180px;
+  border-radius:18px;overflow:hidden;
+  border:1px solid var(--border-2);
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
+  transform:rotate(-4deg);
+  background:#16100f;
+}
+.hero-floater img{width:100%;display:block;opacity:.95}
+.hero-badge-float{
+  position:absolute;
+  top:-18px;right:-18px;
+  background:linear-gradient(135deg,var(--rose),var(--rose-3));
+  color:#1a0c0c;
+  padding:14px 18px;border-radius:50px;
+  font-size:13px;font-weight:800;
+  box-shadow:0 0 40px rgba(232,168,180,.45),0 12px 28px rgba(232,168,180,.3);
+  white-space:nowrap;
+  transform:rotate(6deg);
+}
+
+/* ── GALLERY ── */
+.gallery-grid{
+  display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px;
+  max-width:1100px;margin:0 auto;
+}
+.gallery-tile{
+  position:relative;
+  border-radius:20px;overflow:hidden;
+  border:1px solid var(--border);
+  aspect-ratio:3/4;
+  background:#16100f;
+  transition:transform .4s,border-color .3s;
+}
+.gallery-tile:hover{transform:translateY(-6px);border-color:var(--border-2)}
+.gallery-tile img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  opacity:.85;transition:opacity .4s,transform .8s;
+}
+.gallery-tile:hover img{opacity:1;transform:scale(1.04)}
+.gallery-tile::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(10,6,6,.85) 100%);
+  pointer-events:none;
+}
+.gallery-cap{
+  position:absolute;bottom:20px;right:20px;left:20px;
+  z-index:2;color:var(--text);
+  font-size:15px;font-weight:700;
+}
+.gallery-cap small{display:block;font-size:12px;font-weight:500;color:var(--rose);margin-bottom:4px;letter-spacing:.5px}
+
+/* ── HOW IT WORKS IMAGE ── */
+.how-with-image{
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+  max-width:1100px;margin:0 auto;
+}
+.how-image-wrap{
+  border-radius:24px;overflow:hidden;
+  border:1px solid var(--border-2);
+  box-shadow:0 30px 80px rgba(0,0,0,.4);
+  aspect-ratio:4/5;
+  position:relative;
+  background:#16100f;
+}
+.how-image-wrap img{width:100%;height:100%;object-fit:cover;display:block;opacity:.95}
+.how-image-wrap::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(10,6,6,.4) 100%);
+  pointer-events:none;
+}
+.steps-vertical{display:flex;flex-direction:column;gap:18px}
+
 /* ── HERO CARDS ── */
 .hero-cards{
   display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
@@ -415,6 +510,10 @@ footer{
   .testi-grid{grid-template-columns:1fr;max-width:520px}
   .final-grid{grid-template-columns:1fr;gap:40px}
   .stats-inner{grid-template-columns:repeat(2,1fr);gap:32px}
+  .gallery-grid{grid-template-columns:1fr 1fr;max-width:600px}
+  .gallery-tile:nth-child(3){grid-column:span 2;aspect-ratio:16/9}
+  .how-with-image{grid-template-columns:1fr;gap:32px;max-width:520px}
+  .how-image-wrap{aspect-ratio:16/10;order:-1}
 }
 @media(max-width:768px){
   body{padding-bottom:80px}
@@ -429,6 +528,11 @@ footer{
   .hero-cards{grid-template-columns:1fr;max-width:340px;margin-top:48px}
   .mini-card{padding:22px 20px}
   .lead-card{padding:28px 22px}
+  .hero-portrait-wrap{margin-top:40px;max-width:90%}
+  .hero-floater{width:130px;bottom:-20px;left:-12px}
+  .hero-badge-float{top:-14px;right:-8px;font-size:11px;padding:10px 14px}
+  .gallery-grid{grid-template-columns:1fr;max-width:380px}
+  .gallery-tile:nth-child(3){grid-column:auto;aspect-ratio:3/4}
 }
 @media(max-width:480px){
   h1{font-size:38px}
@@ -490,6 +594,17 @@ const BODY_HTML = `
           <div class="mini-label">דואגים לך לעבודה</div>
           <div class="mini-value">בסיום הקורס</div>
         </div>
+      </div>
+
+      <!-- Hero portrait -->
+      <div class="hero-portrait-wrap">
+        <div class="hero-portrait">
+          <img src="/assets/hero_woman.jpg" alt="מאפרת מקצועית"/>
+        </div>
+        <div class="hero-floater">
+          <img src="/assets/beauty_case.jpg" alt="מזוודת איפור"/>
+        </div>
+        <div class="hero-badge-float">מתנה · מזוודה 11,000 ₪</div>
       </div>
     </div>
   </div>
@@ -578,15 +693,58 @@ const BODY_HTML = `
         <div class="step-title">השאירי פרטים</div>
         <div class="step-text">מלאי שם וטלפון בטופס — לוקח 10 שניות</div>
       </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <div class="step-title">פגישת ייעוץ חינמית</div>
-        <div class="step-text">ניצור קשר ונקבע פגישה אישית — בלי התחייבות</div>
+<!-- ══ HOW IT WORKS ══ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">איך זה עובד</div>
+      <h2 class="section-title">3 צעדים<br/>למקצוע חדש</h2>
+    </div>
+    <div class="how-with-image">
+      <div class="steps-vertical">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-title">השאירי פרטים</div>
+          <div class="step-text">מלאי שם וטלפון בטופס — לוקח 10 שניות</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-title">פגישת ייעוץ חינמית</div>
+          <div class="step-text">ניצור קשר ונקבע פגישה אישית — בלי התחייבות</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-title">מתחילה ללמוד ולהרוויח</div>
+          <div class="step-text">בסיום הקורס — דואגים לך לעבודה עם שכר גבוה</div>
+        </div>
       </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <div class="step-title">מתחילה ללמוד ולהרוויח</div>
-        <div class="step-text">בסיום הקורס — דואגים לך לעבודה עם שכר גבוה</div>
+      <div class="how-image-wrap">
+        <img src="/assets/makeup_artist.jpg" alt="מאפרת בעבודה"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALLERY ══ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">החוויה הנראית</div>
+      <h2 class="section-title">ככה זה נראה<br/>אצלנו</h2>
+      <p class="section-sub">לימוד מקצועי, ציוד פרימיום וקהילה תומכת</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-tile">
+        <img src="/assets/gallery_bridal.jpg" alt="איפור כלות"/>
+        <div class="gallery-cap"><small>איפור כלות</small>שוק עם ביקוש קבוע</div>
+      </div>
+      <div class="gallery-tile">
+        <img src="/assets/gallery_products.jpg" alt="מוצרי איפור"/>
+        <div class="gallery-cap"><small>הציוד שלך</small>מותגים מובילים</div>
+      </div>
+      <div class="gallery-tile">
+        <img src="/assets/gallery_students.jpg" alt="תלמידות הקורס"/>
+        <div class="gallery-cap"><small>הקהילה שלנו</small>בוגרות מצליחות</div>
       </div>
     </div>
   </div>
