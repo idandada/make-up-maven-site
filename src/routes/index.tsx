@@ -1000,8 +1000,10 @@ const BODY_HTML = `
             <span class="eyebrow-dot"></span>
             בשיתוף בית הספר הגדול בארץ לביוטי
           </div>
+          <div class="hero-brand-title">קורס מאפרת מקצועית</div>
+          <div class="hero-brand-line"></div>
           <h1>דואגים לך <span class="h1-accent">לעבודה</span><br/>בסיום הלימודים</h1>
-          <p class="hero-sub">קורס מאפרת מקצועית באורך 6–8 חודשים</p>
+          <p class="hero-sub">6–8 חודשים · תעודה בינלאומית · מזוודת איפור מתנה</p>
           <p class="hero-sub"><strong>שכר יומי ממוצע של 800–1,700 ש״ח</strong></p>
           <a href="#form" class="btn-primary">אני רוצה לדעת כמה מלגה מגיעה לי ←</a>
         </div>
