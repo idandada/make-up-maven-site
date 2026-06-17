@@ -82,6 +82,8 @@ body{
 .partners-band .partner-logo:nth-child(1){animation:fadeIn .6s .1s both}
 .partners-band .partner-logo:nth-child(3){animation:fadeIn .6s .25s both}
 .partners-band .partner-logo:nth-child(5){animation:fadeIn .6s .4s both}
+.partners-band .partner-logo:nth-child(7){animation:fadeIn .6s .55s both}
+.partners-band .partner-logo:nth-child(9){animation:fadeIn .6s .7s both}
 .stats-inner > div{opacity:0;animation:countUp .6s both}
 .stats-inner > div:nth-child(1){animation-delay:.1s}
 .stats-inner > div:nth-child(2){animation-delay:.2s}
@@ -1330,6 +1332,16 @@ const BODY_HTML = `
         <div class="partner-text">
           <div class="partner-name">תעודה בינלאומית</div>
           <div class="partner-sub">מוכרת בישראל ובחו״ל</div>
+        </div>
+      </div>
+      <div class="partner-divider"></div>
+      <div class="partner-logo">
+        <div class="partner-emblem">
+          <img src="/__l5e/assets-v1/987138e9-589a-44a8-ad5a-295c01d4269d/ministry-economy.png" alt="לוגו משרד הכלכלה והתעשייה"/>
+        </div>
+        <div class="partner-text">
+          <div class="partner-name">משרד הכלכלה והתעשייה</div>
+          <div class="partner-sub">מוכר ומאושר על ידי הממשלה</div>
         </div>
       </div>
     </div>
