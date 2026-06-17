@@ -271,6 +271,49 @@ h1{
 }
 .steps-vertical{display:flex;flex-direction:column;gap:18px}
 
+/* ── HERO COLLAGE ── */
+.hero-collage{
+  display:grid;grid-template-columns:1.4fr 1fr;gap:16px;
+  max-width:760px;margin:48px auto 0;position:relative;z-index:2;
+  animation:fadeUp .9s .15s both;
+}
+.hero-collage-main,.hero-collage-side{
+  position:relative;border-radius:22px;overflow:hidden;
+  border:1px solid var(--border-2);background:#16100f;
+  box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 60px rgba(232,168,180,.10);
+}
+.hero-collage-main{aspect-ratio:4/5}
+.hero-collage-side{aspect-ratio:3/4;align-self:end}
+.hero-collage img{width:100%;height:100%;object-fit:cover;opacity:.95;display:block}
+.hero-collage-main::after,.hero-collage-side::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 45%,rgba(10,6,6,.85));
+  pointer-events:none;
+}
+.hero-collage-badge{
+  position:absolute;bottom:14px;right:14px;left:14px;z-index:2;
+  font-size:12px;font-weight:700;color:var(--text);
+  background:rgba(10,6,6,.55);backdrop-filter:blur(8px);
+  border:1px solid var(--border-2);border-radius:10px;
+  padding:8px 12px;text-align:center;
+}
+.hero-collage-tag{
+  position:absolute;top:14px;right:14px;z-index:2;
+  background:linear-gradient(135deg,var(--rose),var(--rose-3));
+  color:#1a0c0c;padding:8px 12px;border-radius:12px;
+  font-size:11px;font-weight:800;line-height:1.1;text-align:center;
+  box-shadow:0 10px 26px rgba(232,168,180,.35);
+}
+.hero-collage-tag b{display:block;font-size:16px;letter-spacing:-.3px;margin-top:2px}
+@media(max-width:600px){
+  .hero-collage{grid-template-columns:1.3fr 1fr;gap:10px;max-width:92vw}
+  .hero-collage-main{aspect-ratio:3/4}
+  .hero-collage-side{aspect-ratio:3/4}
+  .hero-collage-badge{font-size:11px;padding:6px 10px}
+}
+
+
+
 /* ── HERO CARDS ── */
 .hero-cards{
   display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
@@ -862,6 +905,17 @@ const BODY_HTML = `
 
       <a href="#form" class="btn-primary">אני רוצה לדעת כמה מלגה מגיעה לי ←</a>
 
+      <div class="hero-collage">
+        <div class="hero-collage-main">
+          <img src="/assets/hero_woman.jpg" alt="בוגרת הקורס - חיילת משוחררת"/>
+          <div class="hero-collage-badge">חיילות משוחררות · מסלול פיקדון</div>
+        </div>
+        <div class="hero-collage-side">
+          <img src="/assets/beauty_case.jpg" alt="מזוודת איפור מתנה"/>
+          <div class="hero-collage-tag">מתנה<b>11,000 ₪</b></div>
+        </div>
+      </div>
+
       <div class="hero-cards">
         <div class="mini-card">
           <div class="mini-icon">
@@ -1001,75 +1055,6 @@ const BODY_HTML = `
   </div>
 </section>
 
-<!-- ══ ELIGIBILITY ══ -->
-<section class="section" style="padding-top:0">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-tag">למי זה מתאים</div>
-      <h2 class="section-title">בדקי אם את זכאית</h2>
-      <p class="section-sub">הקורס פתוח לכל מי שעומדת בתנאים הבאים</p>
-    </div>
-    <div class="eligibility-list">
-      <div class="elig-item reveal-right reveal-delay-1">
-        <div class="elig-check">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div class="elig-text">עשית שירות צבאי או שירות לאומי</div>
-      </div>
-      <div class="elig-item reveal-right reveal-delay-2">
-        <div class="elig-check">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div class="elig-text">בנות 20 עד 45</div>
-      </div>
-      <div class="elig-item reveal-right reveal-delay-3">
-        <div class="elig-check">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div class="elig-text">בלי ניסיון קודם — אפס רקע נדרש</div>
-      </div>
-      <div class="elig-item reveal-right reveal-delay-4">
-        <div class="elig-check">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div class="elig-text">רצון ללמוד מקצוע אמיתי ולהתחיל לעבוד</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ HOW IT WORKS ══ -->
-<section class="section" style="padding-top:0">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-tag">איך זה עובד</div>
-      <h2 class="section-title">3 צעדים<br/>למקצוע חדש</h2>
-    </div>
-    <div class="how-with-image">
-      <div class="steps-vertical">
-        <div class="step-card reveal-right reveal-delay-1">
-          <div class="step-num">01</div>
-          <div class="step-title">השאירי פרטים</div>
-          <div class="step-text">מלאי שם וטלפון בטופס — לוקח 10 שניות</div>
-        </div>
-        <div class="step-card reveal-right reveal-delay-2">
-          <div class="step-num">02</div>
-          <div class="step-title">פגישת ייעוץ חינמית</div>
-          <div class="step-text">ניצור קשר ונקבע פגישה אישית — בלי התחייבות</div>
-        </div>
-        <div class="step-card reveal-right reveal-delay-3">
-          <div class="step-num">03</div>
-          <div class="step-title">מתחילה ללמוד ולהרוויח</div>
-          <div class="step-text">בסיום הקורס — דואגים לך לעבודה עם שכר גבוה</div>
-        </div>
-      </div>
-      <div class="how-image-wrap reveal-left reveal-delay-2">
-        <img src="/assets/makeup_artist.jpg" alt="מאפרת בעבודה"/>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ══ STATS ══ -->
 <div class="stats-band">
   <div class="wrap">
@@ -1081,95 +1066,6 @@ const BODY_HTML = `
     </div>
   </div>
 </div>
-
-<!-- ══ CERTIFICATION SHOWCASE ══ -->
-<section class="cert-section">
-  <div class="wrap">
-    <div class="cert-card reveal-scale">
-      <div class="cert-seal">
-        <div class="cert-seal-inner">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5L7 22l5-3 5 3-2-8.5"/></svg>
-          <small>CERTIFIED</small>
-        </div>
-      </div>
-      <div class="cert-body">
-        <h3>תעודת מאפרת <span>בינלאומית מוכרת</span></h3>
-        <p>תעודה רשמית בסיום הקורס המוכרת בישראל ובחו״ל — פותחת לך את הדלת לעבודה בסטודיואים, פרודקשנים, חתונות ומותגי קוסמטיקה מובילים. כל הנושאים מועברים בהתאם לסטנדרט הבינלאומי.</p>
-        <div class="cert-meta">
-          <span class="cert-chip">✓ הכרה בינלאומית</span>
-          <span class="cert-chip">✓ מוכרת ע״י משרד הביטחון</span>
-          <span class="cert-chip">✓ קבילה לפיקדון</span>
-          <span class="cert-chip">✓ מספר תעודה ייחודי</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ SALARY BREAKDOWN ══ -->
-<section class="salary-section">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-tag">פוטנציאל השכר</div>
-      <h2 class="section-title">כמה מרוויחה<br/>מאפרת מקצועית?</h2>
-      <p class="section-sub">נתוני שכר ממוצעים בשוק לבוגרות הקורס — לפי סוג העבודה</p>
-    </div>
-    <div class="salary-grid">
-      <div class="salary-card reveal-scale reveal-delay-1">
-        <div class="salary-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6m0 0l-3-3m3 3l3-3"/><path d="M4 14a8 8 0 1 0 16 0"/></svg></div>
-        <div class="salary-cat">איפור יומיומי</div>
-        <div class="salary-range">600–900 ₪</div>
-        <div class="salary-unit">ליום עבודה</div>
-      </div>
-      <div class="salary-card reveal-scale reveal-delay-2">
-        <div class="salary-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg></div>
-        <div class="salary-cat">צילומי מוצר ופרסום</div>
-        <div class="salary-range">900–1,300 ₪</div>
-        <div class="salary-unit">לסשן צילומים</div>
-      </div>
-      <div class="salary-card featured reveal-scale reveal-delay-3">
-        <div class="salary-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.3l-4.8 2.6.9-5.4L4.2 7.7l5.4-.8z"/></svg></div>
-        <div class="salary-cat">חתונות וערבים</div>
-        <div class="salary-range">1,500–2,000 ₪</div>
-        <div class="salary-unit">לאירוע · עונה מלאה</div>
-      </div>
-      <div class="salary-card reveal-scale reveal-delay-4">
-        <div class="salary-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/></svg></div>
-        <div class="salary-cat">פרודקשן וטלוויזיה</div>
-        <div class="salary-range">1,200–1,700 ₪</div>
-        <div class="salary-unit">ליום הפקה</div>
-      </div>
-    </div>
-    <p class="salary-note">* נתונים מבוססים על סקר בוגרות 2024 · השכר המקסימלי תלוי בניסיון ובמיקום הגיאוגרפי</p>
-  </div>
-</section>
-
-<!-- ══ GIFT SHOWCASE ══ -->
-<section class="gift-section">
-  <div class="wrap">
-    <div class="gift-grid">
-      <div class="gift-visual reveal-right">
-        <div class="gift-price-tag">שווי<b>11,000 ₪</b></div>
-        <img src="/assets/beauty_case.jpg" alt="מזוודת איפור מקצועית"/>
-      </div>
-      <div class="gift-body reveal-left">
-        <div class="section-tag">מתנה לנרשמות</div>
-        <h2>מזוודת איפור <span>מקצועית מלאה</span></h2>
-        <p>כל נרשמת לקורס מקבלת מתנה — מזוודת איפור מקצועית בשווי 11,000 ₪. מוכנה לעבודה מהיום הראשון, עם כל הציוד שמאפרת מקצועית צריכה בשטח.</p>
-        <div class="gift-items">
-          <div class="gift-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>פלטות צלליות, סומק וקונסילר מקצועיות <b>40+ גוונים</b></div>
-          <div class="gift-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>סט מכחולים מקצועי איכותי <b>24 מכחולים</b></div>
-          <div class="gift-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>בייסים, פאונדיישנים ופודרות במגוון גוונים <b>מותגי פרמיום</b></div>
-          <div class="gift-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>מזוודה נשלפת מעוצבת עם מגירות וקומפרטמנטים</div>
-          <div class="gift-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>ריסים, פינצטות, ספוגיות וכל אביזרי העזר</div>
-        </div>
-        <a href="#form" class="btn-primary" style="margin-top:0">אני רוצה את המזוודה ←</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 
 <!-- ══ TESTIMONIALS ══ -->
 <section class="section">
@@ -1195,14 +1091,6 @@ const BODY_HTML = `
           <div><div class="testi-name">מיכל א.</div><div class="testi-role">מאפרת עצמאית · לקוחות VIP</div></div>
         </div>
       </div>
-      <div class="testi-card reveal-scale reveal-delay-3">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">הפיקדון שלי הלך לדבר הכי טוב שיכולתי לעשות איתו. 8 חודשים אחרי — אני מאפרת בחתונות ומרוויחה 1,500 ש״ח ליום.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">נ</div>
-          <div><div class="testi-name">נועה ר.</div><div class="testi-role">מאפרת חתונות · בת 22</div></div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1226,18 +1114,6 @@ const BODY_HTML = `
       <details class="reveal reveal-delay-3">
         <summary>אפשר לשלם בפיקדון הצבאי?</summary>
         <p>כן! ניתן לשלם דרך הפיקדון הצבאי. נלווה אותך בתהליך מול הפיקדון כדי שיהיה פשוט ומהיר.</p>
-      </details>
-      <details class="reveal reveal-delay-4">
-        <summary>מה השכר שאפשר לצפות לו?</summary>
-        <p>שכר ממוצע יומי של 800–1,700 ש"ח. מאפרות מנוסות בחתונות ופרודקשן מרוויחות עד 2,000 ש"ח ליום.</p>
-      </details>
-      <details class="reveal reveal-delay-5">
-        <summary>האם דואגים לי לעבודה?</summary>
-        <p>כן. בסיום הקורס דואגים לך לעבודה ראשונה. יש לנו רשת קשרים ענפה עם מעסיקים בתחום.</p>
-      </details>
-      <details class="reveal reveal-delay-6">
-        <summary>כמה זמן נמשך הקורס?</summary>
-        <p>הקורס נמשך 6–8 חודשים. ניתן לשלב עם לימודים אחרים ועם עבודה חלקית.</p>
       </details>
     </div>
   </div>
