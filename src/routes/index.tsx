@@ -862,6 +862,17 @@ const BODY_HTML = `
 
       <a href="#form" class="btn-primary">אני רוצה לדעת כמה מלגה מגיעה לי ←</a>
 
+      <div class="hero-collage">
+        <div class="hero-collage-main">
+          <img src="/assets/hero_woman.jpg" alt="בוגרת הקורס - חיילת משוחררת"/>
+          <div class="hero-collage-badge">חיילות משוחררות · מסלול פיקדון</div>
+        </div>
+        <div class="hero-collage-side">
+          <img src="/assets/beauty_case.jpg" alt="מזוודת איפור מתנה"/>
+          <div class="hero-collage-tag">מתנה<b>11,000 ₪</b></div>
+        </div>
+      </div>
+
       <div class="hero-cards">
         <div class="mini-card">
           <div class="mini-icon">
@@ -1037,14 +1048,6 @@ const BODY_HTML = `
           <div><div class="testi-name">מיכל א.</div><div class="testi-role">מאפרת עצמאית · לקוחות VIP</div></div>
         </div>
       </div>
-      <div class="testi-card reveal-scale reveal-delay-3">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">הפיקדון שלי הלך לדבר הכי טוב שיכולתי לעשות איתו. 8 חודשים אחרי — אני מאפרת בחתונות ומרוויחה 1,500 ש״ח ליום.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">נ</div>
-          <div><div class="testi-name">נועה ר.</div><div class="testi-role">מאפרת חתונות · בת 22</div></div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1068,18 +1071,6 @@ const BODY_HTML = `
       <details class="reveal reveal-delay-3">
         <summary>אפשר לשלם בפיקדון הצבאי?</summary>
         <p>כן! ניתן לשלם דרך הפיקדון הצבאי. נלווה אותך בתהליך מול הפיקדון כדי שיהיה פשוט ומהיר.</p>
-      </details>
-      <details class="reveal reveal-delay-4">
-        <summary>מה השכר שאפשר לצפות לו?</summary>
-        <p>שכר ממוצע יומי של 800–1,700 ש"ח. מאפרות מנוסות בחתונות ופרודקשן מרוויחות עד 2,000 ש"ח ליום.</p>
-      </details>
-      <details class="reveal reveal-delay-5">
-        <summary>האם דואגים לי לעבודה?</summary>
-        <p>כן. בסיום הקורס דואגים לך לעבודה ראשונה. יש לנו רשת קשרים ענפה עם מעסיקים בתחום.</p>
-      </details>
-      <details class="reveal reveal-delay-6">
-        <summary>כמה זמן נמשך הקורס?</summary>
-        <p>הקורס נמשך 6–8 חודשים. ניתן לשלב עם לימודים אחרים ועם עבודה חלקית.</p>
       </details>
     </div>
   </div>
