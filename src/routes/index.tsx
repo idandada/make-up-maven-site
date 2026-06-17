@@ -387,28 +387,28 @@ h1{
   background:rgba(10,6,6,.55);backdrop-filter:blur(8px);
   border:1px solid var(--border-2);border-radius:12px;padding:10px 14px;
 }
-.benefits-grid{display:grid;grid-template-columns:1fr;gap:14px}
-@media(max-width:860px){.benefits-layout{grid-template-columns:1fr;gap:32px;max-width:520px}}
+.benefits-grid{display:grid;grid-template-columns:1fr;gap:10px;align-content:center}
+@media(max-width:860px){.benefits-layout{grid-template-columns:1fr;gap:24px;max-width:520px}.benefits-image{aspect-ratio:4/3}}
 .benefit-card{
   background:linear-gradient(180deg,rgba(28,20,19,.6),rgba(22,16,15,.4));
   border:1px solid var(--border);
-  border-radius:18px;
-  padding:22px 22px;
-  display:flex;align-items:flex-start;gap:16px;text-align:right;
+  border-radius:14px;
+  padding:14px 16px;
+  display:flex;align-items:center;gap:12px;text-align:right;
   transition:border-color .3s,transform .3s;
 }
-.benefit-card:hover{border-color:var(--border-2);transform:translateY(-3px)}
+.benefit-card:hover{border-color:var(--border-2);transform:translateY(-2px)}
 .benefit-icon{
-  width:46px;height:46px;border-radius:14px;
+  width:38px;height:38px;border-radius:10px;
   background:rgba(232,168,180,.08);
   border:1px solid var(--border-2);
   display:grid;place-items:center;flex-shrink:0;
   color:var(--rose);
 }
-.benefit-icon svg{width:22px;height:22px}
+.benefit-icon svg{width:18px;height:18px}
 .benefit-body{min-width:0}
-.benefit-title{font-size:17px;font-weight:700;color:var(--text);margin-bottom:4px}
-.benefit-text{font-size:13.5px;color:var(--muted);font-weight:500;line-height:1.55}
+.benefit-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:2px}
+.benefit-text{font-size:12.5px;color:var(--muted);font-weight:500;line-height:1.5}
 
 /* ── ELIGIBILITY ── */
 .eligibility-list{
