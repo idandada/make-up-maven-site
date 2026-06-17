@@ -140,6 +140,101 @@ h1{
 }
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 80px rgba(232,168,180,.55),0 16px 40px rgba(232,168,180,.35)}
 
+/* ── HERO PORTRAIT ── */
+.hero-portrait-wrap{
+  position:relative;
+  max-width:520px;margin:60px auto 0;
+  z-index:2;
+}
+.hero-portrait{
+  position:relative;
+  border-radius:28px;overflow:hidden;
+  border:1px solid var(--border-2);
+  box-shadow:0 30px 90px rgba(0,0,0,.5),0 0 80px rgba(232,168,180,.15);
+  aspect-ratio:16/10;
+  background:#16100f;
+}
+.hero-portrait img{width:100%;height:100%;object-fit:cover;display:block;opacity:.95}
+.hero-portrait::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(10,6,6,.6) 100%);
+  pointer-events:none;
+}
+.hero-floater{
+  position:absolute;
+  bottom:-30px;left:-30px;
+  width:180px;
+  border-radius:18px;overflow:hidden;
+  border:1px solid var(--border-2);
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
+  transform:rotate(-4deg);
+  background:#16100f;
+}
+.hero-floater img{width:100%;display:block;opacity:.95}
+.hero-badge-float{
+  position:absolute;
+  top:-18px;right:-18px;
+  background:linear-gradient(135deg,var(--rose),var(--rose-3));
+  color:#1a0c0c;
+  padding:14px 18px;border-radius:50px;
+  font-size:13px;font-weight:800;
+  box-shadow:0 0 40px rgba(232,168,180,.45),0 12px 28px rgba(232,168,180,.3);
+  white-space:nowrap;
+  transform:rotate(6deg);
+}
+
+/* ── GALLERY ── */
+.gallery-grid{
+  display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px;
+  max-width:1100px;margin:0 auto;
+}
+.gallery-tile{
+  position:relative;
+  border-radius:20px;overflow:hidden;
+  border:1px solid var(--border);
+  aspect-ratio:3/4;
+  background:#16100f;
+  transition:transform .4s,border-color .3s;
+}
+.gallery-tile:hover{transform:translateY(-6px);border-color:var(--border-2)}
+.gallery-tile img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  opacity:.85;transition:opacity .4s,transform .8s;
+}
+.gallery-tile:hover img{opacity:1;transform:scale(1.04)}
+.gallery-tile::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(10,6,6,.85) 100%);
+  pointer-events:none;
+}
+.gallery-cap{
+  position:absolute;bottom:20px;right:20px;left:20px;
+  z-index:2;color:var(--text);
+  font-size:15px;font-weight:700;
+}
+.gallery-cap small{display:block;font-size:12px;font-weight:500;color:var(--rose);margin-bottom:4px;letter-spacing:.5px}
+
+/* ── HOW IT WORKS IMAGE ── */
+.how-with-image{
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+  max-width:1100px;margin:0 auto;
+}
+.how-image-wrap{
+  border-radius:24px;overflow:hidden;
+  border:1px solid var(--border-2);
+  box-shadow:0 30px 80px rgba(0,0,0,.4);
+  aspect-ratio:4/5;
+  position:relative;
+  background:#16100f;
+}
+.how-image-wrap img{width:100%;height:100%;object-fit:cover;display:block;opacity:.95}
+.how-image-wrap::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(10,6,6,.4) 100%);
+  pointer-events:none;
+}
+.steps-vertical{display:flex;flex-direction:column;gap:18px}
+
 /* ── HERO CARDS ── */
 .hero-cards{
   display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
