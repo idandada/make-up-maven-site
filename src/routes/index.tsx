@@ -1112,7 +1112,7 @@ const BODY_HTML = `
 </section>
 
 <!-- ══ BENEFITS ══ -->
-<section class="section">
+<section class="section compact-section">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="section-tag">מה מקבלים בקורס</div>
@@ -1159,7 +1159,7 @@ const BODY_HTML = `
 
 
 <!-- ══ HOW IT WORKS ══ -->
-<section class="section how-section">
+<section class="section compact-section how-section">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="section-tag">איך זה עובד</div>
