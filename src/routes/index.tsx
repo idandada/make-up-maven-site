@@ -1252,16 +1252,7 @@ const BODY_HTML = `
   </div>
 </section>
 
-<!-- ══ BOTTOM BRAND ══ -->
-<section class="bottom-brand">
-  <div class="wrap">
-    <div class="bottom-brand-inner reveal">
-      <h2 class="bottom-brand-title">קורס מאפרת מקצועית</h2>
-      <div class="bottom-brand-line"></div>
-      <p class="bottom-brand-sub">המכללה המובילה בישראל · ליווי אישי עד להשמה</p>
-    </div>
-  </div>
-</section>
+<!-- bottom-brand removed — moved to hero -->
 
 <footer class="reveal">
   <div class="wrap">
