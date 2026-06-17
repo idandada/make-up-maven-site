@@ -855,6 +855,37 @@ const BODY_HTML = `
   </div>
 </div>
 
+<!-- ══ INLINE LEAD BAND ══ -->
+<section class="inline-lead" id="quick-form">
+  <div class="wrap">
+    <div class="inline-lead-card">
+      <div class="inline-lead-head">
+        <h2 class="inline-lead-title">השאירי פרטים — <span class="h1-accent">גלי כמה מלגה מגיעה לך</span></h2>
+        <p class="inline-lead-sub">תוך 24 שעות נחזור אלייך לתאם פגישת ייעוץ חינמית · ללא התחייבות</p>
+      </div>
+      <form class="inline-form" onsubmit="submitForm(event)">
+        <input class="form-input" type="text" placeholder="שם מלא *" required/>
+        <input class="form-input" type="tel" placeholder="מספר טלפון *" required dir="ltr"/>
+        <select class="form-input" required>
+          <option value="">בחרי סניף *</option>
+          <option>תל אביב</option>
+          <option>ירושלים</option>
+          <option>חיפה</option>
+          <option>באר שבע</option>
+          <option>נתניה</option>
+          <option>רמת גן</option>
+          <option>ראשון לציון</option>
+          <option>פתח תקווה</option>
+          <option>אחר</option>
+        </select>
+        <button type="submit" class="btn-submit">בדקי זכאות ←</button>
+      </form>
+      <p class="form-micro">הפרטים שלך מוגנים ולא יועברו לצד שלישי</p>
+    </div>
+  </div>
+</section>
+
+
 <!-- ══ TESTIMONIALS ══ -->
 <section class="section">
   <div class="wrap">
