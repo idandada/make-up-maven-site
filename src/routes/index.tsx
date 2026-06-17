@@ -964,9 +964,9 @@ footer{
   .testi-card{padding:24px 20px}
   .compact-section{padding:30px 0}
   .compact-section .section-tag{margin-bottom:6px;font-size:10px;letter-spacing:1.4px}
-  .compact-section .section-title{font-size:26px;line-height:1.1;margin-bottom:0;letter-spacing:-.5px}
+  .compact-section .section-title{font-size:24px;line-height:1.15;margin:0 auto;letter-spacing:0;max-width:330px;text-wrap:balance}
   .benefit-card,.step-card{min-height:82px;padding:12px 12px;border-radius:12px}
-  .benefits-grid,.steps-grid{gap:10px;max-width:360px}
+  .benefits-grid,.steps-grid{gap:8px;max-width:360px}
   .benefit-title,.step-title{font-size:15px}
   .benefit-text,.step-text{font-size:12.5px;line-height:1.45}
   .step-num-big{font-size:24px}
