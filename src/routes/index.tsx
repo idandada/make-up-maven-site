@@ -596,15 +596,43 @@ const BODY_HTML = `
         </div>
       </div>
 
-      <!-- Hero portrait -->
-      <div class="hero-portrait-wrap">
-        <div class="hero-portrait">
-          <img src="/assets/hero_woman.jpg" alt="מאפרת מקצועית"/>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PARTNERS / TRUST BAND ══ -->
+<section class="partners-band">
+  <div class="wrap">
+    <div class="partners-label">בשיתוף ובאישור</div>
+    <div class="partners-row">
+      <div class="partner-logo">
+        <div class="partner-emblem partner-emblem-idf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
-        <div class="hero-floater">
-          <img src="/assets/beauty_case.jpg" alt="מזוודת איפור"/>
+        <div class="partner-text">
+          <div class="partner-name">צה״ל</div>
+          <div class="partner-sub">מוכר לחיילים משוחררים</div>
         </div>
-        <div class="hero-badge-float">מתנה · מזוודה 11,000 ₪</div>
+      </div>
+      <div class="partner-divider"></div>
+      <div class="partner-logo">
+        <div class="partner-emblem partner-emblem-mod">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 4v5c0 5.5-3.8 10.2-9 12-5.2-1.8-9-6.5-9-12V6l9-4z"/></svg>
+        </div>
+        <div class="partner-text">
+          <div class="partner-name">משרד הביטחון</div>
+          <div class="partner-sub">תשלום דרך הפיקדון</div>
+        </div>
+      </div>
+      <div class="partner-divider"></div>
+      <div class="partner-logo">
+        <div class="partner-emblem partner-emblem-aka">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+        </div>
+        <div class="partner-text">
+          <div class="partner-name">אגף וועדת השחרור</div>
+          <div class="partner-sub">מסלולי מימון מאושרים</div>
+        </div>
       </div>
     </div>
   </div>
