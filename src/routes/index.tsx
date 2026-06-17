@@ -1337,10 +1337,10 @@ const BODY_HTML = `
       <div class="partner-divider"></div>
       <div class="partner-logo">
         <div class="partner-emblem">
-          <img src="/__l5e/assets-v1/987138e9-589a-44a8-ad5a-295c01d4269d/ministry-economy.png" alt="לוגו משרד הכלכלה והתעשייה"/>
+          <img src="/__l5e/assets-v1/d9b4b488-824d-40fb-911b-d1970355dc61/ministry-labor-logo.png" alt="לוגו משרד העבודה"/>
         </div>
         <div class="partner-text">
-          <div class="partner-name">משרד הכלכלה והתעשייה</div>
+          <div class="partner-name">משרד העבודה</div>
           <div class="partner-sub">מוכר ומאושר על ידי הממשלה</div>
         </div>
       </div>
