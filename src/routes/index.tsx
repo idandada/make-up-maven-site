@@ -518,23 +518,23 @@ details p{
 /* ── FINAL FORM ── */
 .final-section{
   background:radial-gradient(ellipse 80% 100% at 50% 0%,rgba(232,168,180,.1) 0,transparent 60%);
-  padding:100px 0;
+  padding:64px 0;
 }
 .final-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:60px;
-  max-width:1080px;margin:0 auto;align-items:center;
+  display:grid;grid-template-columns:1fr 1fr;gap:44px;
+  max-width:1040px;margin:0 auto;align-items:center;
 }
 .final-title{
-  font-size:clamp(36px,4.5vw,54px);
-  font-weight:800;line-height:1.05;letter-spacing:-1.5px;
-  color:var(--text);margin-bottom:20px;
+  font-size:clamp(28px,3.6vw,44px);
+  font-weight:800;line-height:1.08;letter-spacing:-1.2px;
+  color:var(--text);margin-bottom:14px;
 }
 .final-title-accent{color:var(--rose)}
-.final-sub{font-size:17px;color:var(--muted);font-weight:500;line-height:1.6;margin-bottom:28px}
-.final-points{display:flex;flex-direction:column;gap:12px}
+.final-sub{font-size:15px;color:var(--muted);font-weight:500;line-height:1.6;margin-bottom:20px}
+.final-points{display:flex;flex-direction:column;gap:10px}
 .final-point{
   display:flex;align-items:center;gap:12px;
-  font-size:15px;font-weight:500;color:var(--text);
+  font-size:14.5px;font-weight:500;color:var(--text);
 }
 .final-dot{
   width:18px;height:18px;border-radius:50%;
@@ -547,14 +547,14 @@ details p{
 .lead-card{
   background:rgba(22,16,15,.7);
   border:1px solid var(--border-2);
-  border-radius:24px;
-  padding:36px 32px;
+  border-radius:22px;
+  padding:28px 24px;
   backdrop-filter:blur(12px);
   box-shadow:0 30px 80px rgba(0,0,0,.4);
 }
-.lead-card-title{font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px}
-.lead-card-sub{font-size:14px;color:var(--muted);font-weight:500;margin-bottom:24px}
-.form-field{margin-bottom:12px}
+.lead-card-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px}
+.lead-card-sub{font-size:13.5px;color:var(--muted);font-weight:500;margin-bottom:18px}
+.form-field{margin-bottom:10px}
 .form-input{
   width:100%;height:52px;
   border:1px solid var(--border-2);
