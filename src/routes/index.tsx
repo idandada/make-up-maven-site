@@ -503,7 +503,43 @@ footer{
   box-shadow:0 0 30px rgba(232,168,180,.3);
 }
 
-/* ── RESPONSIVE ── */
+/* ── PARTNERS BAND ── */
+.partners-band{
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(232,168,180,.025),transparent);
+  padding:36px 0;
+}
+.partners-label{
+  text-align:center;font-size:11px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--dim);margin-bottom:24px;
+}
+.partners-row{
+  display:flex;align-items:center;justify-content:center;
+  gap:36px;flex-wrap:wrap;
+}
+.partner-logo{display:flex;align-items:center;gap:14px}
+.partner-emblem{
+  width:48px;height:48px;border-radius:12px;
+  display:grid;place-items:center;
+  background:rgba(232,168,180,.06);
+  border:1px solid var(--border-2);
+  color:var(--rose);flex-shrink:0;
+}
+.partner-emblem svg{width:24px;height:24px}
+.partner-name{font-size:15px;font-weight:700;color:var(--text);line-height:1.2}
+.partner-sub{font-size:12px;color:var(--muted);font-weight:500;margin-top:3px}
+.partner-divider{
+  width:1px;height:32px;
+  background:linear-gradient(180deg,transparent,var(--border-2),transparent);
+}
+@media(max-width:640px){
+  .partners-row{gap:18px;flex-direction:column}
+  .partner-divider{display:none}
+}
+
+
 @media(max-width:1024px){
   .hero-cards{grid-template-columns:repeat(3,1fr);gap:12px}
   .benefits-grid,.steps-grid{grid-template-columns:1fr;max-width:520px}
