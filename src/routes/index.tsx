@@ -1117,7 +1117,6 @@ footer:hover .footer-text{color:var(--rose)}
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
 }
 `;
-`;
 
 const BODY_HTML = `
 <!-- ══ TOPBAR ══ -->
