@@ -433,25 +433,25 @@ h1{
 .elig-text{font-size:16px;font-weight:600;color:var(--text)}
 
 /* ── STEPS ── */
-.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:960px;margin:0 auto}
 .step-card{
   background:linear-gradient(180deg,rgba(28,20,19,.6),rgba(22,16,15,.4));
   border:1px solid var(--border);
-  border-radius:22px;
-  padding:36px 28px;
+  border-radius:18px;
+  padding:24px 22px;
   position:relative;
   transition:border-color .3s,transform .3s;
 }
-.step-card:hover{border-color:var(--border-2);transform:translateY(-4px)}
+.step-card:hover{border-color:var(--border-2);transform:translateY(-3px)}
 .step-num{
-  font-size:14px;font-weight:700;
+  font-size:13px;font-weight:700;
   color:var(--rose);
   letter-spacing:1px;
-  margin-bottom:20px;
-  opacity:.7;
+  margin-bottom:12px;
+  opacity:.8;
 }
-.step-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px}
-.step-text{font-size:14px;color:var(--muted);font-weight:500;line-height:1.6}
+.step-title{font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px}
+.step-text{font-size:13.5px;color:var(--muted);font-weight:500;line-height:1.55}
 
 /* ── STATS ── */
 .stats-band{
