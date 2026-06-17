@@ -41,11 +41,47 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes countUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes glow{0%,100%{opacity:.55}50%{opacity:.9}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(232,168,180,.45)}70%{box-shadow:0 0 0 14px rgba(232,168,180,0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
 
 .wrap{width:min(1180px,92vw);margin:auto}
+
+/* ── SCROLL REVEALS ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94)}
+.reveal.revealed{opacity:1;transform:none}
+.reveal-scale{opacity:0;transform:scale(.92);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94)}
+.reveal-scale.revealed{opacity:1;transform:scale(1)}
+.reveal-right{opacity:0;transform:translateX(-40px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94)}
+.reveal-right.revealed{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(40px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94)}
+.reveal-left.revealed{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+.reveal-delay-5{transition-delay:.5s}
+.reveal-delay-6{transition-delay:.6s}
+.hero-inner{animation:fadeUp .9s cubic-bezier(.25,.46,.45,.94) both}
+.hero-cards .mini-card:nth-child(1){animation:scaleIn .6s .15s both}
+.hero-cards .mini-card:nth-child(2){animation:scaleIn .6s .3s both}
+.hero-cards .mini-card:nth-child(3){animation:scaleIn .6s .45s both}
+.eyebrow-dot{animation:pulse 2.4s infinite}
+.partners-band .partner-logo:nth-child(1){animation:fadeIn .6s .1s both}
+.partners-band .partner-logo:nth-child(3){animation:fadeIn .6s .25s both}
+.partners-band .partner-logo:nth-child(5){animation:fadeIn .6s .4s both}
+.stats-inner > div{opacity:0;animation:countUp .6s both}
+.stats-inner > div:nth-child(1){animation-delay:.1s}
+.stats-inner > div:nth-child(2){animation-delay:.2s}
+.stats-inner > div:nth-child(3){animation-delay:.3s}
+.stats-inner > div:nth-child(4){animation-delay:.4s}
 
 /* ── TOPBAR ── */
 .topbar{
@@ -744,26 +780,26 @@ const BODY_HTML = `
 <!-- ══ BENEFITS ══ -->
 <section class="section">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="section-tag">מה מקבלים בקורס</div>
       <h2 class="section-title">הטבות שלא תמצאי<br/>בשום מקום אחר</h2>
     </div>
     <div class="benefits-grid">
-      <div class="benefit-card">
+      <div class="benefit-card reveal-scale reveal-delay-1">
         <div class="benefit-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
         </div>
         <div class="benefit-title">מזוודת איפור מקצועית</div>
         <div class="benefit-text">מתנה — מזוודת איפור בשווי 11,000 ₪, מלאה ומוכנה לעבודה</div>
       </div>
-      <div class="benefit-card">
+      <div class="benefit-card reveal-scale reveal-delay-2">
         <div class="benefit-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5L7 22l5-3 5 3-2-8.5"/></svg>
         </div>
         <div class="benefit-title">תעודת מאפרת בינלאומית</div>
         <div class="benefit-text">תעודה מוכרת שפותחת לך דלתות בכל העולם</div>
       </div>
-      <div class="benefit-card">
+      <div class="benefit-card reveal-scale reveal-delay-3">
         <div class="benefit-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-3V5a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
         </div>
@@ -777,31 +813,31 @@ const BODY_HTML = `
 <!-- ══ ELIGIBILITY ══ -->
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="section-tag">למי זה מתאים</div>
       <h2 class="section-title">בדקי אם את זכאית</h2>
       <p class="section-sub">הקורס פתוח לכל מי שעומדת בתנאים הבאים</p>
     </div>
     <div class="eligibility-list">
-      <div class="elig-item">
+      <div class="elig-item reveal-right reveal-delay-1">
         <div class="elig-check">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <div class="elig-text">עשית שירות צבאי או שירות לאומי</div>
       </div>
-      <div class="elig-item">
+      <div class="elig-item reveal-right reveal-delay-2">
         <div class="elig-check">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <div class="elig-text">בנות 20 עד 45</div>
       </div>
-      <div class="elig-item">
+      <div class="elig-item reveal-right reveal-delay-3">
         <div class="elig-check">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <div class="elig-text">בלי ניסיון קודם — אפס רקע נדרש</div>
       </div>
-      <div class="elig-item">
+      <div class="elig-item reveal-right reveal-delay-4">
         <div class="elig-check">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
@@ -814,29 +850,29 @@ const BODY_HTML = `
 <!-- ══ HOW IT WORKS ══ -->
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="section-tag">איך זה עובד</div>
       <h2 class="section-title">3 צעדים<br/>למקצוע חדש</h2>
     </div>
     <div class="how-with-image">
       <div class="steps-vertical">
-        <div class="step-card">
+        <div class="step-card reveal-right reveal-delay-1">
           <div class="step-num">01</div>
           <div class="step-title">השאירי פרטים</div>
           <div class="step-text">מלאי שם וטלפון בטופס — לוקח 10 שניות</div>
         </div>
-        <div class="step-card">
+        <div class="step-card reveal-right reveal-delay-2">
           <div class="step-num">02</div>
           <div class="step-title">פגישת ייעוץ חינמית</div>
           <div class="step-text">ניצור קשר ונקבע פגישה אישית — בלי התחייבות</div>
         </div>
-        <div class="step-card">
+        <div class="step-card reveal-right reveal-delay-3">
           <div class="step-num">03</div>
           <div class="step-title">מתחילה ללמוד ולהרוויח</div>
           <div class="step-text">בסיום הקורס — דואגים לך לעבודה עם שכר גבוה</div>
         </div>
       </div>
-      <div class="how-image-wrap">
+      <div class="how-image-wrap reveal-left reveal-delay-2">
         <img src="/assets/makeup_artist.jpg" alt="מאפרת בעבודה"/>
       </div>
     </div>
@@ -858,7 +894,7 @@ const BODY_HTML = `
 <!-- ══ INLINE LEAD BAND ══ -->
 <section class="inline-lead" id="quick-form">
   <div class="wrap">
-    <div class="inline-lead-card">
+    <div class="inline-lead-card reveal-scale">
       <div class="inline-lead-head">
         <h2 class="inline-lead-title">השאירי פרטים — <span class="h1-accent">גלי כמה מלגה מגיעה לך</span></h2>
         <p class="inline-lead-sub">תוך 24 שעות נחזור אלייך לתאם פגישת ייעוץ חינמית · ללא התחייבות</p>
@@ -889,12 +925,12 @@ const BODY_HTML = `
 <!-- ══ TESTIMONIALS ══ -->
 <section class="section">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="section-tag">מה אומרות הבוגרות</div>
       <h2 class="section-title">הצלחות אמיתיות</h2>
     </div>
     <div class="testi-grid">
-      <div class="testi-card">
+      <div class="testi-card reveal-scale reveal-delay-1">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">סיימתי צבא ולא ידעתי מה לעשות עם הפיקדון. חברה סיפרה לי על הקורס הזה — היום אני עובדת בסטודיו מוביל בתל אביב ומרוויחה יפה מאוד.</p>
         <div class="testi-author">
@@ -902,7 +938,7 @@ const BODY_HTML = `
           <div><div class="testi-name">שירה כ.</div><div class="testi-role">בוגרת הקורס · 2 שנים בתחום</div></div>
         </div>
       </div>
-      <div class="testi-card">
+      <div class="testi-card reveal-scale reveal-delay-2">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">לא הייתה לי שום ידע קודם. הגעתי בגלל התשוקה, נשארתי בגלל המקצוענות. הצוות מדהים, הלמידה מעמיקה והמזוודה שקיבלתי שווה הרבה.</p>
         <div class="testi-author">
@@ -910,7 +946,7 @@ const BODY_HTML = `
           <div><div class="testi-name">מיכל א.</div><div class="testi-role">מאפרת עצמאית · לקוחות VIP</div></div>
         </div>
       </div>
-      <div class="testi-card">
+      <div class="testi-card reveal-scale reveal-delay-3">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">הפיקדון שלי הלך לדבר הכי טוב שיכולתי לעשות איתו. 8 חודשים אחרי — אני מאפרת בחתונות ומרוויחה 1,500 ש״ח ליום.</p>
         <div class="testi-author">
@@ -925,32 +961,32 @@ const BODY_HTML = `
 <!-- ══ FAQ ══ -->
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="section-tag">שאלות נפוצות</div>
       <h2 class="section-title">שאלות חשובות</h2>
     </div>
     <div class="faq-list">
-      <details open>
+      <details open class="reveal reveal-delay-1">
         <summary>צריך ניסיון קודם?</summary>
         <p>בכלל לא. הקורס מתחיל מהבסיס ומלווה אותך צעד אחר צעד. מאות בוגרות הגיעו ללא כל ניסיון קודם.</p>
       </details>
-      <details>
+      <details class="reveal reveal-delay-2">
         <summary>כמה עולה הקורס?</summary>
         <p>עלות הקורס תלויה במסלול שתבחרי. בפגישת הייעוץ נבדוק יחד כמה מלגה מגיעה לך ואיך ניתן לממן דרך הפיקדון.</p>
       </details>
-      <details>
+      <details class="reveal reveal-delay-3">
         <summary>אפשר לשלם בפיקדון הצבאי?</summary>
         <p>כן! ניתן לשלם דרך הפיקדון הצבאי. נלווה אותך בתהליך מול הפיקדון כדי שיהיה פשוט ומהיר.</p>
       </details>
-      <details>
+      <details class="reveal reveal-delay-4">
         <summary>מה השכר שאפשר לצפות לו?</summary>
         <p>שכר ממוצע יומי של 800–1,700 ש"ח. מאפרות מנוסות בחתונות ופרודקשן מרוויחות עד 2,000 ש"ח ליום.</p>
       </details>
-      <details>
+      <details class="reveal reveal-delay-5">
         <summary>האם דואגים לי לעבודה?</summary>
         <p>כן. בסיום הקורס דואגים לך לעבודה ראשונה. יש לנו רשת קשרים ענפה עם מעסיקים בתחום.</p>
       </details>
-      <details>
+      <details class="reveal reveal-delay-6">
         <summary>כמה זמן נמשך הקורס?</summary>
         <p>הקורס נמשך 6–8 חודשים. ניתן לשלב עם לימודים אחרים ועם עבודה חלקית.</p>
       </details>
@@ -962,7 +998,7 @@ const BODY_HTML = `
 <section class="final-section" id="form">
   <div class="wrap">
     <div class="final-grid">
-      <div>
+      <div class="reveal-right">
         <div class="section-tag">הזמן לפעול</div>
         <h2 class="final-title">בואי לפגישת ייעוץ —<br/><span class="final-title-accent">גלי כמה מלגה מגיעה לך</span></h2>
         <p class="final-sub">פגישה אישית, ללא עלות וללא התחייבות. נבדוק יחד כמה מלגה מגיעה לך ואיך לממן את הקורס.</p>
@@ -975,7 +1011,7 @@ const BODY_HTML = `
         </div>
       </div>
 
-      <div class="lead-card">
+      <div class="lead-card reveal-left">
         <div class="lead-card-title">השאירי פרטים ונחזור אלייך</div>
         <div class="lead-card-sub">תוך 24 שעות נחזור לתאם פגישת ייעוץ אישית</div>
         <form onsubmit="submitForm(event)">
@@ -1009,7 +1045,7 @@ const BODY_HTML = `
   </div>
 </section>
 
-<footer>
+<footer class="reveal">
   <div class="wrap">
     <p class="footer-text">© 2025 המכללה המובילה לאיפור בישראל · כל הזכויות שמורות</p>
   </div>
@@ -1034,6 +1070,22 @@ function LandingPage() {
         btn.style.opacity = '1';
       }, 1300);
     };
+
+    // Scroll reveal observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal, .reveal-scale, .reveal-right, .reveal-left').forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
