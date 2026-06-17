@@ -893,35 +893,45 @@ const BODY_HTML = `
 <!-- ══ PARTNERS / TRUST BAND ══ -->
 <section class="partners-band">
   <div class="wrap">
-    <div class="partners-label">בשיתוף ובאישור</div>
+    <div class="partners-label">מוסדות מאשרים ושותפים רשמיים</div>
     <div class="partners-row">
       <div class="partner-logo">
-        <div class="partner-emblem partner-emblem-idf">
+        <div class="partner-emblem">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
         <div class="partner-text">
           <div class="partner-name">צה״ל</div>
-          <div class="partner-sub">מוכר לחיילים משוחררים</div>
+          <div class="partner-sub">מסלול מוכר לחיילים משוחררים</div>
         </div>
       </div>
       <div class="partner-divider"></div>
       <div class="partner-logo">
-        <div class="partner-emblem partner-emblem-mod">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 4v5c0 5.5-3.8 10.2-9 12-5.2-1.8-9-6.5-9-12V6l9-4z"/></svg>
+        <div class="partner-emblem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 4v5c0 5.5-3.8 10.2-9 12-5.2-1.8-9-6.5-9-12V6l9-4z"/><path d="M9 11l2.5 2.5L16 9"/></svg>
         </div>
         <div class="partner-text">
           <div class="partner-name">משרד הביטחון</div>
-          <div class="partner-sub">תשלום דרך הפיקדון</div>
+          <div class="partner-sub">תשלום מלא דרך הפיקדון</div>
         </div>
       </div>
       <div class="partner-divider"></div>
       <div class="partner-logo">
-        <div class="partner-emblem partner-emblem-aka">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+        <div class="partner-emblem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
         </div>
         <div class="partner-text">
-          <div class="partner-name">אגף וועדת השחרור</div>
-          <div class="partner-sub">מסלולי מימון מאושרים</div>
+          <div class="partner-name">אגף ההכוונה</div>
+          <div class="partner-sub">מימון ומלגות מאושרות</div>
+        </div>
+      </div>
+      <div class="partner-divider"></div>
+      <div class="partner-logo">
+        <div class="partner-emblem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5L7 22l5-3 5 3-2-8.5"/></svg>
+        </div>
+        <div class="partner-text">
+          <div class="partner-name">תעודה בינלאומית</div>
+          <div class="partner-sub">מוכרת בישראל ובחו״ל</div>
         </div>
       </div>
     </div>
