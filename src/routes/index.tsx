@@ -277,9 +277,10 @@ h1{
 
 /* ── HERO COLLAGE ── */
 .hero-collage{
-  display:grid;grid-template-columns:1.35fr 1fr;gap:18px;
-  max-width:720px;margin:56px auto 0;position:relative;z-index:2;
+  display:grid;grid-template-columns:1.35fr 1fr;gap:14px;
+  max-width:520px;margin:0 0 0 auto;position:relative;z-index:2;
 }
+@media(max-width:860px){.hero-collage{margin:0 auto}}
 .hero-collage-main,.hero-collage-side{
   position:relative;border-radius:24px;overflow:hidden;
   border:1px solid var(--border-2);background:#16100f;
