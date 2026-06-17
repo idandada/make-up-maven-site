@@ -47,10 +47,15 @@ body{
 @keyframes slideRight{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
 @keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
 @keyframes countUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@keyframes glow{0%,100%{opacity:.55}50%{opacity:.9}}
+@keyframes glow{0%,100%{opacity:.55;transform:translate(0,0)}50%{opacity:.95;transform:translate(2%,-1%)}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(232,168,180,.45)}70%{box-shadow:0 0 0 14px rgba(232,168,180,0)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes shimmer{0%{background-position:200% 50%}100%{background-position:-200% 50%}}
+@keyframes auroraShift{0%,100%{transform:translate(-10%,-5%) rotate(0deg)}50%{transform:translate(8%,4%) rotate(8deg)}}
+@keyframes auroraShift2{0%,100%{transform:translate(8%,4%) rotate(0deg)}50%{transform:translate(-6%,-3%) rotate(-10deg)}}
+@keyframes accentHue{0%,100%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(-18deg)}}
+@keyframes ctaGlow{0%,100%{box-shadow:0 0 40px rgba(232,168,180,.35),0 12px 32px rgba(232,168,180,.22)}50%{box-shadow:0 0 80px rgba(232,168,180,.55),0 16px 40px rgba(232,168,180,.35)}}
+@keyframes risePart{0%{opacity:0;transform:translateY(40px) scale(.96)}100%{opacity:1;transform:none}}
 
 .wrap{width:min(1180px,92vw);margin:auto}
 
@@ -117,17 +122,20 @@ body{
   text-align:center;
 }
 .hero::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 50% at 50% 35%,rgba(232,168,180,.18) 0,rgba(232,168,180,.05) 40%,transparent 70%);
+  content:'';position:absolute;
+  top:-10%;left:-10%;width:70%;height:80%;
+  background:radial-gradient(ellipse at center,rgba(232,168,180,.22) 0,rgba(196,104,121,.08) 35%,transparent 65%);
   pointer-events:none;
-  animation:glow 6s ease-in-out infinite;
+  animation:auroraShift 14s ease-in-out infinite;
+  filter:blur(20px);
 }
 .hero::after{
   content:'';position:absolute;
-  top:20%;right:-10%;
-  width:500px;height:500px;
-  background:radial-gradient(circle,rgba(196,104,121,.12) 0,transparent 65%);
+  bottom:-15%;right:-10%;width:70%;height:80%;
+  background:radial-gradient(ellipse at center,rgba(196,104,121,.18) 0,rgba(232,168,180,.05) 40%,transparent 70%);
   pointer-events:none;
+  animation:auroraShift2 18s ease-in-out infinite;
+  filter:blur(24px);
 }
 .hero-inner{position:relative;z-index:2;animation:fadeUp .8s ease both}
 .eyebrow{
@@ -140,6 +148,7 @@ body{
   border:1px solid var(--border-2);
   border-radius:50px;
   background:rgba(232,168,180,.04);
+  backdrop-filter:blur(6px);
 }
 .eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--rose);animation:pulse 2s infinite}
 h1{
@@ -153,7 +162,13 @@ h1{
   max-width:900px;
   margin-inline:auto;
 }
-.h1-accent{color:var(--rose)}
+.h1-accent{
+  background:linear-gradient(90deg,#f0c2ce 0%,#e8a8b4 25%,#c46879 50%,#e8a8b4 75%,#f0c2ce 100%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+  animation:shimmer 6s linear infinite;
+}
 .hero-sub{
   font-size:clamp(16px,1.6vw,19px);
   line-height:1.6;
@@ -169,12 +184,13 @@ h1{
   background:linear-gradient(135deg,var(--rose),var(--rose-3));
   color:#1a0c0c;padding:18px 40px;border-radius:50px;
   text-decoration:none;font-weight:800;font-size:16px;
-  box-shadow:0 0 60px rgba(232,168,180,.4),0 12px 32px rgba(232,168,180,.25);
-  transition:transform .2s,box-shadow .2s;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;
   margin-top:36px;
   border:0;cursor:pointer;font-family:inherit;
+  animation:ctaGlow 3.4s ease-in-out infinite;
+  position:relative;
 }
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 80px rgba(232,168,180,.55),0 16px 40px rgba(232,168,180,.35)}
+.btn-primary:hover{transform:translateY(-2px) scale(1.02)}
 
 /* ── HERO PORTRAIT ── */
 .hero-portrait-wrap{
@@ -273,21 +289,24 @@ h1{
 
 /* ── HERO COLLAGE ── */
 .hero-collage{
-  display:grid;grid-template-columns:1.4fr 1fr;gap:16px;
-  max-width:760px;margin:48px auto 0;position:relative;z-index:2;
-  animation:fadeUp .9s .15s both;
+  display:grid;grid-template-columns:1.35fr 1fr;gap:18px;
+  max-width:720px;margin:56px auto 0;position:relative;z-index:2;
 }
 .hero-collage-main,.hero-collage-side{
-  position:relative;border-radius:22px;overflow:hidden;
+  position:relative;border-radius:24px;overflow:hidden;
   border:1px solid var(--border-2);background:#16100f;
-  box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 60px rgba(232,168,180,.10);
+  box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 50px rgba(232,168,180,.10);
+  opacity:0;animation:risePart .9s cubic-bezier(.2,.8,.2,1) both;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;
 }
-.hero-collage-main{aspect-ratio:4/5}
-.hero-collage-side{aspect-ratio:3/4;align-self:end}
-.hero-collage img{width:100%;height:100%;object-fit:cover;opacity:.95;display:block}
+.hero-collage-main{aspect-ratio:4/5;animation-delay:.25s}
+.hero-collage-side{aspect-ratio:3/4;align-self:end;animation-delay:.4s;animation:risePart .9s .4s cubic-bezier(.2,.8,.2,1) both,float 6.5s ease-in-out 1.4s infinite}
+.hero-collage-main:hover,.hero-collage-side:hover{transform:translateY(-4px);box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 80px rgba(232,168,180,.22)}
+.hero-collage img{width:100%;height:100%;object-fit:cover;opacity:.95;display:block;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.hero-collage-main:hover img,.hero-collage-side:hover img{transform:scale(1.05)}
 .hero-collage-main::after,.hero-collage-side::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 45%,rgba(10,6,6,.85));
+  background:linear-gradient(180deg,transparent 40%,rgba(10,6,6,.88));
   pointer-events:none;
 }
 .hero-collage-badge{
@@ -295,16 +314,17 @@ h1{
   font-size:12px;font-weight:700;color:var(--text);
   background:rgba(10,6,6,.55);backdrop-filter:blur(8px);
   border:1px solid var(--border-2);border-radius:10px;
-  padding:8px 12px;text-align:center;
+  padding:9px 12px;text-align:center;letter-spacing:.3px;
 }
 .hero-collage-tag{
   position:absolute;top:14px;right:14px;z-index:2;
   background:linear-gradient(135deg,var(--rose),var(--rose-3));
-  color:#1a0c0c;padding:8px 12px;border-radius:12px;
+  color:#1a0c0c;padding:9px 13px;border-radius:14px;
   font-size:11px;font-weight:800;line-height:1.1;text-align:center;
-  box-shadow:0 10px 26px rgba(232,168,180,.35);
+  box-shadow:0 10px 30px rgba(232,168,180,.45),0 0 30px rgba(232,168,180,.3);
+  animation:ctaGlow 3.4s ease-in-out infinite;
 }
-.hero-collage-tag b{display:block;font-size:16px;letter-spacing:-.3px;margin-top:2px}
+.hero-collage-tag b{display:block;font-size:17px;letter-spacing:-.3px;margin-top:3px}
 @media(max-width:600px){
   .hero-collage{grid-template-columns:1.3fr 1fr;gap:10px;max-width:92vw}
   .hero-collage-main{aspect-ratio:3/4}
@@ -1104,23 +1124,6 @@ const BODY_HTML = `
   </div>
 </div>
 
-<!-- ══ SHOWCASE ══ -->
-<section class="section showcase-section">
-  <div class="wrap">
-    <div class="showcase-grid">
-      <div class="showcase-media reveal-right">
-        <img src="/assets/hero_woman.jpg" alt="בוגרת הקורס - חיילת משוחררת"/>
-        <div class="showcase-media-badge">חיילת משוחררת · מסלול פיקדון</div>
-      </div>
-      <div class="showcase-body reveal-left">
-        <div class="section-tag">המתנה שלך לפתיחת הקריירה</div>
-        <h2 class="section-title">מזוודת איפור<br/><span class="h1-accent">בשווי 11,000 ש״ח</span></h2>
-        <p class="section-sub" style="margin:18px 0 28px">סט מקצועי שלם — מותגי פרימיום, מברשות, פלטות צלליות, בסיסים, גוונים מלאים. מוכן לעבודה מהיום הראשון אחרי הקורס.</p>
-        <a href="#form" class="btn-primary" style="margin-top:0">אני רוצה להירשם ←</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ══ HOW IT WORKS ══ -->
 <section class="section how-section">
