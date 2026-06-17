@@ -980,10 +980,75 @@ footer{
   details summary{font-size:15px;padding:18px 0}
 }
 @media(max-width:480px){
-  h1{font-size:34px;letter-spacing:-1px}
-  .hero-sub{font-size:16px}
-  .section-title,.final-title{font-size:28px}
+  h1{font-size:32px;letter-spacing:-1px}
+  .hero-sub{font-size:15px}
+  .section-title,.final-title{font-size:26px}
   .wrap{width:94vw}
+}
+
+/* ── MOBILE POLISH ── */
+@media(max-width:860px){
+  .hero-brand-line{margin-left:auto;margin-right:auto}
+}
+@media(max-width:768px){
+  /* Partners → 2x2 compact grid */
+  .partners-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex-direction:initial;align-items:stretch}
+  .partner-divider{display:none}
+  .partner-logo{flex-direction:column;text-align:center;gap:8px;padding:14px 10px;border:1px solid var(--border);border-radius:14px;background:rgba(232,168,180,.03);justify-content:flex-start;align-items:center;min-height:120px}
+  .partner-emblem{width:42px;height:42px}
+  .partner-emblem img,.partner-emblem svg{width:26px;height:26px}
+  .partner-text{align-items:center;text-align:center}
+  .partner-name{font-size:13px;line-height:1.2}
+  .partner-sub{font-size:11px;line-height:1.3;margin-top:2px}
+  .partners-label{font-size:11px;margin-bottom:18px}
+
+  /* Hero collage stack vertical, tighter */
+  .hero-collage{grid-template-columns:1fr;gap:14px;max-width:340px;margin:0 auto}
+  .hero-collage-main,.hero-collage-side{aspect-ratio:4/3;align-self:stretch}
+
+  /* Tighten section paddings */
+  .section{padding:46px 0}
+  .compact-section{padding:34px 0}
+  .final-section{padding:56px 0}
+  .inline-lead{padding:36px 0}
+  .partners-band{padding:30px 0 22px}
+
+  /* Inline lead card tighter */
+  .inline-lead-card{padding:22px 16px;border-radius:18px}
+  .inline-lead-title{font-size:22px;line-height:1.25}
+  .inline-lead-sub{font-size:13px;margin-top:6px}
+  .inline-form{gap:10px}
+  .form-input{padding:14px 14px;font-size:15px}
+
+  /* Final CTA tighter */
+  .final-grid{gap:28px}
+  .lead-card{padding:24px 18px;border-radius:20px}
+  .lead-card-title{font-size:20px}
+  .lead-card-sub{font-size:13px}
+  .final-points{gap:8px;margin-top:18px}
+  .final-point{font-size:14px}
+
+  /* Section heads tighter */
+  .section-head{margin-bottom:22px}
+  .compact-section .section-head{margin-bottom:14px}
+  .section-head::after{margin-top:10px;width:48px;height:2px}
+
+  /* Sticky CTA */
+  .sticky-mobile a{font-size:15px;padding:14px 18px}
+}
+@media(max-width:480px){
+  .partners-row{gap:8px}
+  .partner-logo{padding:12px 8px;min-height:108px}
+  .partner-name{font-size:12px}
+  .partner-sub{font-size:10.5px}
+  .hero-collage{max-width:300px}
+  .hero-brand-title{font-size:24px;letter-spacing:-1px;margin-bottom:8px}
+  .hero-brand-line{height:3px;width:46px;margin-bottom:16px}
+  .eyebrow{font-size:11.5px;padding:6px 12px;margin-bottom:16px}
+  .btn-primary{padding:15px 22px;font-size:14px;margin-top:22px;width:100%;justify-content:center}
+  .inline-lead-title{font-size:19px}
+  .final-title{font-size:24px;line-height:1.2}
+  .final-sub{font-size:14px;line-height:1.55}
 }
 
 /* ── EXTRA MOTION LAYER ── */
