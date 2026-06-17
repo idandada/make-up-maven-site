@@ -1027,9 +1027,10 @@ footer{
   .partner-sub{font-size:11px;line-height:1.3;margin-top:2px}
   .partners-label{font-size:11px;margin-bottom:18px}
 
-  /* Hero collage stack vertical, tighter */
-  .hero-collage{grid-template-columns:1fr;gap:14px;max-width:340px;margin:0 auto}
-  .hero-collage-main,.hero-collage-side{aspect-ratio:4/3;align-self:stretch}
+  /* Hero collage appears immediately on mobile */
+  .hero-grid{display:flex;flex-direction:column;gap:24px}
+  .hero-collage{order:-1;grid-template-columns:1.25fr 1fr;gap:10px;max-width:360px;margin:0 auto 2px}
+  .hero-collage-main,.hero-collage-side{aspect-ratio:3/4;align-self:end}
 
   /* Tighten section paddings */
   .section{padding:46px 0}
@@ -1066,7 +1067,7 @@ footer{
   .partner-logo{padding:12px 8px;min-height:108px}
   .partner-name{font-size:12px}
   .partner-sub{font-size:10.5px}
-  .hero-collage{max-width:300px}
+  .hero-collage{max-width:330px}
   .hero-brand-title{font-size:24px;letter-spacing:-1px;margin-bottom:8px}
   .hero-brand-line{height:3px;width:46px;margin-bottom:16px}
   .eyebrow{font-size:11.5px;padding:6px 12px;margin-bottom:16px}
