@@ -138,6 +138,24 @@ body{
 }
 .hero-inner{position:relative;z-index:2;animation:fadeUp .8s ease both}
 .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero-brand-title{
+  font-size:clamp(30px,4vw,48px);
+  font-weight:900;
+  letter-spacing:-1.5px;
+  line-height:1.1;
+  color:var(--text);
+  margin-bottom:10px;
+}
+.hero-brand-line{
+  height:4px;
+  width:70px;
+  border-radius:2px;
+  background:linear-gradient(90deg,var(--rose),var(--rose-3));
+  margin-bottom:22px;
+}
+@media(max-width:860px){
+  .hero-brand-line{height:3px;width:55px}
+}
 .hero-text{text-align:right}
 .eyebrow{
   display:inline-flex;align-items:center;gap:8px;
@@ -1000,8 +1018,10 @@ const BODY_HTML = `
             <span class="eyebrow-dot"></span>
             בשיתוף בית הספר הגדול בארץ לביוטי
           </div>
+          <div class="hero-brand-title">קורס מאפרת מקצועית</div>
+          <div class="hero-brand-line"></div>
           <h1>דואגים לך <span class="h1-accent">לעבודה</span><br/>בסיום הלימודים</h1>
-          <p class="hero-sub">קורס מאפרת מקצועית באורך 6–8 חודשים</p>
+          <p class="hero-sub">6–8 חודשים · תעודה בינלאומית · מזוודת איפור מתנה</p>
           <p class="hero-sub"><strong>שכר יומי ממוצע של 800–1,700 ש״ח</strong></p>
           <a href="#form" class="btn-primary">אני רוצה לדעת כמה מלגה מגיעה לי ←</a>
         </div>
@@ -1232,16 +1252,7 @@ const BODY_HTML = `
   </div>
 </section>
 
-<!-- ══ BOTTOM BRAND ══ -->
-<section class="bottom-brand">
-  <div class="wrap">
-    <div class="bottom-brand-inner reveal">
-      <h2 class="bottom-brand-title">קורס מאפרת מקצועית</h2>
-      <div class="bottom-brand-line"></div>
-      <p class="bottom-brand-sub">המכללה המובילה בישראל · ליווי אישי עד להשמה</p>
-    </div>
-  </div>
-</section>
+<!-- bottom-brand removed — moved to hero -->
 
 <footer class="reveal">
   <div class="wrap">
