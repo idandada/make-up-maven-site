@@ -391,30 +391,55 @@ h1{
 .section-sub{font-size:15px;color:var(--muted);font-weight:500;line-height:1.6}
 
 /* ── BENEFITS ── */
-.benefits-layout{max-width:960px;margin:0 auto}
-.benefits-image{display:none}
-.benefits-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:stretch}
+.benefits-layout{
+  max-width:1080px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1.05fr;gap:36px;align-items:center;
+}
+.benefits-image{
+  position:relative;border-radius:22px;overflow:hidden;
+  border:1px solid var(--border-2);
+  aspect-ratio:4/5;
+  box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 60px rgba(232,168,180,.12);
+}
+.benefits-image img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.benefits-image:hover img{transform:scale(1.05)}
+.benefits-image::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,6,6,0) 45%,rgba(10,6,6,.85) 100%);
+  pointer-events:none;
+}
+.benefits-image-tag{
+  position:absolute;left:16px;right:16px;bottom:16px;z-index:2;
+  text-align:center;font-size:13px;font-weight:700;color:var(--text);
+  background:rgba(10,6,6,.55);backdrop-filter:blur(10px);
+  border:1px solid var(--border-2);border-radius:12px;padding:10px 14px;
+}
+.benefits-grid{display:flex;flex-direction:column;gap:14px}
 .benefit-card{
   background:linear-gradient(180deg,rgba(28,20,19,.6),rgba(22,16,15,.4));
   border:1px solid var(--border);
-  border-radius:14px;
-  padding:18px 16px;
-  display:flex;align-items:flex-start;gap:12px;text-align:right;
-  min-height:126px;
+  border-radius:16px;
+  padding:18px 18px;
+  display:flex;align-items:center;gap:14px;text-align:right;
   transition:border-color .3s,transform .3s;
 }
 .benefit-card:hover{border-color:var(--border-2);transform:translateY(-2px)}
 .benefit-icon{
-  width:38px;height:38px;border-radius:10px;
+  width:46px;height:46px;border-radius:12px;
   background:rgba(232,168,180,.08);
   border:1px solid var(--border-2);
   display:grid;place-items:center;flex-shrink:0;
   color:var(--rose);
 }
-.benefit-icon svg{width:18px;height:18px}
+.benefit-icon svg{width:22px;height:22px}
 .benefit-body{min-width:0}
-.benefit-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:2px}
-.benefit-text{font-size:12.5px;color:var(--muted);font-weight:500;line-height:1.5}
+.benefit-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:3px}
+.benefit-text{font-size:13px;color:var(--muted);font-weight:500;line-height:1.5}
+@media(max-width:860px){
+  .benefits-layout{grid-template-columns:1fr;gap:22px;max-width:520px}
+  .benefits-image{aspect-ratio:4/5;max-width:380px;margin:0 auto;width:100%;border-radius:18px}
+  .benefits-image-tag{font-size:12px;padding:8px 12px}
+}
 
 /* ── ELIGIBILITY ── */
 .eligibility-list{
