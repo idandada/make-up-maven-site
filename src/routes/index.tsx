@@ -117,7 +117,7 @@ body{
 /* ── HERO ── */
 .hero{
   position:relative;
-  padding:72px 0 64px;
+  padding:56px 0 48px;
   overflow:hidden;
 }
 .hero::before{
@@ -149,9 +149,9 @@ body{
 .eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--rose);animation:pulse 2s infinite}
 h1{
   font-family:'Heebo',sans-serif;
-  font-size:clamp(38px,5.4vw,72px);
-  line-height:1.02;font-weight:800;letter-spacing:-1.8px;
-  color:var(--text);margin-bottom:22px;
+  font-size:clamp(34px,4.6vw,60px);
+  line-height:1.05;font-weight:800;letter-spacing:-1.4px;
+  color:var(--text);margin-bottom:18px;
 }
 .h1-accent{
   background:linear-gradient(90deg,#f0c2ce 0%,#e8a8b4 25%,#c46879 50%,#e8a8b4 75%,#f0c2ce 100%);
@@ -351,27 +351,27 @@ h1{
 .mini-value{font-size:16px;color:var(--text);font-weight:700}
 
 /* ── SECTION ── */
-.section{padding:100px 0;position:relative}
-.section-head{text-align:center;margin-bottom:64px;max-width:680px;margin-inline:auto}
+.section{padding:64px 0;position:relative}
+.section-head{text-align:center;margin-bottom:36px;max-width:680px;margin-inline:auto}
 .section-tag{
   display:inline-block;
-  font-size:12px;font-weight:600;
+  font-size:11px;font-weight:600;
   letter-spacing:2px;text-transform:uppercase;
   color:var(--rose);
-  margin-bottom:16px;
+  margin-bottom:10px;
 }
 .section-title{
-  font-size:clamp(34px,4.5vw,56px);
+  font-size:clamp(28px,3.6vw,44px);
   font-weight:800;
-  line-height:1.05;
-  letter-spacing:-1.5px;
+  line-height:1.08;
+  letter-spacing:-1.2px;
   color:var(--text);
-  margin-bottom:16px;
+  margin-bottom:10px;
 }
-.section-sub{font-size:17px;color:var(--muted);font-weight:500;line-height:1.6}
+.section-sub{font-size:15px;color:var(--muted);font-weight:500;line-height:1.6}
 
 /* ── BENEFITS ── */
-.benefits-layout{display:grid;grid-template-columns:.85fr 1fr;gap:48px;align-items:center;max-width:1100px;margin:0 auto}
+.benefits-layout{display:grid;grid-template-columns:.9fr 1fr;gap:36px;align-items:center;max-width:1040px;margin:0 auto}
 .benefits-image{
   position:relative;border-radius:24px;overflow:hidden;
   border:1px solid var(--border-2);background:#16100f;
@@ -392,22 +392,23 @@ h1{
 .benefit-card{
   background:linear-gradient(180deg,rgba(28,20,19,.6),rgba(22,16,15,.4));
   border:1px solid var(--border);
-  border-radius:22px;
-  padding:36px 28px;
-  text-align:center;
+  border-radius:18px;
+  padding:22px 22px;
+  display:flex;align-items:flex-start;gap:16px;text-align:right;
   transition:border-color .3s,transform .3s;
 }
-.benefit-card:hover{border-color:var(--border-2);transform:translateY(-4px)}
+.benefit-card:hover{border-color:var(--border-2);transform:translateY(-3px)}
 .benefit-icon{
-  width:56px;height:56px;border-radius:50%;
+  width:46px;height:46px;border-radius:14px;
   background:rgba(232,168,180,.08);
   border:1px solid var(--border-2);
-  display:grid;place-items:center;margin:0 auto 20px;
+  display:grid;place-items:center;flex-shrink:0;
   color:var(--rose);
 }
-.benefit-icon svg{width:24px;height:24px}
-.benefit-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px}
-.benefit-text{font-size:14px;color:var(--muted);font-weight:500;line-height:1.6}
+.benefit-icon svg{width:22px;height:22px}
+.benefit-body{min-width:0}
+.benefit-title{font-size:17px;font-weight:700;color:var(--text);margin-bottom:4px}
+.benefit-text{font-size:13.5px;color:var(--muted);font-weight:500;line-height:1.55}
 
 /* ── ELIGIBILITY ── */
 .eligibility-list{
@@ -432,25 +433,25 @@ h1{
 .elig-text{font-size:16px;font-weight:600;color:var(--text)}
 
 /* ── STEPS ── */
-.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:960px;margin:0 auto}
 .step-card{
   background:linear-gradient(180deg,rgba(28,20,19,.6),rgba(22,16,15,.4));
   border:1px solid var(--border);
-  border-radius:22px;
-  padding:36px 28px;
+  border-radius:18px;
+  padding:24px 22px;
   position:relative;
   transition:border-color .3s,transform .3s;
 }
-.step-card:hover{border-color:var(--border-2);transform:translateY(-4px)}
+.step-card:hover{border-color:var(--border-2);transform:translateY(-3px)}
 .step-num{
-  font-size:14px;font-weight:700;
+  font-size:13px;font-weight:700;
   color:var(--rose);
   letter-spacing:1px;
-  margin-bottom:20px;
-  opacity:.7;
+  margin-bottom:12px;
+  opacity:.8;
 }
-.step-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px}
-.step-text{font-size:14px;color:var(--muted);font-weight:500;line-height:1.6}
+.step-title{font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px}
+.step-text{font-size:13.5px;color:var(--muted);font-weight:500;line-height:1.55}
 
 /* ── STATS ── */
 .stats-band{
@@ -517,23 +518,23 @@ details p{
 /* ── FINAL FORM ── */
 .final-section{
   background:radial-gradient(ellipse 80% 100% at 50% 0%,rgba(232,168,180,.1) 0,transparent 60%);
-  padding:100px 0;
+  padding:64px 0;
 }
 .final-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:60px;
-  max-width:1080px;margin:0 auto;align-items:center;
+  display:grid;grid-template-columns:1fr 1fr;gap:44px;
+  max-width:1040px;margin:0 auto;align-items:center;
 }
 .final-title{
-  font-size:clamp(36px,4.5vw,54px);
-  font-weight:800;line-height:1.05;letter-spacing:-1.5px;
-  color:var(--text);margin-bottom:20px;
+  font-size:clamp(28px,3.6vw,44px);
+  font-weight:800;line-height:1.08;letter-spacing:-1.2px;
+  color:var(--text);margin-bottom:14px;
 }
 .final-title-accent{color:var(--rose)}
-.final-sub{font-size:17px;color:var(--muted);font-weight:500;line-height:1.6;margin-bottom:28px}
-.final-points{display:flex;flex-direction:column;gap:12px}
+.final-sub{font-size:15px;color:var(--muted);font-weight:500;line-height:1.6;margin-bottom:20px}
+.final-points{display:flex;flex-direction:column;gap:10px}
 .final-point{
   display:flex;align-items:center;gap:12px;
-  font-size:15px;font-weight:500;color:var(--text);
+  font-size:14.5px;font-weight:500;color:var(--text);
 }
 .final-dot{
   width:18px;height:18px;border-radius:50%;
@@ -546,14 +547,14 @@ details p{
 .lead-card{
   background:rgba(22,16,15,.7);
   border:1px solid var(--border-2);
-  border-radius:24px;
-  padding:36px 32px;
+  border-radius:22px;
+  padding:28px 24px;
   backdrop-filter:blur(12px);
   box-shadow:0 30px 80px rgba(0,0,0,.4);
 }
-.lead-card-title{font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px}
-.lead-card-sub{font-size:14px;color:var(--muted);font-weight:500;margin-bottom:24px}
-.form-field{margin-bottom:12px}
+.lead-card-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px}
+.lead-card-sub{font-size:13.5px;color:var(--muted);font-weight:500;margin-bottom:18px}
+.form-field{margin-bottom:10px}
 .form-input{
   width:100%;height:52px;
   border:1px solid var(--border-2);
@@ -585,7 +586,7 @@ select.form-input option{background:#16100f;color:var(--text)}
 /* ── INLINE LEAD BAND (horizontal) ── */
 .inline-lead{
   position:relative;
-  padding:64px 0;
+  padding:40px 0;
   background:
     radial-gradient(ellipse 60% 100% at 50% 50%,rgba(232,168,180,.12) 0,transparent 70%),
     linear-gradient(180deg,rgba(232,168,180,.04),transparent);
@@ -595,13 +596,13 @@ select.form-input option{background:#16100f;color:var(--text)}
 .inline-lead-card{
   background:rgba(22,16,15,.7);
   border:1px solid var(--border-2);
-  border-radius:24px;
-  padding:32px;
+  border-radius:20px;
+  padding:24px 28px;
   backdrop-filter:blur(14px);
   box-shadow:0 30px 80px rgba(0,0,0,.4);
   max-width:1080px;margin:0 auto;
 }
-.inline-lead-head{text-align:center;margin-bottom:24px}
+.inline-lead-head{text-align:center;margin-bottom:16px}
 .inline-lead-title{
   font-size:clamp(24px,3vw,32px);
   font-weight:800;color:var(--text);
@@ -666,12 +667,12 @@ footer{
   background:
     radial-gradient(ellipse 70% 100% at 50% 50%,rgba(232,168,180,.05),transparent 70%),
     linear-gradient(180deg,rgba(232,168,180,.02),transparent);
-  padding:48px 0;
+  padding:32px 0;
 }
 .partners-label{
   text-align:center;font-size:11px;font-weight:700;
   letter-spacing:4px;text-transform:uppercase;
-  color:var(--muted);margin-bottom:28px;
+  color:var(--muted);margin-bottom:20px;
 }
 .partners-label::before,.partners-label::after{
   content:'';display:inline-block;width:40px;height:1px;
@@ -1081,22 +1082,28 @@ const BODY_HTML = `
           <div class="benefit-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
           </div>
-          <div class="benefit-title">מזוודת איפור מקצועית</div>
-          <div class="benefit-text">מתנה — מזוודת איפור בשווי 11,000 ₪, מלאה ומוכנה לעבודה</div>
+          <div class="benefit-body">
+            <div class="benefit-title">מזוודת איפור מקצועית</div>
+            <div class="benefit-text">מתנה — מזוודת איפור בשווי 11,000 ₪, מלאה ומוכנה לעבודה</div>
+          </div>
         </div>
         <div class="benefit-card reveal-scale reveal-delay-2">
           <div class="benefit-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5L7 22l5-3 5 3-2-8.5"/></svg>
           </div>
-          <div class="benefit-title">תעודת מאפרת בינלאומית</div>
-          <div class="benefit-text">תעודה מוכרת שפותחת לך דלתות בכל העולם</div>
+          <div class="benefit-body">
+            <div class="benefit-title">תעודת מאפרת בינלאומית</div>
+            <div class="benefit-text">תעודה מוכרת שפותחת לך דלתות בכל העולם</div>
+          </div>
         </div>
         <div class="benefit-card reveal-scale reveal-delay-3">
           <div class="benefit-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-3V5a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
           </div>
-          <div class="benefit-title">דואגים לך לעבודה</div>
-          <div class="benefit-text">בסיום הקורס — התחלת עבודה מיידית עם שכר גבוה</div>
+          <div class="benefit-body">
+            <div class="benefit-title">דואגים לך לעבודה</div>
+            <div class="benefit-text">בסיום הקורס — התחלת עבודה מיידית עם שכר גבוה</div>
+          </div>
         </div>
       </div>
     </div>
