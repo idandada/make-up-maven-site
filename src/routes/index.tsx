@@ -392,22 +392,23 @@ h1{
 .benefit-card{
   background:linear-gradient(180deg,rgba(28,20,19,.6),rgba(22,16,15,.4));
   border:1px solid var(--border);
-  border-radius:22px;
-  padding:36px 28px;
-  text-align:center;
+  border-radius:18px;
+  padding:22px 22px;
+  display:flex;align-items:flex-start;gap:16px;text-align:right;
   transition:border-color .3s,transform .3s;
 }
-.benefit-card:hover{border-color:var(--border-2);transform:translateY(-4px)}
+.benefit-card:hover{border-color:var(--border-2);transform:translateY(-3px)}
 .benefit-icon{
-  width:56px;height:56px;border-radius:50%;
+  width:46px;height:46px;border-radius:14px;
   background:rgba(232,168,180,.08);
   border:1px solid var(--border-2);
-  display:grid;place-items:center;margin:0 auto 20px;
+  display:grid;place-items:center;flex-shrink:0;
   color:var(--rose);
 }
-.benefit-icon svg{width:24px;height:24px}
-.benefit-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px}
-.benefit-text{font-size:14px;color:var(--muted);font-weight:500;line-height:1.6}
+.benefit-icon svg{width:22px;height:22px}
+.benefit-body{min-width:0}
+.benefit-title{font-size:17px;font-weight:700;color:var(--text);margin-bottom:4px}
+.benefit-text{font-size:13.5px;color:var(--muted);font-weight:500;line-height:1.55}
 
 /* ── ELIGIBILITY ── */
 .eligibility-list{
