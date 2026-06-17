@@ -1077,10 +1077,6 @@ footer{
   .sticky-mobile a{font-size:15px;padding:14px 18px}
 }
 @media(max-width:480px){
-  .partners-row{gap:8px}
-  .partner-logo{padding:12px 8px;min-height:108px}
-  .partner-name{font-size:12px}
-  .partner-sub{font-size:10.5px}
   .hero-collage{max-width:330px}
   .hero-brand-title{font-size:24px;letter-spacing:-1px;margin-bottom:8px}
   .hero-brand-line{height:3px;width:46px;margin-bottom:16px}
