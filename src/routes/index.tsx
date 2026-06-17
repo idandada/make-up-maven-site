@@ -149,9 +149,9 @@ body{
 .eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--rose);animation:pulse 2s infinite}
 h1{
   font-family:'Heebo',sans-serif;
-  font-size:clamp(38px,5.4vw,72px);
-  line-height:1.02;font-weight:800;letter-spacing:-1.8px;
-  color:var(--text);margin-bottom:22px;
+  font-size:clamp(34px,4.6vw,60px);
+  line-height:1.05;font-weight:800;letter-spacing:-1.4px;
+  color:var(--text);margin-bottom:18px;
 }
 .h1-accent{
   background:linear-gradient(90deg,#f0c2ce 0%,#e8a8b4 25%,#c46879 50%,#e8a8b4 75%,#f0c2ce 100%);
