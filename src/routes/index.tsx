@@ -117,9 +117,8 @@ body{
 /* ── HERO ── */
 .hero{
   position:relative;
-  padding:90px 0 80px;
+  padding:72px 0 64px;
   overflow:hidden;
-  text-align:center;
 }
 .hero::before{
   content:'';position:absolute;
@@ -138,59 +137,48 @@ body{
   filter:blur(24px);
 }
 .hero-inner{position:relative;z-index:2;animation:fadeUp .8s ease both}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero-text{text-align:right}
 .eyebrow{
   display:inline-flex;align-items:center;gap:8px;
-  font-size:13px;font-weight:600;
-  color:var(--rose);
-  letter-spacing:.4px;
-  margin-bottom:28px;
-  padding:7px 16px;
-  border:1px solid var(--border-2);
-  border-radius:50px;
-  background:rgba(232,168,180,.04);
-  backdrop-filter:blur(6px);
+  font-size:13px;font-weight:600;color:var(--rose);
+  letter-spacing:.4px;margin-bottom:22px;padding:7px 16px;
+  border:1px solid var(--border-2);border-radius:50px;
+  background:rgba(232,168,180,.04);backdrop-filter:blur(6px);
 }
 .eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--rose);animation:pulse 2s infinite}
 h1{
   font-family:'Heebo',sans-serif;
-  font-size:clamp(44px,7vw,92px);
-  line-height:1;
-  font-weight:800;
-  letter-spacing:-2px;
-  color:var(--text);
-  margin-bottom:28px;
-  max-width:900px;
-  margin-inline:auto;
+  font-size:clamp(38px,5.4vw,72px);
+  line-height:1.02;font-weight:800;letter-spacing:-1.8px;
+  color:var(--text);margin-bottom:22px;
 }
 .h1-accent{
   background:linear-gradient(90deg,#f0c2ce 0%,#e8a8b4 25%,#c46879 50%,#e8a8b4 75%,#f0c2ce 100%);
   background-size:200% 100%;
-  -webkit-background-clip:text;background-clip:text;
-  color:transparent;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
   animation:shimmer 6s linear infinite;
 }
 .hero-sub{
-  font-size:clamp(16px,1.6vw,19px);
-  line-height:1.6;
-  color:var(--muted);
-  font-weight:500;
-  margin-bottom:14px;
-  max-width:560px;
-  margin-inline:auto;
+  font-size:clamp(15px,1.4vw,18px);line-height:1.6;
+  color:var(--muted);font-weight:500;margin-bottom:10px;
 }
 .hero-sub strong{color:var(--text);font-weight:700}
 .btn-primary{
   display:inline-flex;align-items:center;gap:10px;
   background:linear-gradient(135deg,var(--rose),var(--rose-3));
-  color:#1a0c0c;padding:18px 40px;border-radius:50px;
+  color:#1a0c0c;padding:18px 36px;border-radius:50px;
   text-decoration:none;font-weight:800;font-size:16px;
   transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;
-  margin-top:36px;
-  border:0;cursor:pointer;font-family:inherit;
-  animation:ctaGlow 3.4s ease-in-out infinite;
-  position:relative;
+  margin-top:28px;border:0;cursor:pointer;font-family:inherit;
+  animation:ctaGlow 3.4s ease-in-out infinite;position:relative;
 }
 .btn-primary:hover{transform:translateY(-2px) scale(1.02)}
+@media(max-width:860px){
+  .hero{padding:48px 0 40px}
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero-text{text-align:center}
+}
 
 /* ── HERO PORTRAIT ── */
 .hero-portrait-wrap{
@@ -289,9 +277,10 @@ h1{
 
 /* ── HERO COLLAGE ── */
 .hero-collage{
-  display:grid;grid-template-columns:1.35fr 1fr;gap:18px;
-  max-width:720px;margin:56px auto 0;position:relative;z-index:2;
+  display:grid;grid-template-columns:1.35fr 1fr;gap:14px;
+  max-width:520px;margin:0 0 0 auto;position:relative;z-index:2;
 }
+@media(max-width:860px){.hero-collage{margin:0 auto}}
 .hero-collage-main,.hero-collage-side{
   position:relative;border-radius:24px;overflow:hidden;
   border:1px solid var(--border-2);background:#16100f;
@@ -382,7 +371,24 @@ h1{
 .section-sub{font-size:17px;color:var(--muted);font-weight:500;line-height:1.6}
 
 /* ── BENEFITS ── */
-.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1000px;margin:0 auto}
+.benefits-layout{display:grid;grid-template-columns:.85fr 1fr;gap:48px;align-items:center;max-width:1100px;margin:0 auto}
+.benefits-image{
+  position:relative;border-radius:24px;overflow:hidden;
+  border:1px solid var(--border-2);background:#16100f;
+  box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 60px rgba(232,168,180,.12);
+  aspect-ratio:4/5;
+}
+.benefits-image img{width:100%;height:100%;object-fit:cover;display:block;opacity:.96;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.benefits-image:hover img{transform:scale(1.04)}
+.benefits-image::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,6,6,.7));pointer-events:none}
+.benefits-image-tag{
+  position:absolute;bottom:18px;right:18px;left:18px;z-index:2;
+  font-size:13px;font-weight:700;color:var(--text);text-align:center;
+  background:rgba(10,6,6,.55);backdrop-filter:blur(8px);
+  border:1px solid var(--border-2);border-radius:12px;padding:10px 14px;
+}
+.benefits-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(max-width:860px){.benefits-layout{grid-template-columns:1fr;gap:32px;max-width:520px}}
 .benefit-card{
   background:linear-gradient(180deg,rgba(28,20,19,.6),rgba(22,16,15,.4));
   border:1px solid var(--border);
@@ -954,53 +960,28 @@ const BODY_HTML = `
 <section class="hero">
   <div class="wrap">
     <div class="hero-inner">
-      <div class="eyebrow">
-        <span class="eyebrow-dot"></span>
-        בשיתוף בית הספר הגדול בארץ לביוטי
-      </div>
-
-      <h1>דואגים לך <span class="h1-accent">לעבודה</span><br/>בסיום הלימודים</h1>
-
-      <p class="hero-sub">קורס מאפרת מקצועית באורך 6–8 חודשים</p>
-      <p class="hero-sub"><strong>שכר יומי ממוצע של 800–1,700 ש״ח</strong></p>
-
-      <a href="#form" class="btn-primary">אני רוצה לדעת כמה מלגה מגיעה לי ←</a>
-
-      <div class="hero-collage">
-        <div class="hero-collage-main">
-          <img src="/assets/hero_woman.jpg" alt="בוגרת הקורס - חיילת משוחררת"/>
-          <div class="hero-collage-badge">חיילות משוחררות · מסלול פיקדון</div>
-        </div>
-        <div class="hero-collage-side">
-          <img src="/assets/beauty_case.jpg" alt="מזוודת איפור מתנה בשווי 11,000 ש״ח"/>
-          <div class="hero-collage-tag">מתנה בשווי<b>11,000 ש״ח</b></div>
-        </div>
-      </div>
-
-      <div class="hero-cards">
-        <div class="mini-card">
-          <div class="mini-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            בשיתוף בית הספר הגדול בארץ לביוטי
           </div>
-          <div class="mini-label">מתנה: מזוודת איפור בשווי</div>
-          <div class="mini-value">11,000 ₪</div>
+          <h1>דואגים לך <span class="h1-accent">לעבודה</span><br/>בסיום הלימודים</h1>
+          <p class="hero-sub">קורס מאפרת מקצועית באורך 6–8 חודשים</p>
+          <p class="hero-sub"><strong>שכר יומי ממוצע של 800–1,700 ש״ח</strong></p>
+          <a href="#form" class="btn-primary">אני רוצה לדעת כמה מלגה מגיעה לי ←</a>
         </div>
-        <div class="mini-card">
-          <div class="mini-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5L7 22l5-3 5 3-2-8.5"/></svg>
+        <div class="hero-collage">
+          <div class="hero-collage-main">
+            <img src="/assets/hero_woman.jpg" alt="בוגרת הקורס - חיילת משוחררת"/>
+            <div class="hero-collage-badge">חיילות משוחררות · מסלול פיקדון</div>
           </div>
-          <div class="mini-label">תעודה</div>
-          <div class="mini-value">בינלאומית</div>
-        </div>
-        <div class="mini-card">
-          <div class="mini-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M3 13h18"/></svg>
+          <div class="hero-collage-side">
+            <img src="/assets/beauty_case.jpg" alt="מזוודת איפור מתנה בשווי 11,000 ש״ח"/>
+            <div class="hero-collage-tag">מתנה בשווי<b>11,000 ש״ח</b></div>
           </div>
-          <div class="mini-label">דואגים לך לעבודה</div>
-          <div class="mini-value">בסיום הקורס</div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -1090,43 +1071,38 @@ const BODY_HTML = `
       <div class="section-tag">מה מקבלים בקורס</div>
       <h2 class="section-title">הטבות שלא תמצאי<br/>בשום מקום אחר</h2>
     </div>
-    <div class="benefits-grid">
-      <div class="benefit-card reveal-scale reveal-delay-1">
-        <div class="benefit-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-        </div>
-        <div class="benefit-title">מזוודת איפור מקצועית</div>
-        <div class="benefit-text">מתנה — מזוודת איפור בשווי 11,000 ₪, מלאה ומוכנה לעבודה</div>
+    <div class="benefits-layout">
+      <div class="benefits-image reveal-scale">
+        <img src="/__l5e/assets-v1/06fea51f-e945-41c9-b729-fe90527078a8/benefits-makeup.png" alt="מאפרת מקצועית בעבודה - הטבות הקורס"/>
+        <div class="benefits-image-tag">לימוד מעשי בסטודיו מקצועי · ליווי אישי עד להשמה</div>
       </div>
-      <div class="benefit-card reveal-scale reveal-delay-2">
-        <div class="benefit-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5L7 22l5-3 5 3-2-8.5"/></svg>
+      <div class="benefits-grid">
+        <div class="benefit-card reveal-scale reveal-delay-1">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          </div>
+          <div class="benefit-title">מזוודת איפור מקצועית</div>
+          <div class="benefit-text">מתנה — מזוודת איפור בשווי 11,000 ₪, מלאה ומוכנה לעבודה</div>
         </div>
-        <div class="benefit-title">תעודת מאפרת בינלאומית</div>
-        <div class="benefit-text">תעודה מוכרת שפותחת לך דלתות בכל העולם</div>
-      </div>
-      <div class="benefit-card reveal-scale reveal-delay-3">
-        <div class="benefit-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-3V5a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+        <div class="benefit-card reveal-scale reveal-delay-2">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5L7 22l5-3 5 3-2-8.5"/></svg>
+          </div>
+          <div class="benefit-title">תעודת מאפרת בינלאומית</div>
+          <div class="benefit-text">תעודה מוכרת שפותחת לך דלתות בכל העולם</div>
         </div>
-        <div class="benefit-title">דואגים לך לעבודה</div>
-        <div class="benefit-text">בסיום הקורס — התחלת עבודה מיידית עם שכר גבוה</div>
+        <div class="benefit-card reveal-scale reveal-delay-3">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-3V5a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+          </div>
+          <div class="benefit-title">דואגים לך לעבודה</div>
+          <div class="benefit-text">בסיום הקורס — התחלת עבודה מיידית עם שכר גבוה</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ STATS ══ -->
-<div class="stats-band">
-  <div class="wrap">
-    <div class="stats-inner">
-      <div><div class="stat-num">6–8</div><div class="stat-lbl">חודשי לימוד</div></div>
-      <div><div class="stat-num">11K ₪</div><div class="stat-lbl">מתנה: מזוודת איפור</div></div>
-      <div><div class="stat-num">800+</div><div class="stat-lbl">בוגרות מועסקות</div></div>
-      <div><div class="stat-num">100%</div><div class="stat-lbl">ליווי לעבודה</div></div>
-    </div>
-  </div>
-</div>
 
 
 <!-- ══ HOW IT WORKS ══ -->
