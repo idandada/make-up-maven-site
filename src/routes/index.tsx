@@ -1344,7 +1344,7 @@ const BODY_HTML = `
     </div>
     <div class="benefits-layout">
       <div class="benefits-image reveal-scale">
-        <img src="/__l5e/assets-v1/06fea51f-e945-41c9-b729-fe90527078a8/benefits-makeup.png" alt="מאפרת מקצועית בעבודה - הטבות הקורס"/>
+        <img src="/__l5e/assets-v1/bb1c803a-2e54-4e93-a6fd-22d0da2ebc77/benefits-makeup-artist.png" alt="מאפרת מקצועית בעבודה - הטבות הקורס"/>
         <div class="benefits-image-tag">לימוד מעשי בסטודיו מקצועי · ליווי אישי עד להשמה</div>
       </div>
       <div class="benefits-grid">
