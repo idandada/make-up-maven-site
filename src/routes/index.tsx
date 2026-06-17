@@ -680,14 +680,18 @@ footer{
   padding:6px 28px;
 }
 .partner-emblem{
-  width:56px;height:56px;border-radius:14px;
+  width:64px;height:64px;border-radius:16px;
   display:grid;place-items:center;
-  background:linear-gradient(135deg,rgba(232,168,180,.10),rgba(196,104,121,.05));
+  background:linear-gradient(135deg,rgba(245,236,234,.96),rgba(232,224,222,.88));
   border:1px solid var(--border-2);
   color:var(--rose);flex-shrink:0;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 8px 24px rgba(0,0,0,.3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 8px 24px rgba(0,0,0,.35);
+  padding:8px;
+  transition:transform .3s ease;
 }
+.partner-logo:hover .partner-emblem{transform:translateY(-2px) scale(1.04)}
 .partner-emblem svg{width:28px;height:28px}
+.partner-emblem img{width:100%;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 1px 1px rgba(0,0,0,.15))}
 .partner-name{font-size:16px;font-weight:800;color:var(--text);line-height:1.2;letter-spacing:-.3px}
 .partner-sub{font-size:12px;color:var(--muted);font-weight:500;margin-top:4px;letter-spacing:.3px}
 .partner-divider{
@@ -1038,7 +1042,7 @@ const BODY_HTML = `
     <div class="partners-row">
       <div class="partner-logo">
         <div class="partner-emblem">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <img src="/__l5e/assets-v1/940825e7-6625-41ef-8ca1-576b1908f1ea/idf.svg" alt="לוגו צה״ל"/>
         </div>
         <div class="partner-text">
           <div class="partner-name">צה״ל</div>
@@ -1048,7 +1052,7 @@ const BODY_HTML = `
       <div class="partner-divider"></div>
       <div class="partner-logo">
         <div class="partner-emblem">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 4v5c0 5.5-3.8 10.2-9 12-5.2-1.8-9-6.5-9-12V6l9-4z"/><path d="M9 11l2.5 2.5L16 9"/></svg>
+          <img src="/__l5e/assets-v1/baf6dba6-5f7e-49f3-bc69-aa6313699953/mod.svg" alt="לוגו משרד הביטחון"/>
         </div>
         <div class="partner-text">
           <div class="partner-name">משרד הביטחון</div>
@@ -1058,10 +1062,10 @@ const BODY_HTML = `
       <div class="partner-divider"></div>
       <div class="partner-logo">
         <div class="partner-emblem">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <img src="/__l5e/assets-v1/594ddad4-37c7-4484-8fff-08ff0bcb93df/agaf.svg" alt="לוגו האגף לחיילים משוחררים"/>
         </div>
         <div class="partner-text">
-          <div class="partner-name">אגף ההכוונה</div>
+          <div class="partner-name">האגף לחיילים משוחררים</div>
           <div class="partner-sub">מימון ומלגות מאושרות</div>
         </div>
       </div>
