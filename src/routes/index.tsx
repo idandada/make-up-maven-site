@@ -371,7 +371,24 @@ h1{
 .section-sub{font-size:17px;color:var(--muted);font-weight:500;line-height:1.6}
 
 /* ── BENEFITS ── */
-.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1000px;margin:0 auto}
+.benefits-layout{display:grid;grid-template-columns:.85fr 1fr;gap:48px;align-items:center;max-width:1100px;margin:0 auto}
+.benefits-image{
+  position:relative;border-radius:24px;overflow:hidden;
+  border:1px solid var(--border-2);background:#16100f;
+  box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 60px rgba(232,168,180,.12);
+  aspect-ratio:4/5;
+}
+.benefits-image img{width:100%;height:100%;object-fit:cover;display:block;opacity:.96;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.benefits-image:hover img{transform:scale(1.04)}
+.benefits-image::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,6,6,.7));pointer-events:none}
+.benefits-image-tag{
+  position:absolute;bottom:18px;right:18px;left:18px;z-index:2;
+  font-size:13px;font-weight:700;color:var(--text);text-align:center;
+  background:rgba(10,6,6,.55);backdrop-filter:blur(8px);
+  border:1px solid var(--border-2);border-radius:12px;padding:10px 14px;
+}
+.benefits-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(max-width:860px){.benefits-layout{grid-template-columns:1fr;gap:32px;max-width:520px}}
 .benefit-card{
   background:linear-gradient(180deg,rgba(28,20,19,.6),rgba(22,16,15,.4));
   border:1px solid var(--border);
