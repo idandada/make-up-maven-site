@@ -1149,7 +1149,7 @@ footer{
 }
 
 /* Partner logos: stagger hover */
-.partner-logo{cursor:default;border-radius:14px;padding:8px}
+.partner-logo{cursor:default}
 .partner-logo:hover{transform:translateY(-3px);background:rgba(232,168,180,.06)}
 .partner-emblem{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .partner-logo:hover .partner-emblem{transform:scale(1.1) rotate(-6deg)}
