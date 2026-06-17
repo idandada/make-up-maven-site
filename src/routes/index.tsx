@@ -289,21 +289,24 @@ h1{
 
 /* ── HERO COLLAGE ── */
 .hero-collage{
-  display:grid;grid-template-columns:1.4fr 1fr;gap:16px;
-  max-width:760px;margin:48px auto 0;position:relative;z-index:2;
-  animation:fadeUp .9s .15s both;
+  display:grid;grid-template-columns:1.35fr 1fr;gap:18px;
+  max-width:720px;margin:56px auto 0;position:relative;z-index:2;
 }
 .hero-collage-main,.hero-collage-side{
-  position:relative;border-radius:22px;overflow:hidden;
+  position:relative;border-radius:24px;overflow:hidden;
   border:1px solid var(--border-2);background:#16100f;
-  box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 60px rgba(232,168,180,.10);
+  box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 50px rgba(232,168,180,.10);
+  opacity:0;animation:risePart .9s cubic-bezier(.2,.8,.2,1) both;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;
 }
-.hero-collage-main{aspect-ratio:4/5}
-.hero-collage-side{aspect-ratio:3/4;align-self:end}
-.hero-collage img{width:100%;height:100%;object-fit:cover;opacity:.95;display:block}
+.hero-collage-main{aspect-ratio:4/5;animation-delay:.25s}
+.hero-collage-side{aspect-ratio:3/4;align-self:end;animation-delay:.4s;animation:risePart .9s .4s cubic-bezier(.2,.8,.2,1) both,float 6.5s ease-in-out 1.4s infinite}
+.hero-collage-main:hover,.hero-collage-side:hover{transform:translateY(-4px);box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 80px rgba(232,168,180,.22)}
+.hero-collage img{width:100%;height:100%;object-fit:cover;opacity:.95;display:block;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.hero-collage-main:hover img,.hero-collage-side:hover img{transform:scale(1.05)}
 .hero-collage-main::after,.hero-collage-side::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 45%,rgba(10,6,6,.85));
+  background:linear-gradient(180deg,transparent 40%,rgba(10,6,6,.88));
   pointer-events:none;
 }
 .hero-collage-badge{
@@ -311,16 +314,17 @@ h1{
   font-size:12px;font-weight:700;color:var(--text);
   background:rgba(10,6,6,.55);backdrop-filter:blur(8px);
   border:1px solid var(--border-2);border-radius:10px;
-  padding:8px 12px;text-align:center;
+  padding:9px 12px;text-align:center;letter-spacing:.3px;
 }
 .hero-collage-tag{
   position:absolute;top:14px;right:14px;z-index:2;
   background:linear-gradient(135deg,var(--rose),var(--rose-3));
-  color:#1a0c0c;padding:8px 12px;border-radius:12px;
+  color:#1a0c0c;padding:9px 13px;border-radius:14px;
   font-size:11px;font-weight:800;line-height:1.1;text-align:center;
-  box-shadow:0 10px 26px rgba(232,168,180,.35);
+  box-shadow:0 10px 30px rgba(232,168,180,.45),0 0 30px rgba(232,168,180,.3);
+  animation:ctaGlow 3.4s ease-in-out infinite;
 }
-.hero-collage-tag b{display:block;font-size:16px;letter-spacing:-.3px;margin-top:2px}
+.hero-collage-tag b{display:block;font-size:17px;letter-spacing:-.3px;margin-top:3px}
 @media(max-width:600px){
   .hero-collage{grid-template-columns:1.3fr 1fr;gap:10px;max-width:92vw}
   .hero-collage-main{aspect-ratio:3/4}
