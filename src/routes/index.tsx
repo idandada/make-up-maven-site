@@ -746,11 +746,12 @@ footer{
 }
 .partners-row{
   display:flex;align-items:stretch;justify-content:center;
-  gap:0;flex-wrap:wrap;
+  gap:0;flex-wrap:nowrap;
 }
 .partner-logo{
   display:flex;align-items:center;gap:14px;
   padding:6px 28px;
+  flex-shrink:0;
 }
 .partner-emblem{
   width:64px;height:64px;border-radius:16px;
@@ -768,15 +769,35 @@ footer{
 .partner-name{font-size:16px;font-weight:800;color:var(--text);line-height:1.2;letter-spacing:-.3px}
 .partner-sub{font-size:12px;color:var(--muted);font-weight:500;margin-top:4px;letter-spacing:.3px}
 .partner-divider{
-  width:1px;align-self:stretch;
+  width:1px;align-self:stretch;flex-shrink:0;
   background:linear-gradient(180deg,transparent,var(--border-2),transparent);
 }
+@media(max-width:1060px){
+  .partner-logo{padding:6px 18px;gap:10px}
+  .partner-emblem{width:48px;height:48px;border-radius:12px;padding:6px}
+  .partner-emblem svg{width:22px;height:22px}
+  .partner-name{font-size:14px}
+  .partner-sub{font-size:11px}
+}
+@media(max-width:860px){
+  .partners-row{gap:4px}
+  .partner-logo{padding:6px 10px;gap:8px}
+  .partner-emblem{width:40px;height:40px;border-radius:10px;padding:5px}
+  .partner-emblem svg{width:18px;height:18px}
+  .partner-name{font-size:12.5px}
+  .partner-sub{font-size:10px}
+}
 @media(max-width:760px){
-  .partners-row{gap:8px;flex-direction:column;align-items:stretch}
-  .partner-logo{justify-content:center;padding:10px 16px;border-bottom:1px solid var(--border)}
-  .partner-logo:last-child{border-bottom:0}
-  .partner-divider{display:none}
   .partners-band{padding:32px 0}
+}
+@media(max-width:560px){
+  .partners-row{overflow-x:auto;justify-content:flex-start;padding:0 4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .partners-row::-webkit-scrollbar{display:none}
+  .partners-band .wrap{max-width:100%}
+  .partner-logo{padding:6px 8px;gap:6px}
+  .partner-emblem{width:36px;height:36px;border-radius:8px;padding:4px}
+  .partner-name{font-size:11.5px}
+  .partner-sub{font-size:9.5px}
 }
 
 /* ── CERTIFICATION SHOWCASE ── */
@@ -1018,15 +1039,6 @@ footer{
   .hero-brand-line{margin-left:auto;margin-right:auto}
 }
 @media(max-width:768px){
-  /* Partners → 2x2 compact grid */
-  .partners-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex-direction:initial;align-items:stretch}
-  .partner-divider{display:none}
-  .partner-logo{flex-direction:column;text-align:center;gap:8px;padding:14px 10px;border:1px solid var(--border);border-radius:14px;background:rgba(232,168,180,.03);justify-content:flex-start;align-items:center;min-height:120px}
-  .partner-emblem{width:42px;height:42px}
-  .partner-emblem img,.partner-emblem svg{width:26px;height:26px}
-  .partner-text{align-items:center;text-align:center}
-  .partner-name{font-size:13px;line-height:1.2}
-  .partner-sub{font-size:11px;line-height:1.3;margin-top:2px}
   .partners-label{font-size:11px;margin-bottom:18px}
 
   /* Hero collage appears immediately on mobile */
@@ -1065,10 +1077,6 @@ footer{
   .sticky-mobile a{font-size:15px;padding:14px 18px}
 }
 @media(max-width:480px){
-  .partners-row{gap:8px}
-  .partner-logo{padding:12px 8px;min-height:108px}
-  .partner-name{font-size:12px}
-  .partner-sub{font-size:10.5px}
   .hero-collage{max-width:330px}
   .hero-brand-title{font-size:24px;letter-spacing:-1px;margin-bottom:8px}
   .hero-brand-line{height:3px;width:46px;margin-bottom:16px}
@@ -1141,7 +1149,7 @@ footer{
 }
 
 /* Partner logos: stagger hover */
-.partner-logo{cursor:default;border-radius:14px;padding:8px}
+.partner-logo{cursor:default}
 .partner-logo:hover{transform:translateY(-3px);background:rgba(232,168,180,.06)}
 .partner-emblem{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .partner-logo:hover .partner-emblem{transform:scale(1.1) rotate(-6deg)}
