@@ -503,7 +503,43 @@ footer{
   box-shadow:0 0 30px rgba(232,168,180,.3);
 }
 
-/* ── RESPONSIVE ── */
+/* ── PARTNERS BAND ── */
+.partners-band{
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(232,168,180,.025),transparent);
+  padding:36px 0;
+}
+.partners-label{
+  text-align:center;font-size:11px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--dim);margin-bottom:24px;
+}
+.partners-row{
+  display:flex;align-items:center;justify-content:center;
+  gap:36px;flex-wrap:wrap;
+}
+.partner-logo{display:flex;align-items:center;gap:14px}
+.partner-emblem{
+  width:48px;height:48px;border-radius:12px;
+  display:grid;place-items:center;
+  background:rgba(232,168,180,.06);
+  border:1px solid var(--border-2);
+  color:var(--rose);flex-shrink:0;
+}
+.partner-emblem svg{width:24px;height:24px}
+.partner-name{font-size:15px;font-weight:700;color:var(--text);line-height:1.2}
+.partner-sub{font-size:12px;color:var(--muted);font-weight:500;margin-top:3px}
+.partner-divider{
+  width:1px;height:32px;
+  background:linear-gradient(180deg,transparent,var(--border-2),transparent);
+}
+@media(max-width:640px){
+  .partners-row{gap:18px;flex-direction:column}
+  .partner-divider{display:none}
+}
+
+
 @media(max-width:1024px){
   .hero-cards{grid-template-columns:repeat(3,1fr);gap:12px}
   .benefits-grid,.steps-grid{grid-template-columns:1fr;max-width:520px}
@@ -596,15 +632,43 @@ const BODY_HTML = `
         </div>
       </div>
 
-      <!-- Hero portrait -->
-      <div class="hero-portrait-wrap">
-        <div class="hero-portrait">
-          <img src="/assets/hero_woman.jpg" alt="מאפרת מקצועית"/>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PARTNERS / TRUST BAND ══ -->
+<section class="partners-band">
+  <div class="wrap">
+    <div class="partners-label">בשיתוף ובאישור</div>
+    <div class="partners-row">
+      <div class="partner-logo">
+        <div class="partner-emblem partner-emblem-idf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
-        <div class="hero-floater">
-          <img src="/assets/beauty_case.jpg" alt="מזוודת איפור"/>
+        <div class="partner-text">
+          <div class="partner-name">צה״ל</div>
+          <div class="partner-sub">מוכר לחיילים משוחררים</div>
         </div>
-        <div class="hero-badge-float">מתנה · מזוודה 11,000 ₪</div>
+      </div>
+      <div class="partner-divider"></div>
+      <div class="partner-logo">
+        <div class="partner-emblem partner-emblem-mod">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 4v5c0 5.5-3.8 10.2-9 12-5.2-1.8-9-6.5-9-12V6l9-4z"/></svg>
+        </div>
+        <div class="partner-text">
+          <div class="partner-name">משרד הביטחון</div>
+          <div class="partner-sub">תשלום דרך הפיקדון</div>
+        </div>
+      </div>
+      <div class="partner-divider"></div>
+      <div class="partner-logo">
+        <div class="partner-emblem partner-emblem-aka">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+        </div>
+        <div class="partner-text">
+          <div class="partner-name">אגף וועדת השחרור</div>
+          <div class="partner-sub">מסלולי מימון מאושרים</div>
+        </div>
       </div>
     </div>
   </div>
@@ -687,19 +751,6 @@ const BODY_HTML = `
       <div class="section-tag">איך זה עובד</div>
       <h2 class="section-title">3 צעדים<br/>למקצוע חדש</h2>
     </div>
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">01</div>
-        <div class="step-title">השאירי פרטים</div>
-        <div class="step-text">מלאי שם וטלפון בטופס — לוקח 10 שניות</div>
-      </div>
-<!-- ══ HOW IT WORKS ══ -->
-<section class="section" style="padding-top:0">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-tag">איך זה עובד</div>
-      <h2 class="section-title">3 צעדים<br/>למקצוע חדש</h2>
-    </div>
     <div class="how-with-image">
       <div class="steps-vertical">
         <div class="step-card">
@@ -720,31 +771,6 @@ const BODY_HTML = `
       </div>
       <div class="how-image-wrap">
         <img src="/assets/makeup_artist.jpg" alt="מאפרת בעבודה"/>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ GALLERY ══ -->
-<section class="section" style="padding-top:0">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-tag">החוויה הנראית</div>
-      <h2 class="section-title">ככה זה נראה<br/>אצלנו</h2>
-      <p class="section-sub">לימוד מקצועי, ציוד פרימיום וקהילה תומכת</p>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-tile">
-        <img src="/assets/gallery_bridal.jpg" alt="איפור כלות"/>
-        <div class="gallery-cap"><small>איפור כלות</small>שוק עם ביקוש קבוע</div>
-      </div>
-      <div class="gallery-tile">
-        <img src="/assets/gallery_products.jpg" alt="מוצרי איפור"/>
-        <div class="gallery-cap"><small>הציוד שלך</small>מותגים מובילים</div>
-      </div>
-      <div class="gallery-tile">
-        <img src="/assets/gallery_students.jpg" alt="תלמידות הקורס"/>
-        <div class="gallery-cap"><small>הקהילה שלנו</small>בוגרות מצליחות</div>
       </div>
     </div>
   </div>
