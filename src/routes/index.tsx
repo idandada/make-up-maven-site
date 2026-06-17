@@ -667,12 +667,12 @@ footer{
   background:
     radial-gradient(ellipse 70% 100% at 50% 50%,rgba(232,168,180,.05),transparent 70%),
     linear-gradient(180deg,rgba(232,168,180,.02),transparent);
-  padding:48px 0;
+  padding:32px 0;
 }
 .partners-label{
   text-align:center;font-size:11px;font-weight:700;
   letter-spacing:4px;text-transform:uppercase;
-  color:var(--muted);margin-bottom:28px;
+  color:var(--muted);margin-bottom:20px;
 }
 .partners-label::before,.partners-label::after{
   content:'';display:inline-block;width:40px;height:1px;
