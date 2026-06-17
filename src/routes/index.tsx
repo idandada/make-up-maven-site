@@ -271,6 +271,49 @@ h1{
 }
 .steps-vertical{display:flex;flex-direction:column;gap:18px}
 
+/* ── HERO COLLAGE ── */
+.hero-collage{
+  display:grid;grid-template-columns:1.4fr 1fr;gap:16px;
+  max-width:760px;margin:48px auto 0;position:relative;z-index:2;
+  animation:fadeUp .9s .15s both;
+}
+.hero-collage-main,.hero-collage-side{
+  position:relative;border-radius:22px;overflow:hidden;
+  border:1px solid var(--border-2);background:#16100f;
+  box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 60px rgba(232,168,180,.10);
+}
+.hero-collage-main{aspect-ratio:4/5}
+.hero-collage-side{aspect-ratio:3/4;align-self:end}
+.hero-collage img{width:100%;height:100%;object-fit:cover;opacity:.95;display:block}
+.hero-collage-main::after,.hero-collage-side::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 45%,rgba(10,6,6,.85));
+  pointer-events:none;
+}
+.hero-collage-badge{
+  position:absolute;bottom:14px;right:14px;left:14px;z-index:2;
+  font-size:12px;font-weight:700;color:var(--text);
+  background:rgba(10,6,6,.55);backdrop-filter:blur(8px);
+  border:1px solid var(--border-2);border-radius:10px;
+  padding:8px 12px;text-align:center;
+}
+.hero-collage-tag{
+  position:absolute;top:14px;right:14px;z-index:2;
+  background:linear-gradient(135deg,var(--rose),var(--rose-3));
+  color:#1a0c0c;padding:8px 12px;border-radius:12px;
+  font-size:11px;font-weight:800;line-height:1.1;text-align:center;
+  box-shadow:0 10px 26px rgba(232,168,180,.35);
+}
+.hero-collage-tag b{display:block;font-size:16px;letter-spacing:-.3px;margin-top:2px}
+@media(max-width:600px){
+  .hero-collage{grid-template-columns:1.3fr 1fr;gap:10px;max-width:92vw}
+  .hero-collage-main{aspect-ratio:3/4}
+  .hero-collage-side{aspect-ratio:3/4}
+  .hero-collage-badge{font-size:11px;padding:6px 10px}
+}
+
+
+
 /* ── HERO CARDS ── */
 .hero-cards{
   display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
