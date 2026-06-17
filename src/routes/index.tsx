@@ -820,6 +820,43 @@ footer{
   .gift-visual{aspect-ratio:4/3;order:-1}
 }
 
+/* ── SHOWCASE ── */
+.showcase-section{padding:110px 0;border-top:1px solid var(--border);background:radial-gradient(ellipse 70% 90% at 50% 50%,rgba(232,168,180,.05),transparent 65%)}
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1080px;margin:0 auto}
+.showcase-media{position:relative;border-radius:26px;overflow:hidden;border:1px solid var(--border-2);aspect-ratio:4/5;background:#16100f;box-shadow:0 40px 100px rgba(0,0,0,.55),0 0 70px rgba(232,168,180,.12);animation:float 7s ease-in-out infinite}
+.showcase-media img{width:100%;height:100%;object-fit:cover;opacity:.95;transition:transform .8s ease}
+.showcase-media:hover img{transform:scale(1.04)}
+.showcase-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,6,6,.7));pointer-events:none}
+.showcase-media-badge{position:absolute;bottom:20px;right:20px;left:20px;z-index:2;text-align:center;font-size:13px;font-weight:700;color:var(--text);background:rgba(10,6,6,.55);backdrop-filter:blur(10px);border:1px solid var(--border-2);border-radius:12px;padding:10px 14px}
+.showcase-body .section-title{text-align:right}
+@media(max-width:860px){
+  .showcase-grid{grid-template-columns:1fr;gap:36px;max-width:520px}
+  .showcase-media{aspect-ratio:4/5;max-width:420px;margin:0 auto;width:100%}
+  .showcase-body{text-align:center}
+  .showcase-body .section-title{text-align:center}
+  .showcase-section{padding:80px 0}
+}
+
+/* ── HOW IT WORKS REFINED ── */
+.how-section{border-top:1px solid var(--border)}
+.step-card{padding:40px 30px 34px;text-align:right}
+.step-num-big{
+  font-size:48px;font-weight:900;line-height:1;
+  background:linear-gradient(135deg,var(--rose),var(--rose-3));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  letter-spacing:-2px;margin-bottom:18px;opacity:.95;
+}
+.step-icon{
+  width:44px;height:44px;border-radius:12px;
+  background:rgba(232,168,180,.08);border:1px solid var(--border-2);
+  display:grid;place-items:center;color:var(--rose);margin-bottom:18px;
+}
+.step-icon svg{width:22px;height:22px}
+@media(max-width:1024px){
+  .step-card{text-align:center}
+  .step-icon{margin-inline:auto}
+}
+
 
 @media(max-width:1024px){
   .hero-cards{grid-template-columns:repeat(3,1fr);gap:12px}
