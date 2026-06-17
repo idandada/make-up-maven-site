@@ -1232,6 +1232,17 @@ const BODY_HTML = `
   </div>
 </section>
 
+<!-- ══ BOTTOM BRAND ══ -->
+<section class="bottom-brand">
+  <div class="wrap">
+    <div class="bottom-brand-inner reveal">
+      <h2 class="bottom-brand-title">קורס מאפרת מקצועית</h2>
+      <div class="bottom-brand-line"></div>
+      <p class="bottom-brand-sub">המכללה המובילה בישראל · ליווי אישי עד להשמה</p>
+    </div>
+  </div>
+</section>
+
 <footer class="reveal">
   <div class="wrap">
     <p class="footer-text">© 2025 המכללה המובילה לאיפור בישראל · כל הזכויות שמורות</p>
