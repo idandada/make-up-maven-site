@@ -1067,54 +1067,56 @@ const BODY_HTML = `
   </div>
 </div>
 
-<!-- ══ TESTIMONIALS ══ -->
-<section class="section">
+<!-- ══ SHOWCASE ══ -->
+<section class="section showcase-section">
   <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-tag">מה אומרות הבוגרות</div>
-      <h2 class="section-title">הצלחות אמיתיות</h2>
-    </div>
-    <div class="testi-grid">
-      <div class="testi-card reveal-scale reveal-delay-1">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">סיימתי צבא ולא ידעתי מה לעשות עם הפיקדון. חברה סיפרה לי על הקורס הזה — היום אני עובדת בסטודיו מוביל בתל אביב ומרוויחה יפה מאוד.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">ש</div>
-          <div><div class="testi-name">שירה כ.</div><div class="testi-role">בוגרת הקורס · 2 שנים בתחום</div></div>
-        </div>
+    <div class="showcase-grid">
+      <div class="showcase-media reveal-right">
+        <img src="/assets/hero_woman.jpg" alt="בוגרת הקורס - חיילת משוחררת"/>
+        <div class="showcase-media-badge">חיילת משוחררת · מסלול פיקדון</div>
       </div>
-      <div class="testi-card reveal-scale reveal-delay-2">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">לא הייתה לי שום ידע קודם. הגעתי בגלל התשוקה, נשארתי בגלל המקצוענות. הצוות מדהים, הלמידה מעמיקה והמזוודה שקיבלתי שווה הרבה.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">מ</div>
-          <div><div class="testi-name">מיכל א.</div><div class="testi-role">מאפרת עצמאית · לקוחות VIP</div></div>
-        </div>
+      <div class="showcase-body reveal-left">
+        <div class="section-tag">המתנה שלך לפתיחת הקריירה</div>
+        <h2 class="section-title">מזוודת איפור<br/><span class="h1-accent">בשווי 11,000 ש״ח</span></h2>
+        <p class="section-sub" style="margin:18px 0 28px">סט מקצועי שלם — מותגי פרימיום, מברשות, פלטות צלליות, בסיסים, גוונים מלאים. מוכן לעבודה מהיום הראשון אחרי הקורס.</p>
+        <a href="#form" class="btn-primary" style="margin-top:0">אני רוצה להירשם ←</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ FAQ ══ -->
-<section class="section" style="padding-top:0">
+<!-- ══ HOW IT WORKS ══ -->
+<section class="section how-section">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-tag">שאלות נפוצות</div>
-      <h2 class="section-title">שאלות חשובות</h2>
+      <div class="section-tag">איך זה עובד</div>
+      <h2 class="section-title">3 צעדים<br/>למקצוע חדש</h2>
     </div>
-    <div class="faq-list">
-      <details open class="reveal reveal-delay-1">
-        <summary>צריך ניסיון קודם?</summary>
-        <p>בכלל לא. הקורס מתחיל מהבסיס ומלווה אותך צעד אחר צעד. מאות בוגרות הגיעו ללא כל ניסיון קודם.</p>
-      </details>
-      <details class="reveal reveal-delay-2">
-        <summary>כמה עולה הקורס?</summary>
-        <p>עלות הקורס תלויה במסלול שתבחרי. בפגישת הייעוץ נבדוק יחד כמה מלגה מגיעה לך ואיך ניתן לממן דרך הפיקדון.</p>
-      </details>
-      <details class="reveal reveal-delay-3">
-        <summary>אפשר לשלם בפיקדון הצבאי?</summary>
-        <p>כן! ניתן לשלם דרך הפיקדון הצבאי. נלווה אותך בתהליך מול הפיקדון כדי שיהיה פשוט ומהיר.</p>
-      </details>
+    <div class="steps-grid">
+      <div class="step-card reveal-scale reveal-delay-1">
+        <div class="step-num-big">01</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <div class="step-title">השאירי פרטים</div>
+        <div class="step-text">מלאי שם וטלפון בטופס — לוקח 10 שניות</div>
+      </div>
+      <div class="step-card reveal-scale reveal-delay-2">
+        <div class="step-num-big">02</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="step-title">פגישת ייעוץ חינמית</div>
+        <div class="step-text">ניצור קשר ונקבע פגישה אישית — בלי התחייבות</div>
+      </div>
+      <div class="step-card reveal-scale reveal-delay-3">
+        <div class="step-num-big">03</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.39 4.84L20 8l-4 3.9.94 5.46L12 14.77 7.06 17.36 8 11.9 4 8l5.61-1.16L12 2z"/></svg>
+        </div>
+        <div class="step-title">מתחילה ללמוד ולהרוויח</div>
+        <div class="step-text">נכנסת לקורס, מקבלת מזוודה ותעודה, ומתחילה לעבוד</div>
+      </div>
     </div>
   </div>
 </section>
