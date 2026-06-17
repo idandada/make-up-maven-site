@@ -595,6 +595,17 @@ const BODY_HTML = `
           <div class="mini-value">בסיום הקורס</div>
         </div>
       </div>
+
+      <!-- Hero portrait -->
+      <div class="hero-portrait-wrap">
+        <div class="hero-portrait">
+          <img src="/assets/hero_woman.jpg" alt="מאפרת מקצועית"/>
+        </div>
+        <div class="hero-floater">
+          <img src="/assets/beauty_case.jpg" alt="מזוודת איפור"/>
+        </div>
+        <div class="hero-badge-float">מתנה · מזוודה 11,000 ₪</div>
+      </div>
     </div>
   </div>
 </section>
