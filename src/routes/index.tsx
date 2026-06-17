@@ -927,7 +927,7 @@ footer{
 
 @media(max-width:1024px){
   .hero-cards{grid-template-columns:repeat(3,1fr);gap:12px}
-  .benefits-grid,.steps-grid{grid-template-columns:1fr;max-width:520px}
+  .benefits-grid,.steps-grid{grid-template-columns:1fr;max-width:520px;margin-inline:auto}
   .testi-grid{grid-template-columns:1fr;max-width:520px}
   .final-grid{grid-template-columns:1fr;gap:40px}
   .stats-inner{grid-template-columns:repeat(2,1fr);gap:32px}
@@ -941,7 +941,8 @@ footer{
   .sticky-mobile{display:block}
   .topbar-cta{display:none}
   .hero{padding:60px 0 50px}
-  .section{padding:70px 0}
+  .section{padding:54px 0}
+  .compact-section{padding:38px 0}
   .final-section{padding:70px 0}
   h1{font-size:42px;letter-spacing:-1.5px}
   .section-title{font-size:32px}
@@ -960,12 +961,19 @@ footer{
   .stats-inner{grid-template-columns:repeat(2,1fr);gap:24px}
   .stat-num{font-size:32px}
   .partners-band{padding:28px 0}
-  .testi-card,.benefit-card{padding:24px 20px}
+  .testi-card{padding:24px 20px}
+  .benefit-card,.step-card{min-height:auto;padding:14px 14px}
+  .benefits-grid,.steps-grid{gap:10px;max-width:360px}
+  .benefit-title,.step-title{font-size:15px}
+  .benefit-text,.step-text{font-size:12.5px;line-height:1.45}
+  .step-num-big{font-size:24px}
+  .step-icon{width:30px;height:30px;margin-bottom:6px}
   .topbar-inner{padding:12px 0}
   .brand{font-size:14px}
   .brand small{font-size:10px}
   .btn-primary{width:100%;justify-content:center;font-size:14px;padding:16px 22px}
-  .section-head{margin-bottom:36px}
+  .section-head{margin-bottom:26px}
+  .compact-section .section-head{margin-bottom:18px}
   details summary{font-size:15px;padding:18px 0}
 }
 @media(max-width:480px){
