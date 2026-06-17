@@ -960,14 +960,9 @@ const BODY_HTML = `
 <section class="hero">
   <div class="wrap">
     <div class="hero-inner">
-      <div class="eyebrow">
-        <span class="eyebrow-dot"></span>
-        בשיתוף בית הספר הגדול בארץ לביוטי
-      </div>
-
       <div class="hero-grid">
         <div class="hero-text">
-          <div class="eyebrow" style="margin-bottom:18px">
+          <div class="eyebrow">
             <span class="eyebrow-dot"></span>
             בשיתוף בית הספר הגדול בארץ לביוטי
           </div>
@@ -987,7 +982,7 @@ const BODY_HTML = `
           </div>
         </div>
       </div>
-
+    </div>
   </div>
 </section>
 
