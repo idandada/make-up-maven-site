@@ -477,6 +477,57 @@ select.form-input option{background:#16100f;color:var(--text)}
 .btn-submit:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(232,168,180,.45),0 16px 40px rgba(232,168,180,.3)}
 .form-micro{font-size:12px;color:var(--dim);text-align:center;margin-top:14px}
 
+/* ── INLINE LEAD BAND (horizontal) ── */
+.inline-lead{
+  position:relative;
+  padding:64px 0;
+  background:
+    radial-gradient(ellipse 60% 100% at 50% 50%,rgba(232,168,180,.12) 0,transparent 70%),
+    linear-gradient(180deg,rgba(232,168,180,.04),transparent);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.inline-lead-card{
+  background:rgba(22,16,15,.7);
+  border:1px solid var(--border-2);
+  border-radius:24px;
+  padding:32px;
+  backdrop-filter:blur(14px);
+  box-shadow:0 30px 80px rgba(0,0,0,.4);
+  max-width:1080px;margin:0 auto;
+}
+.inline-lead-head{text-align:center;margin-bottom:24px}
+.inline-lead-title{
+  font-size:clamp(24px,3vw,32px);
+  font-weight:800;color:var(--text);
+  letter-spacing:-.8px;line-height:1.15;
+}
+.inline-lead-title .h1-accent{color:var(--rose)}
+.inline-lead-sub{
+  font-size:15px;color:var(--muted);
+  font-weight:500;margin-top:8px;
+}
+.inline-form{
+  display:grid;
+  grid-template-columns:1.2fr 1fr 1fr auto;
+  gap:12px;align-items:stretch;
+}
+.inline-form .form-input{margin:0;height:54px}
+.inline-form .btn-submit{
+  margin:0;height:54px;padding:0 26px;
+  white-space:nowrap;width:auto;
+}
+.inline-lead .form-micro{margin-top:16px}
+@media(max-width:860px){
+  .inline-form{grid-template-columns:1fr 1fr;gap:10px}
+  .inline-form .btn-submit{grid-column:1/-1}
+}
+@media(max-width:520px){
+  .inline-form{grid-template-columns:1fr}
+  .inline-lead{padding:48px 0}
+  .inline-lead-card{padding:24px 18px;border-radius:20px}
+}
+
 /* ── FOOTER ── */
 footer{
   border-top:1px solid var(--border);
