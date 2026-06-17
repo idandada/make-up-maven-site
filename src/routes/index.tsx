@@ -439,12 +439,12 @@ h1{
 .elig-text{font-size:16px;font-weight:600;color:var(--text)}
 
 /* ── STEPS ── */
-.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:960px;margin:0 auto}
+.steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:960px;margin:0 auto}
 .step-card{
   background:linear-gradient(180deg,rgba(28,20,19,.6),rgba(22,16,15,.4));
   border:1px solid var(--border);
-  border-radius:18px;
-  padding:24px 22px;
+  border-radius:14px;
+  padding:18px 16px;
   position:relative;
   transition:border-color .3s,transform .3s;
 }
@@ -909,23 +909,20 @@ footer{
 
 /* ── HOW IT WORKS REFINED ── */
 .how-section{border-top:1px solid var(--border)}
-.step-card{padding:24px 22px 22px;text-align:right;display:flex;flex-direction:column}
+.step-card{text-align:right;display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:start;min-height:126px}
 .step-num-big{
-  font-size:32px;font-weight:900;line-height:1;
+  grid-row:1 / span 3;
+  font-size:28px;font-weight:900;line-height:1;
   background:linear-gradient(135deg,var(--rose),var(--rose-3));
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  letter-spacing:-1px;margin-bottom:10px;opacity:.95;
+  letter-spacing:-.5px;margin-top:3px;opacity:.95;
 }
 .step-icon{
-  width:36px;height:36px;border-radius:10px;
+  width:34px;height:34px;border-radius:10px;
   background:rgba(232,168,180,.08);border:1px solid var(--border-2);
-  display:grid;place-items:center;color:var(--rose);margin-bottom:12px;
+  display:grid;place-items:center;color:var(--rose);margin-bottom:8px;
 }
-.step-icon svg{width:18px;height:18px}
-@media(max-width:1024px){
-  .step-card{text-align:center;align-items:center}
-  .step-icon{margin-inline:auto}
-}
+.step-icon svg{width:17px;height:17px}
 
 
 @media(max-width:1024px){
