@@ -510,6 +510,10 @@ footer{
   .testi-grid{grid-template-columns:1fr;max-width:520px}
   .final-grid{grid-template-columns:1fr;gap:40px}
   .stats-inner{grid-template-columns:repeat(2,1fr);gap:32px}
+  .gallery-grid{grid-template-columns:1fr 1fr;max-width:600px}
+  .gallery-tile:nth-child(3){grid-column:span 2;aspect-ratio:16/9}
+  .how-with-image{grid-template-columns:1fr;gap:32px;max-width:520px}
+  .how-image-wrap{aspect-ratio:16/10;order:-1}
 }
 @media(max-width:768px){
   body{padding-bottom:80px}
@@ -524,6 +528,11 @@ footer{
   .hero-cards{grid-template-columns:1fr;max-width:340px;margin-top:48px}
   .mini-card{padding:22px 20px}
   .lead-card{padding:28px 22px}
+  .hero-portrait-wrap{margin-top:40px;max-width:90%}
+  .hero-floater{width:130px;bottom:-20px;left:-12px}
+  .hero-badge-float{top:-14px;right:-8px;font-size:11px;padding:10px 14px}
+  .gallery-grid{grid-template-columns:1fr;max-width:380px}
+  .gallery-tile:nth-child(3){grid-column:auto;aspect-ratio:3/4}
 }
 @media(max-width:480px){
   h1{font-size:38px}
