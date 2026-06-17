@@ -586,7 +586,7 @@ select.form-input option{background:#16100f;color:var(--text)}
 /* ── INLINE LEAD BAND (horizontal) ── */
 .inline-lead{
   position:relative;
-  padding:64px 0;
+  padding:40px 0;
   background:
     radial-gradient(ellipse 60% 100% at 50% 50%,rgba(232,168,180,.12) 0,transparent 70%),
     linear-gradient(180deg,rgba(232,168,180,.04),transparent);
@@ -596,13 +596,13 @@ select.form-input option{background:#16100f;color:var(--text)}
 .inline-lead-card{
   background:rgba(22,16,15,.7);
   border:1px solid var(--border-2);
-  border-radius:24px;
-  padding:32px;
+  border-radius:20px;
+  padding:24px 28px;
   backdrop-filter:blur(14px);
   box-shadow:0 30px 80px rgba(0,0,0,.4);
   max-width:1080px;margin:0 auto;
 }
-.inline-lead-head{text-align:center;margin-bottom:24px}
+.inline-lead-head{text-align:center;margin-bottom:16px}
 .inline-lead-title{
   font-size:clamp(24px,3vw,32px);
   font-weight:800;color:var(--text);
