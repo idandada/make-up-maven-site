@@ -594,36 +594,187 @@ footer{
 .partners-band{
   border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
-  background:linear-gradient(180deg,rgba(232,168,180,.025),transparent);
-  padding:36px 0;
+  background:
+    radial-gradient(ellipse 70% 100% at 50% 50%,rgba(232,168,180,.05),transparent 70%),
+    linear-gradient(180deg,rgba(232,168,180,.02),transparent);
+  padding:48px 0;
 }
 .partners-label{
-  text-align:center;font-size:11px;font-weight:600;
-  letter-spacing:3px;text-transform:uppercase;
-  color:var(--dim);margin-bottom:24px;
+  text-align:center;font-size:11px;font-weight:700;
+  letter-spacing:4px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:28px;
+}
+.partners-label::before,.partners-label::after{
+  content:'';display:inline-block;width:40px;height:1px;
+  background:var(--border-2);vertical-align:middle;margin:0 14px;
 }
 .partners-row{
-  display:flex;align-items:center;justify-content:center;
-  gap:36px;flex-wrap:wrap;
+  display:flex;align-items:stretch;justify-content:center;
+  gap:0;flex-wrap:wrap;
 }
-.partner-logo{display:flex;align-items:center;gap:14px}
+.partner-logo{
+  display:flex;align-items:center;gap:14px;
+  padding:6px 28px;
+}
 .partner-emblem{
-  width:48px;height:48px;border-radius:12px;
+  width:56px;height:56px;border-radius:14px;
   display:grid;place-items:center;
-  background:rgba(232,168,180,.06);
+  background:linear-gradient(135deg,rgba(232,168,180,.10),rgba(196,104,121,.05));
   border:1px solid var(--border-2);
   color:var(--rose);flex-shrink:0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 8px 24px rgba(0,0,0,.3);
 }
-.partner-emblem svg{width:24px;height:24px}
-.partner-name{font-size:15px;font-weight:700;color:var(--text);line-height:1.2}
-.partner-sub{font-size:12px;color:var(--muted);font-weight:500;margin-top:3px}
+.partner-emblem svg{width:28px;height:28px}
+.partner-name{font-size:16px;font-weight:800;color:var(--text);line-height:1.2;letter-spacing:-.3px}
+.partner-sub{font-size:12px;color:var(--muted);font-weight:500;margin-top:4px;letter-spacing:.3px}
 .partner-divider{
-  width:1px;height:32px;
+  width:1px;align-self:stretch;
   background:linear-gradient(180deg,transparent,var(--border-2),transparent);
 }
-@media(max-width:640px){
-  .partners-row{gap:18px;flex-direction:column}
+@media(max-width:760px){
+  .partners-row{gap:8px;flex-direction:column;align-items:stretch}
+  .partner-logo{justify-content:center;padding:10px 16px;border-bottom:1px solid var(--border)}
+  .partner-logo:last-child{border-bottom:0}
   .partner-divider{display:none}
+  .partners-band{padding:32px 0}
+}
+
+/* ── CERTIFICATION SHOWCASE ── */
+.cert-section{
+  padding:80px 0;
+  background:radial-gradient(ellipse 60% 80% at 50% 0%,rgba(232,168,180,.06),transparent 60%);
+}
+.cert-card{
+  max-width:920px;margin:0 auto;
+  display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;
+  background:linear-gradient(180deg,rgba(28,20,19,.7),rgba(22,16,15,.5));
+  border:1px solid var(--border-2);
+  border-radius:24px;
+  padding:40px 44px;
+  box-shadow:0 30px 80px rgba(0,0,0,.4);
+  position:relative;overflow:hidden;
+}
+.cert-card::before{
+  content:'';position:absolute;top:-40%;right:-10%;
+  width:300px;height:300px;
+  background:radial-gradient(circle,rgba(232,168,180,.10),transparent 70%);
+  pointer-events:none;
+}
+.cert-seal{
+  width:140px;height:140px;border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 40%,rgba(232,168,180,.25),transparent 60%),
+    conic-gradient(from 0deg,var(--rose-3),var(--rose),var(--rose-3),var(--rose));
+  display:grid;place-items:center;
+  position:relative;flex-shrink:0;
+  box-shadow:0 0 60px rgba(232,168,180,.3),inset 0 0 30px rgba(26,12,12,.3);
+}
+.cert-seal::after{
+  content:'';position:absolute;inset:8px;border-radius:50%;
+  background:#16100f;
+  border:2px dashed rgba(232,168,180,.4);
+}
+.cert-seal-inner{position:relative;z-index:2;text-align:center;color:var(--rose)}
+.cert-seal-inner svg{width:38px;height:38px;margin-bottom:4px}
+.cert-seal-inner small{display:block;font-size:9px;font-weight:800;letter-spacing:2px;color:var(--rose)}
+.cert-body h3{
+  font-size:clamp(24px,3vw,32px);font-weight:800;
+  color:var(--text);letter-spacing:-.8px;margin-bottom:10px;line-height:1.15;
+}
+.cert-body h3 span{color:var(--rose)}
+.cert-body p{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:18px}
+.cert-meta{display:flex;flex-wrap:wrap;gap:8px}
+.cert-chip{
+  font-size:12px;font-weight:600;padding:6px 12px;border-radius:50px;
+  background:rgba(232,168,180,.08);border:1px solid var(--border-2);
+  color:var(--rose);letter-spacing:.3px;
+}
+@media(max-width:720px){
+  .cert-card{grid-template-columns:1fr;text-align:center;padding:32px 24px;gap:24px}
+  .cert-seal{margin:0 auto;width:120px;height:120px}
+  .cert-meta{justify-content:center}
+}
+
+/* ── SALARY BREAKDOWN ── */
+.salary-section{padding:90px 0;border-top:1px solid var(--border)}
+.salary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1080px;margin:0 auto}
+.salary-card{
+  background:linear-gradient(180deg,rgba(28,20,19,.7),rgba(22,16,15,.5));
+  border:1px solid var(--border);border-radius:18px;
+  padding:26px 22px;position:relative;
+  transition:border-color .3s,transform .3s;
+}
+.salary-card:hover{border-color:var(--border-2);transform:translateY(-4px)}
+.salary-card.featured{
+  border-color:var(--rose);
+  background:linear-gradient(180deg,rgba(232,168,180,.10),rgba(196,104,121,.04));
+  box-shadow:0 0 50px rgba(232,168,180,.15);
+}
+.salary-card.featured::before{
+  content:'הכי משתלם';position:absolute;top:-12px;right:18px;
+  background:linear-gradient(135deg,var(--rose),var(--rose-3));
+  color:#1a0c0c;font-size:10px;font-weight:800;
+  padding:5px 12px;border-radius:50px;letter-spacing:.5px;
+}
+.salary-icon{
+  width:42px;height:42px;border-radius:12px;
+  background:rgba(232,168,180,.08);border:1px solid var(--border-2);
+  display:grid;place-items:center;color:var(--rose);margin-bottom:16px;
+}
+.salary-icon svg{width:20px;height:20px}
+.salary-cat{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
+.salary-range{
+  font-size:22px;font-weight:800;color:var(--rose);
+  letter-spacing:-.5px;line-height:1;margin-bottom:4px;
+  font-variant-numeric:tabular-nums;
+}
+.salary-unit{font-size:12px;color:var(--dim);font-weight:500}
+.salary-note{text-align:center;font-size:13px;color:var(--dim);margin-top:28px;font-weight:500}
+@media(max-width:900px){.salary-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.salary-grid{grid-template-columns:1fr;max-width:340px}}
+
+/* ── GIFT SHOWCASE ── */
+.gift-section{
+  padding:90px 0;
+  background:radial-gradient(ellipse 70% 90% at 50% 50%,rgba(232,168,180,.07),transparent 60%);
+  border-top:1px solid var(--border);
+}
+.gift-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:50px;align-items:center;max-width:1080px;margin:0 auto}
+.gift-visual{
+  position:relative;border-radius:24px;overflow:hidden;
+  border:1px solid var(--border-2);aspect-ratio:1/1;background:#16100f;
+  box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 60px rgba(232,168,180,.12);
+}
+.gift-visual img{width:100%;height:100%;object-fit:cover;opacity:.95}
+.gift-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,6,6,.7))}
+.gift-price-tag{
+  position:absolute;top:24px;left:24px;z-index:2;
+  background:linear-gradient(135deg,var(--rose),var(--rose-3));
+  color:#1a0c0c;padding:12px 18px;border-radius:14px;
+  font-weight:800;font-size:13px;
+  box-shadow:0 12px 30px rgba(232,168,180,.35);
+  text-align:center;line-height:1.2;
+}
+.gift-price-tag b{display:block;font-size:22px;letter-spacing:-.5px;margin-top:2px}
+.gift-body h2{
+  font-size:clamp(30px,4vw,46px);font-weight:800;
+  color:var(--text);letter-spacing:-1.2px;line-height:1.1;
+  margin:14px 0 16px;
+}
+.gift-body h2 span{color:var(--rose)}
+.gift-body p{font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:22px}
+.gift-items{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.gift-item{
+  display:flex;align-items:center;gap:12px;
+  font-size:14px;color:var(--text);font-weight:500;
+  padding:12px 16px;background:rgba(28,20,19,.5);
+  border:1px solid var(--border);border-radius:12px;
+}
+.gift-item svg{width:16px;height:16px;color:var(--rose);flex-shrink:0}
+.gift-item b{color:var(--rose);font-weight:700;margin-right:auto}
+@media(max-width:860px){
+  .gift-grid{grid-template-columns:1fr;gap:32px;max-width:520px}
+  .gift-visual{aspect-ratio:4/3;order:-1}
 }
 
 
