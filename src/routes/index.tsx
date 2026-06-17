@@ -351,24 +351,24 @@ h1{
 .mini-value{font-size:16px;color:var(--text);font-weight:700}
 
 /* ── SECTION ── */
-.section{padding:100px 0;position:relative}
-.section-head{text-align:center;margin-bottom:64px;max-width:680px;margin-inline:auto}
+.section{padding:64px 0;position:relative}
+.section-head{text-align:center;margin-bottom:36px;max-width:680px;margin-inline:auto}
 .section-tag{
   display:inline-block;
-  font-size:12px;font-weight:600;
+  font-size:11px;font-weight:600;
   letter-spacing:2px;text-transform:uppercase;
   color:var(--rose);
-  margin-bottom:16px;
+  margin-bottom:10px;
 }
 .section-title{
-  font-size:clamp(34px,4.5vw,56px);
+  font-size:clamp(28px,3.6vw,44px);
   font-weight:800;
-  line-height:1.05;
-  letter-spacing:-1.5px;
+  line-height:1.08;
+  letter-spacing:-1.2px;
   color:var(--text);
-  margin-bottom:16px;
+  margin-bottom:10px;
 }
-.section-sub{font-size:17px;color:var(--muted);font-weight:500;line-height:1.6}
+.section-sub{font-size:15px;color:var(--muted);font-weight:500;line-height:1.6}
 
 /* ── BENEFITS ── */
 .benefits-layout{display:grid;grid-template-columns:.85fr 1fr;gap:48px;align-items:center;max-width:1100px;margin:0 auto}
