@@ -903,21 +903,21 @@ footer{
 
 /* ── HOW IT WORKS REFINED ── */
 .how-section{border-top:1px solid var(--border)}
-.step-card{padding:40px 30px 34px;text-align:right}
+.step-card{padding:24px 22px 22px;text-align:right;display:flex;flex-direction:column}
 .step-num-big{
-  font-size:48px;font-weight:900;line-height:1;
+  font-size:32px;font-weight:900;line-height:1;
   background:linear-gradient(135deg,var(--rose),var(--rose-3));
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  letter-spacing:-2px;margin-bottom:18px;opacity:.95;
+  letter-spacing:-1px;margin-bottom:10px;opacity:.95;
 }
 .step-icon{
-  width:44px;height:44px;border-radius:12px;
+  width:36px;height:36px;border-radius:10px;
   background:rgba(232,168,180,.08);border:1px solid var(--border-2);
-  display:grid;place-items:center;color:var(--rose);margin-bottom:18px;
+  display:grid;place-items:center;color:var(--rose);margin-bottom:12px;
 }
-.step-icon svg{width:22px;height:22px}
+.step-icon svg{width:18px;height:18px}
 @media(max-width:1024px){
-  .step-card{text-align:center}
+  .step-card{text-align:center;align-items:center}
   .step-icon{margin-inline:auto}
 }
 
