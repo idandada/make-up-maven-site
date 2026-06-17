@@ -138,6 +138,24 @@ body{
 }
 .hero-inner{position:relative;z-index:2;animation:fadeUp .8s ease both}
 .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero-brand-title{
+  font-size:clamp(30px,4vw,48px);
+  font-weight:900;
+  letter-spacing:-1.5px;
+  line-height:1.1;
+  color:var(--text);
+  margin-bottom:10px;
+}
+.hero-brand-line{
+  height:4px;
+  width:70px;
+  border-radius:2px;
+  background:linear-gradient(90deg,var(--rose),var(--rose-3));
+  margin-bottom:22px;
+}
+@media(max-width:860px){
+  .hero-brand-line{height:3px;width:55px}
+}
 .hero-text{text-align:right}
 .eyebrow{
   display:inline-flex;align-items:center;gap:8px;
