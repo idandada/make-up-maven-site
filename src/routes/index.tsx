@@ -746,11 +746,12 @@ footer{
 }
 .partners-row{
   display:flex;align-items:stretch;justify-content:center;
-  gap:0;flex-wrap:wrap;
+  gap:0;flex-wrap:nowrap;
 }
 .partner-logo{
   display:flex;align-items:center;gap:14px;
   padding:6px 28px;
+  flex-shrink:0;
 }
 .partner-emblem{
   width:64px;height:64px;border-radius:16px;
@@ -768,15 +769,35 @@ footer{
 .partner-name{font-size:16px;font-weight:800;color:var(--text);line-height:1.2;letter-spacing:-.3px}
 .partner-sub{font-size:12px;color:var(--muted);font-weight:500;margin-top:4px;letter-spacing:.3px}
 .partner-divider{
-  width:1px;align-self:stretch;
+  width:1px;align-self:stretch;flex-shrink:0;
   background:linear-gradient(180deg,transparent,var(--border-2),transparent);
 }
+@media(max-width:1060px){
+  .partner-logo{padding:6px 18px;gap:10px}
+  .partner-emblem{width:48px;height:48px;border-radius:12px;padding:6px}
+  .partner-emblem svg{width:22px;height:22px}
+  .partner-name{font-size:14px}
+  .partner-sub{font-size:11px}
+}
+@media(max-width:860px){
+  .partners-row{gap:4px}
+  .partner-logo{padding:6px 10px;gap:8px}
+  .partner-emblem{width:40px;height:40px;border-radius:10px;padding:5px}
+  .partner-emblem svg{width:18px;height:18px}
+  .partner-name{font-size:12.5px}
+  .partner-sub{font-size:10px}
+}
 @media(max-width:760px){
-  .partners-row{gap:8px;flex-direction:column;align-items:stretch}
-  .partner-logo{justify-content:center;padding:10px 16px;border-bottom:1px solid var(--border)}
-  .partner-logo:last-child{border-bottom:0}
-  .partner-divider{display:none}
   .partners-band{padding:32px 0}
+}
+@media(max-width:560px){
+  .partners-row{overflow-x:auto;justify-content:flex-start;padding:0 4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .partners-row::-webkit-scrollbar{display:none}
+  .partners-band .wrap{max-width:100%}
+  .partner-logo{padding:6px 8px;gap:6px}
+  .partner-emblem{width:36px;height:36px;border-radius:8px;padding:4px}
+  .partner-name{font-size:11.5px}
+  .partner-sub{font-size:9.5px}
 }
 
 /* ── CERTIFICATION SHOWCASE ── */
