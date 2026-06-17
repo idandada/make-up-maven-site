@@ -965,49 +965,29 @@ const BODY_HTML = `
         בשיתוף בית הספר הגדול בארץ לביוטי
       </div>
 
-      <h1>דואגים לך <span class="h1-accent">לעבודה</span><br/>בסיום הלימודים</h1>
-
-      <p class="hero-sub">קורס מאפרת מקצועית באורך 6–8 חודשים</p>
-      <p class="hero-sub"><strong>שכר יומי ממוצע של 800–1,700 ש״ח</strong></p>
-
-      <a href="#form" class="btn-primary">אני רוצה לדעת כמה מלגה מגיעה לי ←</a>
-
-      <div class="hero-collage">
-        <div class="hero-collage-main">
-          <img src="/assets/hero_woman.jpg" alt="בוגרת הקורס - חיילת משוחררת"/>
-          <div class="hero-collage-badge">חיילות משוחררות · מסלול פיקדון</div>
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="eyebrow" style="margin-bottom:18px">
+            <span class="eyebrow-dot"></span>
+            בשיתוף בית הספר הגדול בארץ לביוטי
+          </div>
+          <h1>דואגים לך <span class="h1-accent">לעבודה</span><br/>בסיום הלימודים</h1>
+          <p class="hero-sub">קורס מאפרת מקצועית באורך 6–8 חודשים</p>
+          <p class="hero-sub"><strong>שכר יומי ממוצע של 800–1,700 ש״ח</strong></p>
+          <a href="#form" class="btn-primary">אני רוצה לדעת כמה מלגה מגיעה לי ←</a>
         </div>
-        <div class="hero-collage-side">
-          <img src="/assets/beauty_case.jpg" alt="מזוודת איפור מתנה בשווי 11,000 ש״ח"/>
-          <div class="hero-collage-tag">מתנה בשווי<b>11,000 ש״ח</b></div>
+        <div class="hero-collage">
+          <div class="hero-collage-main">
+            <img src="/assets/hero_woman.jpg" alt="בוגרת הקורס - חיילת משוחררת"/>
+            <div class="hero-collage-badge">חיילות משוחררות · מסלול פיקדון</div>
+          </div>
+          <div class="hero-collage-side">
+            <img src="/assets/beauty_case.jpg" alt="מזוודת איפור מתנה בשווי 11,000 ש״ח"/>
+            <div class="hero-collage-tag">מתנה בשווי<b>11,000 ש״ח</b></div>
+          </div>
         </div>
       </div>
 
-      <div class="hero-cards">
-        <div class="mini-card">
-          <div class="mini-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-          </div>
-          <div class="mini-label">מתנה: מזוודת איפור בשווי</div>
-          <div class="mini-value">11,000 ₪</div>
-        </div>
-        <div class="mini-card">
-          <div class="mini-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5L7 22l5-3 5 3-2-8.5"/></svg>
-          </div>
-          <div class="mini-label">תעודה</div>
-          <div class="mini-value">בינלאומית</div>
-        </div>
-        <div class="mini-card">
-          <div class="mini-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M3 13h18"/></svg>
-          </div>
-          <div class="mini-label">דואגים לך לעבודה</div>
-          <div class="mini-value">בסיום הקורס</div>
-        </div>
-      </div>
-
-    </div>
   </div>
 </section>
 
