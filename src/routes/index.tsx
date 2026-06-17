@@ -370,7 +370,9 @@ h1{
 
 /* ── SECTION ── */
 .section{padding:64px 0;position:relative}
+.compact-section{padding:44px 0}
 .section-head{text-align:center;margin-bottom:36px;max-width:680px;margin-inline:auto}
+.compact-section .section-head{margin-bottom:22px}
 .section-tag{
   display:inline-block;
   font-size:11px;font-weight:600;
@@ -389,30 +391,16 @@ h1{
 .section-sub{font-size:15px;color:var(--muted);font-weight:500;line-height:1.6}
 
 /* ── BENEFITS ── */
-.benefits-layout{display:grid;grid-template-columns:1fr 1.05fr;gap:28px;align-items:stretch;max-width:980px;margin:0 auto}
-.benefits-image{
-  position:relative;border-radius:20px;overflow:hidden;
-  border:1px solid var(--border-2);background:#16100f;
-  box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 40px rgba(232,168,180,.1);
-  aspect-ratio:1/1;align-self:stretch;
-}
-.benefits-image img{width:100%;height:100%;object-fit:cover;display:block;opacity:.96;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
-.benefits-image:hover img{transform:scale(1.04)}
-.benefits-image::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,6,6,.7));pointer-events:none}
-.benefits-image-tag{
-  position:absolute;bottom:18px;right:18px;left:18px;z-index:2;
-  font-size:13px;font-weight:700;color:var(--text);text-align:center;
-  background:rgba(10,6,6,.55);backdrop-filter:blur(8px);
-  border:1px solid var(--border-2);border-radius:12px;padding:10px 14px;
-}
-.benefits-grid{display:grid;grid-template-columns:1fr;gap:10px;align-content:center}
-@media(max-width:860px){.benefits-layout{grid-template-columns:1fr;gap:24px;max-width:520px}.benefits-image{aspect-ratio:4/3}}
+.benefits-layout{max-width:960px;margin:0 auto}
+.benefits-image{display:none}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:stretch}
 .benefit-card{
   background:linear-gradient(180deg,rgba(28,20,19,.6),rgba(22,16,15,.4));
   border:1px solid var(--border);
   border-radius:14px;
-  padding:14px 16px;
-  display:flex;align-items:center;gap:12px;text-align:right;
+  padding:18px 16px;
+  display:flex;align-items:flex-start;gap:12px;text-align:right;
+  min-height:126px;
   transition:border-color .3s,transform .3s;
 }
 .benefit-card:hover{border-color:var(--border-2);transform:translateY(-2px)}
@@ -451,12 +439,12 @@ h1{
 .elig-text{font-size:16px;font-weight:600;color:var(--text)}
 
 /* ── STEPS ── */
-.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:960px;margin:0 auto}
+.steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:960px;margin:0 auto}
 .step-card{
   background:linear-gradient(180deg,rgba(28,20,19,.6),rgba(22,16,15,.4));
   border:1px solid var(--border);
-  border-radius:18px;
-  padding:24px 22px;
+  border-radius:14px;
+  padding:18px 16px;
   position:relative;
   transition:border-color .3s,transform .3s;
 }
@@ -921,28 +909,25 @@ footer{
 
 /* ── HOW IT WORKS REFINED ── */
 .how-section{border-top:1px solid var(--border)}
-.step-card{padding:24px 22px 22px;text-align:right;display:flex;flex-direction:column}
+.step-card{text-align:right;display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:start;min-height:126px}
 .step-num-big{
-  font-size:32px;font-weight:900;line-height:1;
+  grid-row:1 / span 3;
+  font-size:28px;font-weight:900;line-height:1;
   background:linear-gradient(135deg,var(--rose),var(--rose-3));
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  letter-spacing:-1px;margin-bottom:10px;opacity:.95;
+  letter-spacing:-.5px;margin-top:3px;opacity:.95;
 }
 .step-icon{
-  width:36px;height:36px;border-radius:10px;
+  width:34px;height:34px;border-radius:10px;
   background:rgba(232,168,180,.08);border:1px solid var(--border-2);
-  display:grid;place-items:center;color:var(--rose);margin-bottom:12px;
+  display:grid;place-items:center;color:var(--rose);margin-bottom:8px;
 }
-.step-icon svg{width:18px;height:18px}
-@media(max-width:1024px){
-  .step-card{text-align:center;align-items:center}
-  .step-icon{margin-inline:auto}
-}
+.step-icon svg{width:17px;height:17px}
 
 
 @media(max-width:1024px){
   .hero-cards{grid-template-columns:repeat(3,1fr);gap:12px}
-  .benefits-grid,.steps-grid{grid-template-columns:1fr;max-width:520px}
+  .benefits-grid,.steps-grid{grid-template-columns:1fr;max-width:520px;margin-inline:auto}
   .testi-grid{grid-template-columns:1fr;max-width:520px}
   .final-grid{grid-template-columns:1fr;gap:40px}
   .stats-inner{grid-template-columns:repeat(2,1fr);gap:32px}
@@ -956,7 +941,8 @@ footer{
   .sticky-mobile{display:block}
   .topbar-cta{display:none}
   .hero{padding:60px 0 50px}
-  .section{padding:70px 0}
+  .section{padding:54px 0}
+  .compact-section{padding:38px 0}
   .final-section{padding:70px 0}
   h1{font-size:42px;letter-spacing:-1.5px}
   .section-title{font-size:32px}
@@ -975,12 +961,22 @@ footer{
   .stats-inner{grid-template-columns:repeat(2,1fr);gap:24px}
   .stat-num{font-size:32px}
   .partners-band{padding:28px 0}
-  .testi-card,.benefit-card{padding:24px 20px}
+  .testi-card{padding:24px 20px}
+  .compact-section{padding:30px 0}
+  .compact-section .section-tag{margin-bottom:6px;font-size:10px;letter-spacing:1.4px}
+  .compact-section .section-title{font-size:24px;line-height:1.15;margin:0 auto;letter-spacing:0;max-width:330px;text-wrap:balance}
+  .benefit-card,.step-card{min-height:82px;padding:12px 12px;border-radius:12px}
+  .benefits-grid,.steps-grid{gap:8px;max-width:360px}
+  .benefit-title,.step-title{font-size:15px}
+  .benefit-text,.step-text{font-size:12.5px;line-height:1.45}
+  .step-num-big{font-size:24px}
+  .step-icon{width:30px;height:30px;margin-bottom:6px}
   .topbar-inner{padding:12px 0}
   .brand{font-size:14px}
   .brand small{font-size:10px}
   .btn-primary{width:100%;justify-content:center;font-size:14px;padding:16px 22px}
-  .section-head{margin-bottom:36px}
+  .section-head{margin-bottom:26px}
+  .compact-section .section-head{margin-bottom:16px}
   details summary{font-size:15px;padding:18px 0}
 }
 @media(max-width:480px){
@@ -1119,11 +1115,11 @@ const BODY_HTML = `
 </section>
 
 <!-- ══ BENEFITS ══ -->
-<section class="section">
+<section class="section compact-section">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="section-tag">מה מקבלים בקורס</div>
-      <h2 class="section-title">הטבות שלא תמצאי<br/>בשום מקום אחר</h2>
+      <h2 class="section-title">הטבות בלעדיות לקורס</h2>
     </div>
     <div class="benefits-layout">
       <div class="benefits-image reveal-scale">
@@ -1166,11 +1162,11 @@ const BODY_HTML = `
 
 
 <!-- ══ HOW IT WORKS ══ -->
-<section class="section how-section">
+<section class="section compact-section how-section">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="section-tag">איך זה עובד</div>
-      <h2 class="section-title">3 צעדים<br/>למקצוע חדש</h2>
+      <h2 class="section-title">3 צעדים להתחלה</h2>
     </div>
     <div class="steps-grid">
       <div class="step-card reveal-scale reveal-delay-1">
