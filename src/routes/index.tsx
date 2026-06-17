@@ -985,6 +985,137 @@ footer{
   .section-title,.final-title{font-size:28px}
   .wrap{width:94vw}
 }
+
+/* ── EXTRA MOTION LAYER ── */
+@keyframes textShine{0%{background-position:200% 50%}100%{background-position:-200% 50%}}
+@keyframes iconBob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-4px) rotate(-3deg)}}
+@keyframes ringPulse{0%{box-shadow:0 0 0 0 rgba(232,168,180,.5)}70%{box-shadow:0 0 0 12px rgba(232,168,180,0)}100%{box-shadow:0 0 0 0 rgba(232,168,180,0)}}
+@keyframes underlineGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes tiltIn{from{opacity:0;transform:perspective(800px) rotateX(12deg) translateY(24px)}to{opacity:1;transform:none}}
+@keyframes badgeWobble{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(6px,-6px)}}
+@keyframes gradientMove{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+/* Animated gradient on section titles */
+.section-title,.final-title{
+  background:linear-gradient(90deg,#f5ecea 0%,#f5ecea 35%,#e8a8b4 50%,#f5ecea 65%,#f5ecea 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:textShine 6s linear infinite;
+}
+
+/* Animated underline under section titles */
+.section-head{position:relative}
+.section-head::after{
+  content:"";display:block;margin:14px auto 0;width:64px;height:3px;border-radius:3px;
+  background:linear-gradient(90deg,var(--rose),var(--rose-3));
+  transform-origin:center;transform:scaleX(0);
+  transition:transform .9s cubic-bezier(.25,.46,.45,.94) .15s;
+}
+.section-head.revealed::after{transform:scaleX(1)}
+
+/* Cards: lift + glow on hover */
+.benefit-card,.step-card,.partner-logo,.lead-card,.inline-lead-card{
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s,border-color .45s,background .45s;
+}
+.benefit-card:hover,.step-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--border-2);
+  box-shadow:0 18px 40px rgba(0,0,0,.45),0 0 0 1px rgba(232,168,180,.18),0 0 36px rgba(232,168,180,.12);
+}
+.benefit-card:hover .benefit-icon,.step-card:hover .step-icon{
+  transform:scale(1.08) rotate(-4deg);
+  background:linear-gradient(135deg,var(--rose),var(--rose-3));
+  color:#1a0e0e;
+}
+.benefit-icon,.step-icon{transition:transform .45s cubic-bezier(.2,.8,.2,1),background .45s,color .45s}
+
+/* Continuous gentle bob on icons */
+.benefit-card .benefit-icon{animation:iconBob 5s ease-in-out infinite}
+.benefit-card:nth-child(2) .benefit-icon{animation-delay:-1.6s}
+.benefit-card:nth-child(3) .benefit-icon{animation-delay:-3.2s}
+.step-card .step-icon{animation:iconBob 5.5s ease-in-out infinite}
+.step-card:nth-child(2) .step-icon{animation-delay:-1.8s}
+.step-card:nth-child(3) .step-icon{animation-delay:-3.6s}
+
+/* Step number shimmer */
+.step-num-big{
+  background:linear-gradient(90deg,var(--rose),var(--rose-3),var(--rose));
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:textShine 4s linear infinite;
+}
+
+/* Partner logos: stagger hover */
+.partner-logo{cursor:default;border-radius:14px;padding:8px}
+.partner-logo:hover{transform:translateY(-3px);background:rgba(232,168,180,.06)}
+.partner-emblem{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.partner-logo:hover .partner-emblem{transform:scale(1.1) rotate(-6deg)}
+
+/* Hero badges drift */
+.hero-collage-badge{animation:badgeWobble 5s ease-in-out infinite}
+.hero-collage-tag{animation:float 5s ease-in-out infinite}
+
+/* Eyebrow extra pulse ring */
+.eyebrow-dot{position:relative}
+.eyebrow-dot::after{
+  content:"";position:absolute;inset:-4px;border-radius:50%;
+  animation:ringPulse 2.4s ease-out infinite;
+}
+
+/* CTA buttons: animated gradient + hover lift */
+.btn-primary,.btn-submit,.topbar-cta{
+  background:linear-gradient(120deg,var(--rose),var(--rose-3),var(--rose-2),var(--rose));
+  background-size:300% 100%;
+  animation:gradientMove 6s ease infinite;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,filter .35s;
+}
+.btn-primary:hover,.btn-submit:hover,.topbar-cta:hover{
+  transform:translateY(-3px) scale(1.02);
+  filter:brightness(1.08);
+  box-shadow:0 18px 44px rgba(232,168,180,.45);
+}
+
+/* Final points: slide-in with stagger */
+.final-point{opacity:0;transform:translateX(20px);transition:opacity .6s,transform .6s}
+.reveal-right.revealed .final-point{opacity:1;transform:none}
+.reveal-right.revealed .final-point:nth-child(1){transition-delay:.25s}
+.reveal-right.revealed .final-point:nth-child(2){transition-delay:.35s}
+.reveal-right.revealed .final-point:nth-child(3){transition-delay:.45s}
+.reveal-right.revealed .final-point:nth-child(4){transition-delay:.55s}
+.reveal-right.revealed .final-point:nth-child(5){transition-delay:.65s}
+.final-point .final-dot{transition:transform .4s,background .4s}
+.final-point:hover .final-dot{transform:scale(1.25) rotate(360deg)}
+
+/* Form inputs focus motion */
+.form-input{transition:border-color .3s,box-shadow .3s,transform .3s,background .3s}
+.form-input:focus{transform:translateY(-1px);box-shadow:0 0 0 4px rgba(232,168,180,.18),0 8px 24px rgba(0,0,0,.3);outline:none}
+
+/* Hero brand line draw */
+.hero-brand-line{transform-origin:right center;animation:underlineGrow 1s cubic-bezier(.2,.8,.2,1) .5s both}
+
+/* Hero images subtle zoom on hover */
+.hero-collage-main img,.hero-collage-side img{transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.hero-collage-main:hover img,.hero-collage-side:hover img{transform:scale(1.06)}
+
+/* Benefit/Step card reveal: add tilt feel */
+.reveal-scale{transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+
+/* Sticky mobile pulse */
+.sticky-mobile a{animation:ctaGlow 3s ease-in-out infinite}
+
+/* Topbar brand mark spin on hover */
+.brand-mark{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.brand:hover .brand-mark{transform:rotate(180deg) scale(1.15)}
+
+/* Footer subtle drift */
+footer .footer-text{transition:color .4s}
+footer:hover .footer-text{color:var(--rose)}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+}
 `;
 
 const BODY_HTML = `
