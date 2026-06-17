@@ -47,10 +47,15 @@ body{
 @keyframes slideRight{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
 @keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
 @keyframes countUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@keyframes glow{0%,100%{opacity:.55}50%{opacity:.9}}
+@keyframes glow{0%,100%{opacity:.55;transform:translate(0,0)}50%{opacity:.95;transform:translate(2%,-1%)}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(232,168,180,.45)}70%{box-shadow:0 0 0 14px rgba(232,168,180,0)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes shimmer{0%{background-position:200% 50%}100%{background-position:-200% 50%}}
+@keyframes auroraShift{0%,100%{transform:translate(-10%,-5%) rotate(0deg)}50%{transform:translate(8%,4%) rotate(8deg)}}
+@keyframes auroraShift2{0%,100%{transform:translate(8%,4%) rotate(0deg)}50%{transform:translate(-6%,-3%) rotate(-10deg)}}
+@keyframes accentHue{0%,100%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(-18deg)}}
+@keyframes ctaGlow{0%,100%{box-shadow:0 0 40px rgba(232,168,180,.35),0 12px 32px rgba(232,168,180,.22)}50%{box-shadow:0 0 80px rgba(232,168,180,.55),0 16px 40px rgba(232,168,180,.35)}}
+@keyframes risePart{0%{opacity:0;transform:translateY(40px) scale(.96)}100%{opacity:1;transform:none}}
 
 .wrap{width:min(1180px,92vw);margin:auto}
 
@@ -1104,23 +1109,6 @@ const BODY_HTML = `
   </div>
 </div>
 
-<!-- ══ SHOWCASE ══ -->
-<section class="section showcase-section">
-  <div class="wrap">
-    <div class="showcase-grid">
-      <div class="showcase-media reveal-right">
-        <img src="/assets/hero_woman.jpg" alt="בוגרת הקורס - חיילת משוחררת"/>
-        <div class="showcase-media-badge">חיילת משוחררת · מסלול פיקדון</div>
-      </div>
-      <div class="showcase-body reveal-left">
-        <div class="section-tag">המתנה שלך לפתיחת הקריירה</div>
-        <h2 class="section-title">מזוודת איפור<br/><span class="h1-accent">בשווי 11,000 ש״ח</span></h2>
-        <p class="section-sub" style="margin:18px 0 28px">סט מקצועי שלם — מותגי פרימיום, מברשות, פלטות צלליות, בסיסים, גוונים מלאים. מוכן לעבודה מהיום הראשון אחרי הקורס.</p>
-        <a href="#form" class="btn-primary" style="margin-top:0">אני רוצה להירשם ←</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ══ HOW IT WORKS ══ -->
 <section class="section how-section">
