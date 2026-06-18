@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useMemo, useState } from 'react';
 import { useServerFn } from '@tanstack/react-start';
-import { listLeads, deleteLead as deleteLeadFn, clearLeads as clearLeadsFn } from '@/lib/leads.functions';
+import { listLeads, deleteLead as deleteLeadFn, clearLeads as clearLeadsFn, getZapierHook, saveZapierHook } from '@/lib/leads.functions';
 
 export const Route = createFileRoute('/admin')({
   component: AdminPage,
