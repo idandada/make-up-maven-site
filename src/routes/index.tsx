@@ -1283,14 +1283,11 @@ const BODY_HTML = `
         <select class="form-input" name="branch" required>
           <option value="">בחרי סניף *</option>
           <option>תל אביב</option>
+          <option>אשדוד</option>
           <option>ירושלים</option>
-          <option>חיפה</option>
+          <option>כרמיאל</option>
           <option>באר שבע</option>
-          <option>נתניה</option>
-          <option>רמת גן</option>
-          <option>ראשון לציון</option>
-          <option>פתח תקווה</option>
-          <option>אחר</option>
+          <option>חיפה</option>
         </select>
         <button type="submit" class="btn-submit">בדקי זכאות ←</button>
         <p class="form-error" data-form-error style="grid-column:1/-1;display:none;color:#fca5a5;font-size:13px;margin:6px 0 0;text-align:center"></p>
@@ -1489,14 +1486,11 @@ const BODY_HTML = `
             <select class="form-input" name="branch" required>
               <option value="">בחרי סניף *</option>
               <option>תל אביב</option>
+              <option>אשדוד</option>
               <option>ירושלים</option>
-              <option>חיפה</option>
+              <option>כרמיאל</option>
               <option>באר שבע</option>
-              <option>נתניה</option>
-              <option>רמת גן</option>
-              <option>ראשון לציון</option>
-              <option>פתח תקווה</option>
-              <option>אחר</option>
+              <option>חיפה</option>
             </select>
           </div>
           <button type="submit" class="btn-submit">
