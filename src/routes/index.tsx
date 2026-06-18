@@ -1244,9 +1244,17 @@ const BODY_HTML = `
 <section class="hero">
   <div class="wrap">
     <div class="hero-inner">
+      <!-- Mobile title row: shown only on mobile, above images -->
+      <div class="hero-title-row hero-title-row--mobile">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          בשיתוף בית הספר הגדול בארץ לביוטי
+        </div>
+        <div class="hero-brand-title">קורס מאפרת מקצועית</div>
+      </div>
       <div class="hero-grid">
         <div class="hero-text">
-          <div class="hero-title-row">
+          <div class="hero-title-row hero-title-row--desktop">
             <div class="eyebrow">
               <span class="eyebrow-dot"></span>
               בשיתוף בית הספר הגדול בארץ לביוטי
@@ -1265,7 +1273,7 @@ const BODY_HTML = `
             <div class="hero-collage-badge">חיילות משוחררות · מסלול פיקדון</div>
           </div>
           <div class="hero-collage-side">
-            <img src="/assets/beauty_case.jpg" alt="מזוודת איפור מתנה בשווי 11,000 ש״ח"/>
+            <img src="/assets/beauty_case.jpg" alt="מזוודת איפור מתנה בשווי 11, Korea ש״ח"/>
             <div class="hero-collage-tag">מתנה בשווי<b>11,000 ש״ח</b></div>
           </div>
         </div>
