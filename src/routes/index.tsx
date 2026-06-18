@@ -1335,16 +1335,6 @@ const BODY_HTML = `
       <div class="partner-divider"></div>
       <div class="partner-logo">
         <div class="partner-emblem">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5L7 22l5-3 5 3-2-8.5"/></svg>
-        </div>
-        <div class="partner-text">
-          <div class="partner-name">תעודה בינלאומית</div>
-          <div class="partner-sub">מוכרת בישראל ובחו״ל</div>
-        </div>
-      </div>
-      <div class="partner-divider"></div>
-      <div class="partner-logo">
-        <div class="partner-emblem">
           <img src="/__l5e/assets-v1/d9b4b488-824d-40fb-911b-d1970355dc61/ministry-labor-logo.png" alt="לוגו משרד העבודה"/>
         </div>
         <div class="partner-text">
