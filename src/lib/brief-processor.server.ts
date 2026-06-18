@@ -112,7 +112,7 @@ export async function processBriefForPage(pageId: string) {
 
     const { error: upErr } = await supabaseAdmin
       .from('landing_pages')
-      .update(patch)
+      .update(patch as any)
       .eq('id', pageId);
     if (upErr) throw new Error(upErr.message);
     return { ok: true, slug: page.slug };
