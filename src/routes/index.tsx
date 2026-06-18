@@ -1619,6 +1619,10 @@ function LandingPage() {
       })();
 
       setTimeout(() => {
+        // Meta Pixel — fire Lead conversion on successful form submission
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          (window as any).fbq('track', 'Lead');
+        }
         // Reset grid/flex so success card is centered across full width
         form.setAttribute('style', 'display:block;width:100%');
         form.innerHTML = `
