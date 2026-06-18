@@ -23,6 +23,7 @@ const PageSchema = z.object({
   body_html: z.string().default(''),
   theme: z.record(z.string(), z.any()).default({}),
   is_published: z.boolean().default(false),
+  brief: z.string().default(''),
 });
 
 export type LandingPageInput = z.infer<typeof PageSchema>;
