@@ -1559,6 +1559,37 @@ function LandingPage() {
         btn.style.opacity = '.75';
         btn.disabled = true;
       }
+
+      const lead = {
+        id: 'ld_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
+        name,
+        phone,
+        branch,
+        createdAt: new Date().toISOString(),
+        source: typeof window !== 'undefined' ? window.location.pathname : '/',
+      };
+
+      // Save locally (visible in /admin)
+      try {
+        const key = 'mua_leads_v1';
+        const existing = JSON.parse(localStorage.getItem(key) || '[]');
+        existing.unshift(lead);
+        localStorage.setItem(key, JSON.stringify(existing.slice(0, 1000)));
+      } catch {}
+
+      // Forward to Zapier webhook (if configured)
+      try {
+        const hook = localStorage.getItem('mua_zapier_webhook') || '';
+        if (hook) {
+          fetch(hook, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(lead),
+          }).catch(() => {});
+        }
+      } catch {}
+
       setTimeout(() => {
         form.innerHTML = `
           <div style="text-align:center;padding:18px 8px">
@@ -1569,8 +1600,9 @@ function LandingPage() {
               בהצלחה! 💕
             </div>
           </div>`;
-      }, 900);
+      }, 700);
     };
+
 
     // Scroll reveal observer
     const observer = new IntersectionObserver((entries) => {
