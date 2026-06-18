@@ -13,6 +13,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LpSlugRouteImport } from './routes/lp.$slug'
 import { Route as AdminPagesRouteImport } from './routes/admin.pages'
+import { Route as ApiPublicCronProcessBriefsRouteImport } from './routes/api/public/cron-process-briefs'
 import { Route as AdminPagesSlugRouteImport } from './routes/admin.pages.$slug'
 
 const AdminRoute = AdminRouteImport.update({
@@ -35,6 +36,12 @@ const AdminPagesRoute = AdminPagesRouteImport.update({
   path: '/pages',
   getParentRoute: () => AdminRoute,
 } as any)
+const ApiPublicCronProcessBriefsRoute =
+  ApiPublicCronProcessBriefsRouteImport.update({
+    id: '/api/public/cron-process-briefs',
+    path: '/api/public/cron-process-briefs',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AdminPagesSlugRoute = AdminPagesSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -47,6 +54,7 @@ export interface FileRoutesByFullPath {
   '/admin/pages': typeof AdminPagesRouteWithChildren
   '/lp/$slug': typeof LpSlugRoute
   '/admin/pages/$slug': typeof AdminPagesSlugRoute
+  '/api/public/cron-process-briefs': typeof ApiPublicCronProcessBriefsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +62,7 @@ export interface FileRoutesByTo {
   '/admin/pages': typeof AdminPagesRouteWithChildren
   '/lp/$slug': typeof LpSlugRoute
   '/admin/pages/$slug': typeof AdminPagesSlugRoute
+  '/api/public/cron-process-briefs': typeof ApiPublicCronProcessBriefsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,6 +71,7 @@ export interface FileRoutesById {
   '/admin/pages': typeof AdminPagesRouteWithChildren
   '/lp/$slug': typeof LpSlugRoute
   '/admin/pages/$slug': typeof AdminPagesSlugRoute
+  '/api/public/cron-process-briefs': typeof ApiPublicCronProcessBriefsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -71,8 +81,15 @@ export interface FileRouteTypes {
     | '/admin/pages'
     | '/lp/$slug'
     | '/admin/pages/$slug'
+    | '/api/public/cron-process-briefs'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/admin/pages' | '/lp/$slug' | '/admin/pages/$slug'
+  to:
+    | '/'
+    | '/admin'
+    | '/admin/pages'
+    | '/lp/$slug'
+    | '/admin/pages/$slug'
+    | '/api/public/cron-process-briefs'
   id:
     | '__root__'
     | '/'
@@ -80,12 +97,14 @@ export interface FileRouteTypes {
     | '/admin/pages'
     | '/lp/$slug'
     | '/admin/pages/$slug'
+    | '/api/public/cron-process-briefs'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
   LpSlugRoute: typeof LpSlugRoute
+  ApiPublicCronProcessBriefsRoute: typeof ApiPublicCronProcessBriefsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -117,6 +136,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/pages'
       preLoaderRoute: typeof AdminPagesRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/api/public/cron-process-briefs': {
+      id: '/api/public/cron-process-briefs'
+      path: '/api/public/cron-process-briefs'
+      fullPath: '/api/public/cron-process-briefs'
+      preLoaderRoute: typeof ApiPublicCronProcessBriefsRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/admin/pages/$slug': {
       id: '/admin/pages/$slug'
@@ -154,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
   LpSlugRoute: LpSlugRoute,
+  ApiPublicCronProcessBriefsRoute: ApiPublicCronProcessBriefsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

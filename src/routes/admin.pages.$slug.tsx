@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 import { useServerFn } from '@tanstack/react-start';
 import { useEffect, useState } from 'react';
-import { getPageForEdit, upsertPage, testPageWebhook, listLeadsForPage, deleteLeadForPage } from '@/lib/landing-pages.functions';
+import { getPageForEdit, upsertPage, testPageWebhook, listLeadsForPage, deleteLeadForPage, processBriefNow } from '@/lib/landing-pages.functions';
 
 export const Route = createFileRoute('/admin/pages/$slug')({
   component: AdminPageEditor,
@@ -19,6 +19,8 @@ function AdminPageEditor() {
   const test = useServerFn(testPageWebhook);
   const listLeads = useServerFn(listLeadsForPage);
   const delLead = useServerFn(deleteLeadForPage);
+  const processBrief = useServerFn(processBriefNow);
+  const [briefStatus, setBriefStatus] = useState('');
   const [leads, setLeads] = useState<any[]>([]);
 
   const [loaded, setLoaded] = useState(false);
@@ -80,6 +82,7 @@ function AdminPageEditor() {
             theme: page.theme || {},
             is_published: !!page.is_published,
             brief: page.brief || '',
+            brief_auto_apply: page.brief_auto_apply !== false,
           },
         },
       });
@@ -125,13 +128,37 @@ function AdminPageEditor() {
 
         <section style={{ ...S.card, border: '1px solid #4a3520', background: '#1a1410' }}>
           <h2 style={S.h2}>📝 בריף לדף הזה — מה יופיע בו</h2>
-          <p style={S.sub}>כתבי כאן בעברית חופשית מה אתם רוצים שיהיה בדף (כותרות, יתרונות, קהל יעד, סגנון, מבצע וכו'). אחרי שתשמרי, תוכלי לבקש ממני (לוֹבֵבּל) בצ'אט "תתאים את הדף לפי הבריף" — ואני אקח את התבנית הקיימת ואמלא הכל אוטומטית.</p>
+          <p style={S.sub}>כתבי כאן בעברית חופשית מה אתם רוצים שיהיה בדף (כותרות, יתרונות, קהל יעד, סגנון, מבצע וכו'). שמרי — והבוט הקרון רץ אוטומטית ויעדכן את התוכן לפי הבריף. אפשר גם להריץ עכשיו ידנית.</p>
           <textarea
             value={page.brief || ''}
             onChange={(e) => update({ brief: e.target.value })}
             placeholder={'דוגמה:\nדף נחיתה לקורס איפור בתל אביב, מיועד לנשים 25-40.\nכותרת ראשית: "תהפכי למאפרת מקצועית ב-3 חודשים".\nסניפים: תל אביב, רמת גן.\nמבצע: 20% הנחה להרשמה החודש.\nסגנון: יוקרתי, ורוד-זהב.'}
             style={{ ...S.input, width: '100%', minHeight: 180, fontFamily: 'inherit', lineHeight: 1.7 }}
           />
+          <label style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 10 }}>
+            <input type="checkbox" checked={page.brief_auto_apply !== false} onChange={(e) => update({ brief_auto_apply: e.target.checked })} />
+            עיבוד אוטומטי של הבריף ע"י הקרון
+          </label>
+          <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+            <button
+              onClick={async () => {
+                setBriefStatus('שומר ומריץ AI...');
+                try {
+                  await handleSave();
+                  const r: any = await processBrief({ data: { password: currentPass(), slug } });
+                  setBriefStatus('✓ הדף עודכן לפי הבריף. רענני כדי לראות.');
+                  const p = await get({ data: { password: currentPass(), slug } });
+                  if (p) setPage({ ...p, branches: Array.isArray(p.branches) ? p.branches : [], images: Array.isArray(p.images) ? p.images : [], theme: p.theme || {}, brief: p.brief || '' });
+                } catch (e: any) { setBriefStatus('✗ ' + (e?.message || 'שגיאה')); }
+              }}
+              style={S.btnPrimary}
+            >▶ הרץ AI עכשיו</button>
+            {page.brief_processed_at && (
+              <span style={S.sub}>עובד לאחרונה: {new Date(page.brief_processed_at).toLocaleString('he-IL')}</span>
+            )}
+            {briefStatus && <span style={S.sub}>{briefStatus}</span>}
+          </div>
+          {page.brief_error && <div style={{ ...S.sub, color: '#fca5a5', marginTop: 8 }}>שגיאה אחרונה: {page.brief_error}</div>}
         </section>
 
         <section style={S.card}>

@@ -24,6 +24,7 @@ const PageSchema = z.object({
   theme: z.record(z.string(), z.any()).default({}),
   is_published: z.boolean().default(false),
   brief: z.string().default(''),
+  brief_auto_apply: z.boolean().default(true),
 });
 
 export type LandingPageInput = z.infer<typeof PageSchema>;
@@ -154,6 +155,7 @@ export const upsertPage = createServerFn({ method: 'POST' })
           theme: data.page.theme,
           is_published: data.page.is_published,
           brief: data.page.brief,
+          brief_auto_apply: data.page.brief_auto_apply,
           updated_at: new Date().toISOString(),
         },
         { onConflict: 'slug' },
@@ -232,3 +234,20 @@ export const deleteLeadForPage = createServerFn({ method: 'POST' })
     if (error) throw new Error(error.message);
     return { ok: true };
   });
+
+/** ADMIN — manually run the brief processor for a single page */
+export const processBriefNow = createServerFn({ method: 'POST' })
+  .inputValidator((d: unknown) => z.object({ password: z.string(), slug: SlugSchema }).parse(d))
+  .handler(async ({ data }) => {
+    if (data.password !== ADMIN_PASS) throw new Error('Unauthorized');
+    const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
+    const { data: page } = await supabaseAdmin
+      .from('landing_pages')
+      .select('id')
+      .eq('slug', data.slug)
+      .maybeSingle();
+    if (!page) throw new Error('Page not found');
+    const { processBriefForPage } = await import('./brief-processor.server');
+    return processBriefForPage(page.id);
+  });
+
