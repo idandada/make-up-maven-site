@@ -1477,15 +1477,15 @@ const BODY_HTML = `
       <div class="lead-card reveal-left">
         <div class="lead-card-title">השאירי פרטים ונחזור אלייך</div>
         <div class="lead-card-sub">תוך 24 שעות נחזור לתאם פגישת ייעוץ אישית</div>
-        <form onsubmit="submitForm(event)">
+        <form onsubmit="submitForm(event)" novalidate>
           <div class="form-field">
-            <input class="form-input" type="text" placeholder="שם מלא *" required/>
+            <input class="form-input" name="fullName" type="text" placeholder="שם מלא *" required/>
           </div>
           <div class="form-field">
-            <input class="form-input" type="tel" placeholder="מספר טלפון *" required dir="ltr"/>
+            <input class="form-input" name="phone" type="tel" placeholder="מספר טלפון *" required dir="ltr" inputmode="numeric" maxlength="10"/>
           </div>
           <div class="form-field">
-            <select class="form-input" required>
+            <select class="form-input" name="branch" required>
               <option value="">בחרי סניף *</option>
               <option>תל אביב</option>
               <option>ירושלים</option>
@@ -1501,6 +1501,7 @@ const BODY_HTML = `
           <button type="submit" class="btn-submit">
             לפגישת ייעוץ חינם ←
           </button>
+          <p class="form-error" data-form-error style="display:none;color:#fca5a5;font-size:13px;margin:10px 0 0;text-align:center"></p>
           <p class="form-micro">הפרטים שלך מוגנים ולא יועברו לצד שלישי</p>
         </form>
       </div>
