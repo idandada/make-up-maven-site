@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useMemo, useState } from 'react';
 import { useServerFn } from '@tanstack/react-start';
-import { listLeads, deleteLead as deleteLeadFn, clearLeads as clearLeadsFn } from '@/lib/leads.functions';
+import { listLeads, deleteLead as deleteLeadFn, clearLeads as clearLeadsFn, getZapierHook, saveZapierHook } from '@/lib/leads.functions';
 
 export const Route = createFileRoute('/admin')({
   component: AdminPage,
@@ -37,6 +37,8 @@ function AdminPage() {
   const list = useServerFn(listLeads);
   const del = useServerFn(deleteLeadFn);
   const clearAllFn = useServerFn(clearLeadsFn);
+  const getHook = useServerFn(getZapierHook);
+  const saveHookFn = useServerFn(saveZapierHook);
 
   const refresh = async (password: string) => {
     setLoading(true);
@@ -51,9 +53,16 @@ function AdminPage() {
     }
   };
 
+  const loadHook = async () => {
+    try {
+      const r = await getHook();
+      setHook((r as { value: string }).value || '');
+    } catch {}
+  };
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    setHook(localStorage.getItem(HOOK_KEY) || '');
+    loadHook();
     if (sessionStorage.getItem(AUTH_KEY) === '1') {
       const p = sessionStorage.getItem(PASS_KEY) || '';
       if (p) {
@@ -92,10 +101,15 @@ function AdminPage() {
 
   const currentPass = () => sessionStorage.getItem(PASS_KEY) || '';
 
-  const saveHook = () => {
-    localStorage.setItem(HOOK_KEY, hook.trim());
-    setHookSaved(true);
-    setTimeout(() => setHookSaved(false), 1800);
+  const saveHook = async () => {
+    try {
+      await saveHookFn({ data: { password: currentPass(), value: hook.trim() } });
+      localStorage.setItem(HOOK_KEY, hook.trim());
+      setHookSaved(true);
+      setTimeout(() => setHookSaved(false), 1800);
+    } catch (e: any) {
+      alert('שמירה נכשלה: ' + (e?.message || ''));
+    }
   };
 
   const testHook = async () => {

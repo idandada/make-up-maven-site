@@ -1582,18 +1582,25 @@ function LandingPage() {
         if (error) console.error('DB insert failed:', error.message);
       });
 
-      // Forward to Zapier webhook (if configured)
-      try {
-        const hook = localStorage.getItem('mua_zapier_webhook') || '';
-        if (hook) {
-          fetch(hook, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(lead),
-          }).catch(() => {});
-        }
-      } catch {}
+      // Forward to Zapier webhook (fetched from DB so all visitors use it)
+      (async () => {
+        try {
+          const { data: row } = await supabase
+            .from('app_settings')
+            .select('value')
+            .eq('key', 'zapier_webhook')
+            .maybeSingle();
+          const hook = (row?.value as string | undefined)?.trim() || '';
+          if (hook) {
+            fetch(hook, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(lead),
+            }).catch(() => {});
+          }
+        } catch {}
+      })();
 
       setTimeout(() => {
         // Reset grid/flex so success card is centered across full width
