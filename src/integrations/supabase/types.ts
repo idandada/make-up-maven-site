@@ -36,6 +36,7 @@ export type Database = {
         Row: {
           body_html: string
           branches: Json
+          brief: string
           created_at: string
           cta_text: string
           hero_heading: string
@@ -54,6 +55,7 @@ export type Database = {
         Insert: {
           body_html?: string
           branches?: Json
+          brief?: string
           created_at?: string
           cta_text?: string
           hero_heading?: string
@@ -72,6 +74,7 @@ export type Database = {
         Update: {
           body_html?: string
           branches?: Json
+          brief?: string
           created_at?: string
           cta_text?: string
           hero_heading?: string
