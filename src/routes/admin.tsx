@@ -217,6 +217,7 @@ function AdminPage() {
             <p style={S.sub}>{leads.length} לידים בסך הכל · מוצגים {filtered.length}</p>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
+            <a href="/admin/pages" style={{ ...S.btnGhost, textDecoration: 'none', display: 'inline-block' } as any}>דפי נחיתה</a>
             <button onClick={() => refresh(currentPass())} style={S.btnGhost}>{loading ? 'טוען...' : 'רענון'}</button>
             <button
               onClick={() => { sessionStorage.removeItem(AUTH_KEY); sessionStorage.removeItem(PASS_KEY); setAuthed(false); }}
