@@ -1276,10 +1276,10 @@ const BODY_HTML = `
         <h2 class="inline-lead-title">השאירי פרטים — <span class="h1-accent">גלי כמה מלגה מגיעה לך</span></h2>
         <p class="inline-lead-sub">תוך 24 שעות נחזור אלייך לתאם פגישת ייעוץ חינמית · ללא התחייבות</p>
       </div>
-      <form class="inline-form" onsubmit="submitForm(event)">
-        <input class="form-input" type="text" placeholder="שם מלא *" required/>
-        <input class="form-input" type="tel" placeholder="מספר טלפון *" required dir="ltr"/>
-        <select class="form-input" required>
+      <form class="inline-form" onsubmit="submitForm(event)" novalidate>
+        <input class="form-input" name="fullName" type="text" placeholder="שם מלא *" required/>
+        <input class="form-input" name="phone" type="tel" placeholder="מספר טלפון *" required dir="ltr" inputmode="numeric" maxlength="10"/>
+        <select class="form-input" name="branch" required>
           <option value="">בחרי סניף *</option>
           <option>תל אביב</option>
           <option>ירושלים</option>
@@ -1292,6 +1292,7 @@ const BODY_HTML = `
           <option>אחר</option>
         </select>
         <button type="submit" class="btn-submit">בדקי זכאות ←</button>
+        <p class="form-error" data-form-error style="grid-column:1/-1;display:none;color:#fca5a5;font-size:13px;margin:6px 0 0;text-align:center"></p>
       </form>
       <p class="form-micro">הפרטים שלך מוגנים ולא יועברו לצד שלישי</p>
     </div>
