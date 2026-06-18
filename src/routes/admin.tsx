@@ -53,24 +53,37 @@ function AdminPage() {
     }
   };
 
-  const loadHook = async () => {
+  const loadHook = async (password?: string) => {
     try {
       const r = await getHook();
-      setHook((r as { value: string }).value || '');
+      const fromDb = ((r as { value: string }).value || '').trim();
+      const fromLocal = (typeof window !== 'undefined' ? localStorage.getItem(HOOK_KEY) || '' : '').trim();
+      if (fromDb) {
+        setHook(fromDb);
+        if (fromLocal !== fromDb) localStorage.setItem(HOOK_KEY, fromDb);
+      } else if (fromLocal) {
+        // migrate localStorage value into the central DB so it shows everywhere
+        setHook(fromLocal);
+        const p = password || sessionStorage.getItem(PASS_KEY) || '';
+        if (p) {
+          try { await saveHookFn({ data: { password: p, value: fromLocal } }); } catch {}
+        }
+      } else {
+        setHook('');
+      }
     } catch {}
   };
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    loadHook();
-    if (sessionStorage.getItem(AUTH_KEY) === '1') {
-      const p = sessionStorage.getItem(PASS_KEY) || '';
-      if (p) {
-        setAuthed(true);
-        refresh(p);
-      }
+    const p = sessionStorage.getItem(AUTH_KEY) === '1' ? sessionStorage.getItem(PASS_KEY) || '' : '';
+    if (p) {
+      setAuthed(true);
+      refresh(p);
     }
+    loadHook(p);
   }, []);
+
 
   const branches = useMemo(() => {
     const s = new Set<string>();
