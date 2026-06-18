@@ -195,6 +195,7 @@ h1{
   animation:ctaGlow 3.4s ease-in-out infinite;position:relative;
 }
 .btn-primary:hover{transform:translateY(-2px) scale(1.02)}
+.hero-title-row--mobile{display:none}
 @media(max-width:860px){
   .hero{padding:48px 0 40px}
   .hero-grid{grid-template-columns:1fr;gap:36px}
@@ -1047,6 +1048,8 @@ footer{
 
   /* Hero collage appears immediately on mobile */
   .hero-grid{display:flex;flex-direction:column;gap:24px}
+  .hero-title-row--mobile{display:flex}
+  .hero-title-row--desktop{display:none !important}
   .hero-collage{order:-1;grid-template-columns:1.25fr 1fr;gap:10px;max-width:360px;margin:0 auto 2px}
   .hero-collage-main,.hero-collage-side{aspect-ratio:3/4;align-self:end}
 
@@ -1244,9 +1247,17 @@ const BODY_HTML = `
 <section class="hero">
   <div class="wrap">
     <div class="hero-inner">
+      <!-- Mobile title row: shown only on mobile, above images -->
+      <div class="hero-title-row hero-title-row--mobile">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          בשיתוף בית הספר הגדול בארץ לביוטי
+        </div>
+        <div class="hero-brand-title">קורס מאפרת מקצועית</div>
+      </div>
       <div class="hero-grid">
         <div class="hero-text">
-          <div class="hero-title-row">
+          <div class="hero-title-row hero-title-row--desktop">
             <div class="eyebrow">
               <span class="eyebrow-dot"></span>
               בשיתוף בית הספר הגדול בארץ לביוטי
