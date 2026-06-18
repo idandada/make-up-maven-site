@@ -195,6 +195,7 @@ h1{
   animation:ctaGlow 3.4s ease-in-out infinite;position:relative;
 }
 .btn-primary:hover{transform:translateY(-2px) scale(1.02)}
+.hero-title-row--mobile{display:none}
 @media(max-width:860px){
   .hero{padding:48px 0 40px}
   .hero-grid{grid-template-columns:1fr;gap:36px}
