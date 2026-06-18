@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LpSlugRouteImport } from './routes/lp.$slug'
+import { Route as AdminPagesRouteImport } from './routes/admin.pages'
+import { Route as AdminPagesSlugRouteImport } from './routes/admin.pages.$slug'
 
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
@@ -28,34 +30,61 @@ const LpSlugRoute = LpSlugRouteImport.update({
   path: '/lp/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminPagesRoute = AdminPagesRouteImport.update({
+  id: '/pages',
+  path: '/pages',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPagesSlugRoute = AdminPagesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => AdminPagesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/admin/pages': typeof AdminPagesRouteWithChildren
   '/lp/$slug': typeof LpSlugRoute
+  '/admin/pages/$slug': typeof AdminPagesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/admin/pages': typeof AdminPagesRouteWithChildren
   '/lp/$slug': typeof LpSlugRoute
+  '/admin/pages/$slug': typeof AdminPagesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/admin/pages': typeof AdminPagesRouteWithChildren
   '/lp/$slug': typeof LpSlugRoute
+  '/admin/pages/$slug': typeof AdminPagesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/lp/$slug'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/admin/pages'
+    | '/lp/$slug'
+    | '/admin/pages/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/lp/$slug'
-  id: '__root__' | '/' | '/admin' | '/lp/$slug'
+  to: '/' | '/admin' | '/admin/pages' | '/lp/$slug' | '/admin/pages/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/admin/pages'
+    | '/lp/$slug'
+    | '/admin/pages/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRoute
+  AdminRoute: typeof AdminRouteWithChildren
   LpSlugRoute: typeof LpSlugRoute
 }
 
@@ -82,12 +111,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LpSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/pages': {
+      id: '/admin/pages'
+      path: '/pages'
+      fullPath: '/admin/pages'
+      preLoaderRoute: typeof AdminPagesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/pages/$slug': {
+      id: '/admin/pages/$slug'
+      path: '/$slug'
+      fullPath: '/admin/pages/$slug'
+      preLoaderRoute: typeof AdminPagesSlugRouteImport
+      parentRoute: typeof AdminPagesRoute
+    }
   }
 }
 
+interface AdminPagesRouteChildren {
+  AdminPagesSlugRoute: typeof AdminPagesSlugRoute
+}
+
+const AdminPagesRouteChildren: AdminPagesRouteChildren = {
+  AdminPagesSlugRoute: AdminPagesSlugRoute,
+}
+
+const AdminPagesRouteWithChildren = AdminPagesRoute._addFileChildren(
+  AdminPagesRouteChildren,
+)
+
+interface AdminRouteChildren {
+  AdminPagesRoute: typeof AdminPagesRouteWithChildren
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminPagesRoute: AdminPagesRouteWithChildren,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRoute: AdminRoute,
+  AdminRoute: AdminRouteWithChildren,
   LpSlugRoute: LpSlugRoute,
 }
 export const routeTree = rootRouteImport
