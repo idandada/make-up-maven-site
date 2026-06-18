@@ -37,6 +37,10 @@ export type Database = {
           body_html: string
           branches: Json
           brief: string
+          brief_auto_apply: boolean
+          brief_error: string | null
+          brief_hash: string | null
+          brief_processed_at: string | null
           created_at: string
           cta_text: string
           hero_heading: string
@@ -56,6 +60,10 @@ export type Database = {
           body_html?: string
           branches?: Json
           brief?: string
+          brief_auto_apply?: boolean
+          brief_error?: string | null
+          brief_hash?: string | null
+          brief_processed_at?: string | null
           created_at?: string
           cta_text?: string
           hero_heading?: string
@@ -75,6 +83,10 @@ export type Database = {
           body_html?: string
           branches?: Json
           brief?: string
+          brief_auto_apply?: boolean
+          brief_error?: string | null
+          brief_hash?: string | null
+          brief_processed_at?: string | null
           created_at?: string
           cta_text?: string
           hero_heading?: string
