@@ -37,6 +37,8 @@ function AdminPage() {
   const list = useServerFn(listLeads);
   const del = useServerFn(deleteLeadFn);
   const clearAllFn = useServerFn(clearLeadsFn);
+  const getHook = useServerFn(getZapierHook);
+  const saveHookFn = useServerFn(saveZapierHook);
 
   const refresh = async (password: string) => {
     setLoading(true);
@@ -51,9 +53,16 @@ function AdminPage() {
     }
   };
 
+  const loadHook = async () => {
+    try {
+      const r = await getHook();
+      setHook((r as { value: string }).value || '');
+    } catch {}
+  };
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    setHook(localStorage.getItem(HOOK_KEY) || '');
+    loadHook();
     if (sessionStorage.getItem(AUTH_KEY) === '1') {
       const p = sessionStorage.getItem(PASS_KEY) || '';
       if (p) {
