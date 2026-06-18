@@ -24,6 +24,7 @@ const PageSchema = z.object({
   theme: z.record(z.string(), z.any()).default({}),
   is_published: z.boolean().default(false),
   brief: z.string().default(''),
+  brief_auto_apply: z.boolean().default(true),
 });
 
 export type LandingPageInput = z.infer<typeof PageSchema>;
@@ -154,6 +155,7 @@ export const upsertPage = createServerFn({ method: 'POST' })
           theme: data.page.theme,
           is_published: data.page.is_published,
           brief: data.page.brief,
+          brief_auto_apply: data.page.brief_auto_apply,
           updated_at: new Date().toISOString(),
         },
         { onConflict: 'slug' },
