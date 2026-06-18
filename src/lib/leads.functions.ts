@@ -43,3 +43,29 @@ export const clearLeads = createServerFn({ method: 'POST' })
     if (error) throw new Error(error.message);
     return { ok: true };
   });
+
+export const getZapierHook = createServerFn({ method: 'GET' })
+  .handler(async () => {
+    const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
+    const { data, error } = await supabaseAdmin
+      .from('app_settings')
+      .select('value')
+      .eq('key', 'zapier_webhook')
+      .maybeSingle();
+    if (error) throw new Error(error.message);
+    return { value: (data?.value as string) || '' };
+  });
+
+export const saveZapierHook = createServerFn({ method: 'POST' })
+  .inputValidator((d: unknown) =>
+    z.object({ password: z.string(), value: z.string() }).parse(d),
+  )
+  .handler(async ({ data }) => {
+    if (data.password !== ADMIN_PASS) throw new Error('Unauthorized');
+    const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
+    const { error } = await supabaseAdmin
+      .from('app_settings')
+      .upsert({ key: 'zapier_webhook', value: data.value.trim(), updated_at: new Date().toISOString() });
+    if (error) throw new Error(error.message);
+    return { ok: true };
+  });
