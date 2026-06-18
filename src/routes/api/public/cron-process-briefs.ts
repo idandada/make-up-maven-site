@@ -9,14 +9,15 @@ export const Route = createFileRoute('/api/public/cron-process-briefs')({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const secret = process.env.CRON_SECRET;
-        const provided =
-          request.headers.get('x-cron-secret') ||
-          request.headers.get('X-Cron-Secret') ||
-          new URL(request.url).searchParams.get('secret');
-        if (!secret || provided !== secret) {
-          return new Response('Unauthorized', { status: 401 });
-        }
+        const cronSecret = process.env.CRON_SECRET;
+        const anonKey = process.env.SUPABASE_PUBLISHABLE_KEY;
+        const apikey = request.headers.get('apikey');
+        const xSecret = request.headers.get('x-cron-secret') || request.headers.get('X-Cron-Secret');
+        const qSecret = new URL(request.url).searchParams.get('secret');
+        const ok =
+          (cronSecret && (xSecret === cronSecret || qSecret === cronSecret)) ||
+          (anonKey && apikey === anonKey);
+        if (!ok) return new Response('Unauthorized', { status: 401 });
 
         const { processAllPendingBriefs } = await import('@/lib/brief-processor.server');
         try {
