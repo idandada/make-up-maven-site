@@ -40,11 +40,22 @@ function AdminPageEditor() {
           branches: Array.isArray(p.branches) ? p.branches : [],
           images: Array.isArray(p.images) ? p.images : [],
           theme: p.theme || {},
+          brief: p.brief || '',
         });
         setLoaded(true);
+        try { const ls = await listLeads({ data: { password: currentPass(), slug } }); setLeads(ls as any[]); } catch {}
       } catch (e: any) { setErr(e?.message || 'שגיאה'); setLoaded(true); }
     })();
   }, [slug]);
+
+  const refreshLeads = async () => {
+    try { const ls = await listLeads({ data: { password: currentPass(), slug } }); setLeads(ls as any[]); } catch {}
+  };
+
+  const removeLead = async (id: string) => {
+    if (!confirm('למחוק ליד זה?')) return;
+    try { await delLead({ data: { password: currentPass(), id } }); setLeads((p) => p.filter((l) => l.id !== id)); } catch (e: any) { alert(e?.message || 'שגיאה'); }
+  };
 
   const update = (patch: any) => setPage((p: any) => ({ ...p, ...patch }));
 
