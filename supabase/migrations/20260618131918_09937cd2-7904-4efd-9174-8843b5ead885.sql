@@ -1,0 +1,1 @@
+ALTER TABLE public.landing_pages ADD COLUMN IF NOT EXISTS brief text NOT NULL DEFAULT '';

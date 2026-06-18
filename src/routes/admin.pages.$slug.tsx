@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 import { useServerFn } from '@tanstack/react-start';
 import { useEffect, useState } from 'react';
-import { getPageForEdit, upsertPage, testPageWebhook } from '@/lib/landing-pages.functions';
+import { getPageForEdit, upsertPage, testPageWebhook, listLeadsForPage, deleteLeadForPage } from '@/lib/landing-pages.functions';
 
 export const Route = createFileRoute('/admin/pages/$slug')({
   component: AdminPageEditor,
@@ -17,6 +17,9 @@ function AdminPageEditor() {
   const get = useServerFn(getPageForEdit);
   const save = useServerFn(upsertPage);
   const test = useServerFn(testPageWebhook);
+  const listLeads = useServerFn(listLeadsForPage);
+  const delLead = useServerFn(deleteLeadForPage);
+  const [leads, setLeads] = useState<any[]>([]);
 
   const [loaded, setLoaded] = useState(false);
   const [page, setPage] = useState<any>(null);
@@ -37,11 +40,22 @@ function AdminPageEditor() {
           branches: Array.isArray(p.branches) ? p.branches : [],
           images: Array.isArray(p.images) ? p.images : [],
           theme: p.theme || {},
+          brief: p.brief || '',
         });
         setLoaded(true);
+        try { const ls = await listLeads({ data: { password: currentPass(), slug } }); setLeads(ls as any[]); } catch {}
       } catch (e: any) { setErr(e?.message || 'שגיאה'); setLoaded(true); }
     })();
   }, [slug]);
+
+  const refreshLeads = async () => {
+    try { const ls = await listLeads({ data: { password: currentPass(), slug } }); setLeads(ls as any[]); } catch {}
+  };
+
+  const removeLead = async (id: string) => {
+    if (!confirm('למחוק ליד זה?')) return;
+    try { await delLead({ data: { password: currentPass(), id } }); setLeads((p) => p.filter((l) => l.id !== id)); } catch (e: any) { alert(e?.message || 'שגיאה'); }
+  };
 
   const update = (patch: any) => setPage((p: any) => ({ ...p, ...patch }));
 
@@ -65,6 +79,7 @@ function AdminPageEditor() {
             body_html: page.body_html || '',
             theme: page.theme || {},
             is_published: !!page.is_published,
+            brief: page.brief || '',
           },
         },
       });
@@ -106,6 +121,17 @@ function AdminPageEditor() {
             <input type="checkbox" checked={!!page.is_published} onChange={(e) => update({ is_published: e.target.checked })} />
             הדף מפורסם (זמין בכתובת /lp/{slug})
           </label>
+        </section>
+
+        <section style={{ ...S.card, border: '1px solid #4a3520', background: '#1a1410' }}>
+          <h2 style={S.h2}>📝 בריף לדף הזה — מה יופיע בו</h2>
+          <p style={S.sub}>כתבי כאן בעברית חופשית מה אתם רוצים שיהיה בדף (כותרות, יתרונות, קהל יעד, סגנון, מבצע וכו'). אחרי שתשמרי, תוכלי לבקש ממני (לוֹבֵבּל) בצ'אט "תתאים את הדף לפי הבריף" — ואני אקח את התבנית הקיימת ואמלא הכל אוטומטית.</p>
+          <textarea
+            value={page.brief || ''}
+            onChange={(e) => update({ brief: e.target.value })}
+            placeholder={'דוגמה:\nדף נחיתה לקורס איפור בתל אביב, מיועד לנשים 25-40.\nכותרת ראשית: "תהפכי למאפרת מקצועית ב-3 חודשים".\nסניפים: תל אביב, רמת גן.\nמבצע: 20% הנחה להרשמה החודש.\nסגנון: יוקרתי, ורוד-זהב.'}
+            style={{ ...S.input, width: '100%', minHeight: 180, fontFamily: 'inherit', lineHeight: 1.7 }}
+          />
         </section>
 
         <section style={S.card}>
@@ -162,6 +188,45 @@ function AdminPageEditor() {
             placeholder="<p>תוכן נוסף...</p>"
             style={{ ...S.input, width: '100%', minHeight: 200, direction: 'ltr', textAlign: 'left', fontFamily: 'monospace', fontSize: 13 }}
           />
+        </section>
+
+        <section style={S.card}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
+            <h2 style={S.h2}>לידים שהגיעו מהדף הזה ({leads.length})</h2>
+            <button onClick={refreshLeads} style={S.btnGhost}>רענון</button>
+          </div>
+          {leads.length === 0 ? (
+            <p style={{ ...S.sub, marginTop: 14 }}>אין לידים עדיין מהדף הזה.</p>
+          ) : (
+            <div style={{ overflowX: 'auto', marginTop: 14 }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+                <thead>
+                  <tr>
+                    <th style={{ textAlign: 'right', padding: '10px 8px', color: '#a89991', fontSize: 12, borderBottom: '1px solid #2d2020' }}>תאריך</th>
+                    <th style={{ textAlign: 'right', padding: '10px 8px', color: '#a89991', fontSize: 12, borderBottom: '1px solid #2d2020' }}>שם</th>
+                    <th style={{ textAlign: 'right', padding: '10px 8px', color: '#a89991', fontSize: 12, borderBottom: '1px solid #2d2020' }}>טלפון</th>
+                    <th style={{ textAlign: 'right', padding: '10px 8px', color: '#a89991', fontSize: 12, borderBottom: '1px solid #2d2020' }}>סניף</th>
+                    <th style={{ padding: '10px 8px', borderBottom: '1px solid #2d2020' }}></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {leads.map((l) => (
+                    <tr key={l.id}>
+                      <td style={{ padding: '12px 8px', borderBottom: '1px solid #221818' }}>{new Date(l.created_at).toLocaleString('he-IL')}</td>
+                      <td style={{ padding: '12px 8px', borderBottom: '1px solid #221818', fontWeight: 600 }}>{l.name}</td>
+                      <td style={{ padding: '12px 8px', borderBottom: '1px solid #221818' }}>
+                        <a href={`tel:${l.phone}`} style={S.link}>{l.phone}</a> · <a href={`https://wa.me/972${l.phone.replace(/^0/, '')}`} target="_blank" rel="noreferrer" style={S.link}>WhatsApp</a>
+                      </td>
+                      <td style={{ padding: '12px 8px', borderBottom: '1px solid #221818' }}>{l.branch}</td>
+                      <td style={{ padding: '12px 8px', borderBottom: '1px solid #221818' }}>
+                        <button onClick={() => removeLead(l.id)} style={{ background: 'transparent', color: '#fca5a5', border: '1px solid #7a3030', padding: '4px 10px', borderRadius: 8, cursor: 'pointer', fontSize: 12 }}>מחיקה</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </section>
 
         <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', marginBottom: 30 }}>
