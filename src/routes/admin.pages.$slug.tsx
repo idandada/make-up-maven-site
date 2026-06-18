@@ -79,6 +79,7 @@ function AdminPageEditor() {
             body_html: page.body_html || '',
             theme: page.theme || {},
             is_published: !!page.is_published,
+            brief: page.brief || '',
           },
         },
       });
