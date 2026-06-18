@@ -199,6 +199,9 @@ h1{
   .hero{padding:48px 0 40px}
   .hero-grid{grid-template-columns:1fr;gap:36px}
   .hero-text{text-align:center}
+  .hero-title-row{display:flex;flex-direction:row-reverse;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 14px;margin-bottom:18px}
+  .hero-title-row .eyebrow{margin-bottom:0}
+  .hero-title-row .hero-brand-title{margin-bottom:0;font-size:clamp(22px,5.5vw,30px)}
 }
 
 /* ── HERO PORTRAIT ── */
