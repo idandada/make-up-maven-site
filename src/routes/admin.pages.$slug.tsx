@@ -17,6 +17,9 @@ function AdminPageEditor() {
   const get = useServerFn(getPageForEdit);
   const save = useServerFn(upsertPage);
   const test = useServerFn(testPageWebhook);
+  const listLeads = useServerFn(listLeadsForPage);
+  const delLead = useServerFn(deleteLeadForPage);
+  const [leads, setLeads] = useState<any[]>([]);
 
   const [loaded, setLoaded] = useState(false);
   const [page, setPage] = useState<any>(null);
