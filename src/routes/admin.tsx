@@ -109,7 +109,7 @@ function AdminPage() {
     sessionStorage.setItem(AUTH_KEY, '1');
     sessionStorage.setItem(PASS_KEY, pass);
     setAuthed(true);
-    await refresh(pass);
+    await Promise.all([refresh(pass), loadHook(pass)]);
   };
 
   const currentPass = () => sessionStorage.getItem(PASS_KEY) || '';
