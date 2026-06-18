@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 import { useServerFn } from '@tanstack/react-start';
 import { useEffect, useState } from 'react';
-import { getPageForEdit, upsertPage, testPageWebhook } from '@/lib/landing-pages.functions';
+import { getPageForEdit, upsertPage, testPageWebhook, listLeadsForPage, deleteLeadForPage } from '@/lib/landing-pages.functions';
 
 export const Route = createFileRoute('/admin/pages/$slug')({
   component: AdminPageEditor,
