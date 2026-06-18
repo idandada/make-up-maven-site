@@ -1048,6 +1048,8 @@ footer{
 
   /* Hero collage appears immediately on mobile */
   .hero-grid{display:flex;flex-direction:column;gap:24px}
+  .hero-title-row--mobile{display:flex}
+  .hero-title-row--desktop{display:none !important}
   .hero-collage{order:-1;grid-template-columns:1.25fr 1fr;gap:10px;max-width:360px;margin:0 auto 2px}
   .hero-collage-main,.hero-collage-side{aspect-ratio:3/4;align-self:end}
 
