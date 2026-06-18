@@ -1541,10 +1541,10 @@ function LandingPage() {
       const phone = (phoneInput?.value || '').replace(/[\s-]/g, '');
       const branch = branchInput?.value || '';
 
-      // שם בעברית תקין: לפחות 2 תווים, רק אותיות עבריות ורווחים, ולפחות שתי מילים מומלץ
-      const hebrewNameRe = /^[\u0590-\u05FF]{2,}(?:[ '\-][\u0590-\u05FF]{2,})+$/;
-      if (!name) return showErr('יש להזין שם מלא');
-      if (!hebrewNameRe.test(name)) return showErr('יש להזין שם מלא בעברית (שם פרטי ושם משפחה)');
+      // שם בעברית תקין: לפחות 2 תווים, רק אותיות עבריות ורווחים
+      const hebrewNameRe = /^[\u0590-\u05FF]{2,}(?:[ '\-][\u0590-\u05FF]{2,})*$/;
+      if (!name) return showErr('יש להזין שם');
+      if (!hebrewNameRe.test(name)) return showErr('יש להזין שם בעברית');
 
       // טלפון: מתחיל ב-05 ובסך הכל 10 ספרות (05X-XXXXXXX)
       const phoneRe = /^05\d{8}$/;
