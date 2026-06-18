@@ -1273,7 +1273,7 @@ const BODY_HTML = `
             <div class="hero-collage-badge">חיילות משוחררות · מסלול פיקדון</div>
           </div>
           <div class="hero-collage-side">
-            <img src="/assets/beauty_case.jpg" alt="מזוודת איפור מתנה בשווי 11, Korea ש״ח"/>
+            <img src="/assets/beauty_case.jpg" alt="מזוודת איפור מתנה בשווי 11,000 ש״ח"/>
             <div class="hero-collage-tag">מתנה בשווי<b>11,000 ש״ח</b></div>
           </div>
         </div>
