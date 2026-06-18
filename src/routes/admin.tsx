@@ -228,8 +228,26 @@ function AdminPage() {
         {loadError && <div style={{ ...S.card, color: '#fca5a5' }}>{loadError}</div>}
 
         <section style={S.card}>
-          <h2 style={S.h2}>חיבור ל-Zapier (אופציונלי)</h2>
-          <p style={S.cardSub}>הלידים כבר נשמרים במסד הנתונים. ה-Webhook משמש להעברה אוטומטית ל-Google Sheets / מייל / WhatsApp.</p>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
+            <h2 style={S.h2}>חיבור ל-Zapier</h2>
+            <span style={{
+              fontSize: 12, fontWeight: 700, padding: '4px 10px', borderRadius: 999,
+              background: hook.trim() ? 'rgba(74,222,128,.15)' : 'rgba(252,165,165,.12)',
+              color: hook.trim() ? '#86efac' : '#fca5a5',
+              border: `1px solid ${hook.trim() ? '#356b3f' : '#7a3030'}`,
+            }}>
+              {hook.trim() ? '● מחובר' : '○ לא מחובר'}
+            </span>
+          </div>
+          <p style={S.cardSub}>הלידים נשמרים במסד הנתונים. ה-Webhook משמש להעברה אוטומטית ל-Google Sheets / מייל / WhatsApp.</p>
+
+          {hook.trim() && (
+            <div style={{ background: '#0f0a0a', border: '1px solid #2d2020', borderRadius: 10, padding: 12, marginBottom: 12 }}>
+              <div style={{ fontSize: 12, color: '#a89991', marginBottom: 4 }}>כתובת ה-Webhook המחוברת כעת:</div>
+              <div style={{ direction: 'ltr', textAlign: 'left', fontFamily: 'monospace', fontSize: 13, color: '#c9a679', wordBreak: 'break-all' }}>{hook}</div>
+            </div>
+          )}
+
           <div style={S.row}>
             <input
               type="url"
@@ -242,7 +260,28 @@ function AdminPage() {
             <button onClick={testHook} style={S.btnGhost}>שליחת בדיקה</button>
           </div>
           {testStatus && <p style={{ ...S.cardSub, marginTop: 10 }}>{testStatus}</p>}
+
+          <details style={{ marginTop: 14, background: '#0f0a0a', border: '1px solid #2d2020', borderRadius: 10, padding: '10px 14px' }}>
+            <summary style={{ cursor: 'pointer', color: '#c9a679', fontWeight: 600, fontSize: 14 }}>
+              איך מתחברים ל-Zapier ב-4 שלבים?
+            </summary>
+            <ol style={{ margin: '12px 0 4px', paddingInlineStart: 20, color: '#d8c9bf', fontSize: 14, lineHeight: 1.9 }}>
+              <li>
+                היכנסי ל-<a href="https://zapier.com/app/zaps" target="_blank" rel="noreferrer" style={S.link}>zapier.com</a> ולחצי על <b>Create Zap</b>.
+              </li>
+              <li>
+                כ-<b>Trigger</b> בחרי את האפליקציה <b>Webhooks by Zapier</b> → אירוע <b>Catch Hook</b> → <b>Continue</b>.
+              </li>
+              <li>
+                העתיקי את כתובת ה-Webhook (Custom Webhook URL) שמופיעה, הדביקי כאן בשדה למעלה ולחצי <b>שמירה</b>. אחר כך לחצי <b>שליחת בדיקה</b> כדי לשלוח ליד לדוגמה ל-Zapier (<b>Test trigger</b>).
+              </li>
+              <li>
+                ב-Zapier הוסיפי <b>Action</b> שתרצי (Google Sheets / Gmail / WhatsApp / SMS וכו'), מפי את השדות <code>name</code>, <code>phone</code>, <code>branch</code>, <code>createdAt</code> והפעילי את ה-Zap.
+              </li>
+            </ol>
+          </details>
         </section>
+
 
         <section style={S.card}>
           <div style={S.toolbar}>
