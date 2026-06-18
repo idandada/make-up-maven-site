@@ -1,5 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useMemo, useState } from 'react';
+import { useServerFn } from '@tanstack/react-start';
+import { listLeads, deleteLead as deleteLeadFn, clearLeads as clearLeadsFn } from '@/lib/leads.functions';
 
 export const Route = createFileRoute('/admin')({
   component: AdminPage,
@@ -11,31 +13,54 @@ type Lead = {
   name: string;
   phone: string;
   branch: string;
-  createdAt: string;
-  source?: string;
+  source: string | null;
+  created_at: string;
 };
 
-const LEADS_KEY = 'mua_leads_v1';
 const HOOK_KEY = 'mua_zapier_webhook';
 const AUTH_KEY = 'mua_admin_auth';
-// סיסמת ניהול — שנה כאן בכל עת
+const PASS_KEY = 'mua_admin_pass';
 const ADMIN_PASS = 'makeup2026';
 
 function AdminPage() {
   const [authed, setAuthed] = useState(false);
   const [pass, setPass] = useState('');
   const [leads, setLeads] = useState<Lead[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [loadError, setLoadError] = useState('');
   const [hook, setHook] = useState('');
   const [hookSaved, setHookSaved] = useState(false);
   const [query, setQuery] = useState('');
   const [branchFilter, setBranchFilter] = useState('');
   const [testStatus, setTestStatus] = useState<string>('');
 
+  const list = useServerFn(listLeads);
+  const del = useServerFn(deleteLeadFn);
+  const clearAllFn = useServerFn(clearLeadsFn);
+
+  const refresh = async (password: string) => {
+    setLoading(true);
+    setLoadError('');
+    try {
+      const rows = await list({ data: { password } });
+      setLeads(rows as Lead[]);
+    } catch (e: any) {
+      setLoadError(e?.message || 'שגיאת טעינה');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (sessionStorage.getItem(AUTH_KEY) === '1') setAuthed(true);
-    setLeads(JSON.parse(localStorage.getItem(LEADS_KEY) || '[]'));
     setHook(localStorage.getItem(HOOK_KEY) || '');
+    if (sessionStorage.getItem(AUTH_KEY) === '1') {
+      const p = sessionStorage.getItem(PASS_KEY) || '';
+      if (p) {
+        setAuthed(true);
+        refresh(p);
+      }
+    }
   }, []);
 
   const branches = useMemo(() => {
@@ -49,23 +74,23 @@ function AdminPage() {
     return leads.filter((l) => {
       if (branchFilter && l.branch !== branchFilter) return false;
       if (!q) return true;
-      return (
-        l.name.includes(q) ||
-        l.phone.includes(q) ||
-        l.branch.includes(q)
-      );
+      return l.name.includes(q) || l.phone.includes(q) || l.branch.includes(q);
     });
   }, [leads, query, branchFilter]);
 
-  const tryLogin = (e: React.FormEvent) => {
+  const tryLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (pass === ADMIN_PASS) {
-      sessionStorage.setItem(AUTH_KEY, '1');
-      setAuthed(true);
-    } else {
+    if (pass !== ADMIN_PASS) {
       alert('סיסמה שגויה');
+      return;
     }
+    sessionStorage.setItem(AUTH_KEY, '1');
+    sessionStorage.setItem(PASS_KEY, pass);
+    setAuthed(true);
+    await refresh(pass);
   };
+
+  const currentPass = () => sessionStorage.getItem(PASS_KEY) || '';
 
   const saveHook = () => {
     localStorage.setItem(HOOK_KEY, hook.trim());
@@ -95,24 +120,31 @@ function AdminPage() {
     }
   };
 
-  const deleteLead = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (!confirm('למחוק ליד זה?')) return;
-    const next = leads.filter((l) => l.id !== id);
-    setLeads(next);
-    localStorage.setItem(LEADS_KEY, JSON.stringify(next));
+    try {
+      await del({ data: { password: currentPass(), id } });
+      setLeads((prev) => prev.filter((l) => l.id !== id));
+    } catch (e: any) {
+      alert('שגיאה: ' + (e?.message || 'מחיקה נכשלה'));
+    }
   };
 
-  const clearAll = () => {
+  const handleClearAll = async () => {
     if (!confirm('למחוק את כל הלידים? פעולה זו לא הפיכה.')) return;
-    setLeads([]);
-    localStorage.setItem(LEADS_KEY, '[]');
+    try {
+      await clearAllFn({ data: { password: currentPass() } });
+      setLeads([]);
+    } catch (e: any) {
+      alert('שגיאה: ' + (e?.message || 'מחיקה נכשלה'));
+    }
   };
 
   const exportCSV = () => {
     const rows = [['תאריך', 'שם', 'טלפון', 'סניף', 'מקור']];
     filtered.forEach((l) =>
       rows.push([
-        new Date(l.createdAt).toLocaleString('he-IL'),
+        new Date(l.created_at).toLocaleString('he-IL'),
         l.name,
         l.phone,
         l.branch,
@@ -157,15 +189,20 @@ function AdminPage() {
             <h1 style={S.h1}>ניהול לידים</h1>
             <p style={S.sub}>{leads.length} לידים בסך הכל · מוצגים {filtered.length}</p>
           </div>
-          <button
-            onClick={() => { sessionStorage.removeItem(AUTH_KEY); setAuthed(false); }}
-            style={S.btnGhost}
-          >יציאה</button>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <button onClick={() => refresh(currentPass())} style={S.btnGhost}>{loading ? 'טוען...' : 'רענון'}</button>
+            <button
+              onClick={() => { sessionStorage.removeItem(AUTH_KEY); sessionStorage.removeItem(PASS_KEY); setAuthed(false); }}
+              style={S.btnGhost}
+            >יציאה</button>
+          </div>
         </header>
 
+        {loadError && <div style={{ ...S.card, color: '#fca5a5' }}>{loadError}</div>}
+
         <section style={S.card}>
-          <h2 style={S.h2}>חיבור ל-Zapier</h2>
-          <p style={S.cardSub}>הדביקי את כתובת ה-Webhook של Zapier. כל ליד חדש יישלח אוטומטית.</p>
+          <h2 style={S.h2}>חיבור ל-Zapier (אופציונלי)</h2>
+          <p style={S.cardSub}>הלידים כבר נשמרים במסד הנתונים. ה-Webhook משמש להעברה אוטומטית ל-Google Sheets / מייל / WhatsApp.</p>
           <div style={S.row}>
             <input
               type="url"
@@ -178,16 +215,6 @@ function AdminPage() {
             <button onClick={testHook} style={S.btnGhost}>שליחת בדיקה</button>
           </div>
           {testStatus && <p style={{ ...S.cardSub, marginTop: 10 }}>{testStatus}</p>}
-
-          <details style={{ marginTop: 14 }}>
-            <summary style={{ cursor: 'pointer', color: '#c9a679', fontWeight: 600 }}>איך מחברים ל-Zapier? (4 שלבים)</summary>
-            <ol style={S.steps}>
-              <li>בכניסה ל-Zapier לחצי על <b>Create Zap</b>.</li>
-              <li>בטריגר בחרי <b>Webhooks by Zapier</b> → <b>Catch Hook</b> → <b>Continue</b>.</li>
-              <li>העתיקי את ה-<b>Custom Webhook URL</b> והדביקי כאן למעלה, ואז לחצי "שליחת בדיקה" כדי ש-Zapier יזהה את המבנה.</li>
-              <li>הוסיפי Action — לדוג' <b>Google Sheets · Create Row</b> / <b>Gmail · Send Email</b> / <b>WhatsApp</b> — ומפיני את השדות: <code>name, phone, branch, createdAt</code>. הפעילי את ה-Zap.</li>
-            </ol>
-          </details>
         </section>
 
         <section style={S.card}>
@@ -203,11 +230,11 @@ function AdminPage() {
               {branches.map((b) => <option key={b} value={b}>{b}</option>)}
             </select>
             <button onClick={exportCSV} style={S.btnPrimary}>ייצוא CSV</button>
-            <button onClick={clearAll} style={S.btnDanger}>מחיקת הכל</button>
+            <button onClick={handleClearAll} style={S.btnDanger}>מחיקת הכל</button>
           </div>
 
           {filtered.length === 0 ? (
-            <div style={S.empty}>אין לידים להצגה</div>
+            <div style={S.empty}>{loading ? 'טוען...' : 'אין לידים להצגה'}</div>
           ) : (
             <div style={{ overflowX: 'auto' }}>
               <table style={S.table}>
@@ -223,7 +250,7 @@ function AdminPage() {
                 <tbody>
                   {filtered.map((l) => (
                     <tr key={l.id} style={S.tr}>
-                      <td style={S.td}>{new Date(l.createdAt).toLocaleString('he-IL')}</td>
+                      <td style={S.td}>{new Date(l.created_at).toLocaleString('he-IL')}</td>
                       <td style={{ ...S.td, fontWeight: 600 }}>{l.name}</td>
                       <td style={S.td}>
                         <a href={`tel:${l.phone}`} style={S.link}>{l.phone}</a>
@@ -232,7 +259,7 @@ function AdminPage() {
                       </td>
                       <td style={S.td}>{l.branch}</td>
                       <td style={S.td}>
-                        <button onClick={() => deleteLead(l.id)} style={S.btnTiny}>מחיקה</button>
+                        <button onClick={() => handleDelete(l.id)} style={S.btnTiny}>מחיקה</button>
                       </td>
                     </tr>
                   ))}
@@ -243,7 +270,7 @@ function AdminPage() {
         </section>
 
         <p style={S.note}>
-          💡 הלידים נשמרים בדפדפן הזה. החיבור ל-Zapier מעביר אותם בזמן אמת ליעד הקבוע שלך (Google Sheets, מייל, WhatsApp וכו') כדי שלא תאבדי אף ליד.
+          ✓ הלידים נשמרים במסד נתונים מרכזי בענן — נגישים מכל מכשיר. בנוסף ניתן לחבר Zapier להעברה אוטומטית ל-Google Sheets / מייל / WhatsApp.
         </p>
       </div>
     </div>
@@ -273,7 +300,6 @@ const S: Record<string, React.CSSProperties> = {
   link: { color: '#c9a679', textDecoration: 'none' },
   empty: { padding: 40, textAlign: 'center', color: '#a89991' },
   note: { textAlign: 'center', color: '#a89991', fontSize: 13, lineHeight: 1.7, margin: '20px 0 0' },
-  steps: { color: '#d4c4c0', lineHeight: 1.9, paddingInlineStart: 22, marginTop: 10, fontSize: 14 },
   loginWrap: { minHeight: '100vh', background: '#0f0a0a', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20, fontFamily: 'system-ui, sans-serif' },
   loginBox: { background: '#1a1212', border: '1px solid #2d2020', borderRadius: 14, padding: 32, width: '100%', maxWidth: 380, textAlign: 'center' },
   loginTitle: { fontSize: 24, margin: '0 0 6px', color: '#fff' },
