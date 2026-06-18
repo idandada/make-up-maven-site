@@ -1396,6 +1396,33 @@ const BODY_HTML = `
             <div class="benefit-text">בסיום הקורס — התחלת עבודה מיידית עם שכר גבוה</div>
           </div>
         </div>
+        <div class="benefit-card reveal-scale reveal-delay-4">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+          </div>
+          <div class="benefit-body">
+            <div class="benefit-title">גיפטקארד בשווי 900 ₪</div>
+            <div class="benefit-text">כרטיס מתנה לאיפור מקצועי בכל רשתות הקוסמטיקה המובילות</div>
+          </div>
+        </div>
+        <div class="benefit-card reveal-scale reveal-delay-5">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          </div>
+          <div class="benefit-body">
+            <div class="benefit-title">2 ימי צילום לבניית פורטפוליו</div>
+            <div class="benefit-text">צילומי תדמית מקצועיים לדוגמניות — תבני פורטפוליו מרשים</div>
+          </div>
+        </div>
+        <div class="benefit-card reveal-scale reveal-delay-6">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="benefit-body">
+            <div class="benefit-title">מאסטרים עם מאפרים מובילים</div>
+            <div class="benefit-text">השתתפות במאסטרקלאסים אקסקלוסיביים עם השמות הגדולים בתעשייה</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
