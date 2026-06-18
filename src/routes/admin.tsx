@@ -101,10 +101,15 @@ function AdminPage() {
 
   const currentPass = () => sessionStorage.getItem(PASS_KEY) || '';
 
-  const saveHook = () => {
-    localStorage.setItem(HOOK_KEY, hook.trim());
-    setHookSaved(true);
-    setTimeout(() => setHookSaved(false), 1800);
+  const saveHook = async () => {
+    try {
+      await saveHookFn({ data: { password: currentPass(), value: hook.trim() } });
+      localStorage.setItem(HOOK_KEY, hook.trim());
+      setHookSaved(true);
+      setTimeout(() => setHookSaved(false), 1800);
+    } catch (e: any) {
+      alert('שמירה נכשלה: ' + (e?.message || ''));
+    }
   };
 
   const testHook = async () => {
