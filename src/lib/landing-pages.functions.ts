@@ -153,6 +153,7 @@ export const upsertPage = createServerFn({ method: 'POST' })
           body_html: data.page.body_html,
           theme: data.page.theme,
           is_published: data.page.is_published,
+          brief: data.page.brief,
           updated_at: new Date().toISOString(),
         },
         { onConflict: 'slug' },
