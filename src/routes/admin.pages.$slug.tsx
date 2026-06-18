@@ -123,6 +123,17 @@ function AdminPageEditor() {
           </label>
         </section>
 
+        <section style={{ ...S.card, border: '1px solid #4a3520', background: '#1a1410' }}>
+          <h2 style={S.h2}>📝 בריף לדף הזה — מה יופיע בו</h2>
+          <p style={S.sub}>כתבי כאן בעברית חופשית מה אתם רוצים שיהיה בדף (כותרות, יתרונות, קהל יעד, סגנון, מבצע וכו'). אחרי שתשמרי, תוכלי לבקש ממני (לוֹבֵבּל) בצ'אט "תתאים את הדף לפי הבריף" — ואני אקח את התבנית הקיימת ואמלא הכל אוטומטית.</p>
+          <textarea
+            value={page.brief || ''}
+            onChange={(e) => update({ brief: e.target.value })}
+            placeholder={'דוגמה:\nדף נחיתה לקורס איפור בתל אביב, מיועד לנשים 25-40.\nכותרת ראשית: "תהפכי למאפרת מקצועית ב-3 חודשים".\nסניפים: תל אביב, רמת גן.\nמבצע: 20% הנחה להרשמה החודש.\nסגנון: יוקרתי, ורוד-זהב.'}
+            style={{ ...S.input, width: '100%', minHeight: 180, fontFamily: 'inherit', lineHeight: 1.7 }}
+          />
+        </section>
+
         <section style={S.card}>
           <h2 style={S.h2}>חיבור ל-Zapier (וובהוק ייחודי לדף הזה)</h2>
           <div style={{ display: 'flex', gap: 8, marginTop: 10, flexWrap: 'wrap' }}>
