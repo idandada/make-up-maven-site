@@ -1591,11 +1591,13 @@ function LandingPage() {
       } catch {}
 
       setTimeout(() => {
+        // Reset grid/flex so success card is centered across full width
+        form.setAttribute('style', 'display:block;width:100%');
         form.innerHTML = `
-          <div style="text-align:center;padding:18px 8px">
-            <div style="font-size:42px;margin-bottom:10px">✓</div>
-            <div style="font-size:20px;font-weight:600;color:#fff;margin-bottom:10px">תודה שהשארת לנו פרטים!</div>
-            <div style="font-size:15px;color:#d4c4c0;line-height:1.7">
+          <div style="grid-column:1/-1;text-align:center;padding:28px 16px;background:rgba(232,168,180,.06);border:1px solid rgba(232,168,180,.25);border-radius:16px;max-width:520px;margin:0 auto">
+            <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#e8a8b4,#c98594);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:32px;color:#fff;font-weight:700">✓</div>
+            <div style="font-size:22px;font-weight:700;color:#fff;margin-bottom:12px">תודה שהשארת לנו פרטים!</div>
+            <div style="font-size:15px;color:#d4c4c0;line-height:1.8">
               נציגה מטעם המכללה המובילה ללימודי איפור תחזור אלייך עם כל הפרטים.<br/>
               בהצלחה! 💕
             </div>
