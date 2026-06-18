@@ -199,6 +199,9 @@ h1{
   .hero{padding:48px 0 40px}
   .hero-grid{grid-template-columns:1fr;gap:36px}
   .hero-text{text-align:center}
+  .hero-title-row{display:flex;flex-direction:row-reverse;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 14px;margin-bottom:18px}
+  .hero-title-row .eyebrow{margin-bottom:0}
+  .hero-title-row .hero-brand-title{margin-bottom:0;font-size:clamp(22px,5.5vw,30px)}
 }
 
 /* ── HERO PORTRAIT ── */
@@ -1243,11 +1246,13 @@ const BODY_HTML = `
     <div class="hero-inner">
       <div class="hero-grid">
         <div class="hero-text">
-          <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            בשיתוף בית הספר הגדול בארץ לביוטי
+          <div class="hero-title-row">
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              בשיתוף בית הספר הגדול בארץ לביוטי
+            </div>
+            <div class="hero-brand-title">קורס מאפרת מקצועית</div>
           </div>
-          <div class="hero-brand-title">קורס מאפרת מקצועית</div>
           <div class="hero-brand-line"></div>
           <h1>דואגים לך <span class="h1-accent">לעבודה</span><br/>בסיום הלימודים</h1>
           <p class="hero-sub">6–8 חודשים · תעודה בינלאומית · מזוודת איפור מתנה</p>
