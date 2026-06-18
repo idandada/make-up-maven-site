@@ -190,6 +190,45 @@ function AdminPageEditor() {
           />
         </section>
 
+        <section style={S.card}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
+            <h2 style={S.h2}>לידים שהגיעו מהדף הזה ({leads.length})</h2>
+            <button onClick={refreshLeads} style={S.btnGhost}>רענון</button>
+          </div>
+          {leads.length === 0 ? (
+            <p style={{ ...S.sub, marginTop: 14 }}>אין לידים עדיין מהדף הזה.</p>
+          ) : (
+            <div style={{ overflowX: 'auto', marginTop: 14 }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+                <thead>
+                  <tr>
+                    <th style={{ textAlign: 'right', padding: '10px 8px', color: '#a89991', fontSize: 12, borderBottom: '1px solid #2d2020' }}>תאריך</th>
+                    <th style={{ textAlign: 'right', padding: '10px 8px', color: '#a89991', fontSize: 12, borderBottom: '1px solid #2d2020' }}>שם</th>
+                    <th style={{ textAlign: 'right', padding: '10px 8px', color: '#a89991', fontSize: 12, borderBottom: '1px solid #2d2020' }}>טלפון</th>
+                    <th style={{ textAlign: 'right', padding: '10px 8px', color: '#a89991', fontSize: 12, borderBottom: '1px solid #2d2020' }}>סניף</th>
+                    <th style={{ padding: '10px 8px', borderBottom: '1px solid #2d2020' }}></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {leads.map((l) => (
+                    <tr key={l.id}>
+                      <td style={{ padding: '12px 8px', borderBottom: '1px solid #221818' }}>{new Date(l.created_at).toLocaleString('he-IL')}</td>
+                      <td style={{ padding: '12px 8px', borderBottom: '1px solid #221818', fontWeight: 600 }}>{l.name}</td>
+                      <td style={{ padding: '12px 8px', borderBottom: '1px solid #221818' }}>
+                        <a href={`tel:${l.phone}`} style={S.link}>{l.phone}</a> · <a href={`https://wa.me/972${l.phone.replace(/^0/, '')}`} target="_blank" rel="noreferrer" style={S.link}>WhatsApp</a>
+                      </td>
+                      <td style={{ padding: '12px 8px', borderBottom: '1px solid #221818' }}>{l.branch}</td>
+                      <td style={{ padding: '12px 8px', borderBottom: '1px solid #221818' }}>
+                        <button onClick={() => removeLead(l.id)} style={{ background: 'transparent', color: '#fca5a5', border: '1px solid #7a3030', padding: '4px 10px', borderRadius: 8, cursor: 'pointer', fontSize: 12 }}>מחיקה</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
+
         <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', marginBottom: 30 }}>
           <button onClick={handleSave} style={S.btnPrimary}>{saved ? '✓ נשמר' : 'שמירת כל השינויים'}</button>
         </div>
