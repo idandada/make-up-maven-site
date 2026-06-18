@@ -1526,15 +1526,50 @@ function LandingPage() {
   useEffect(() => {
     (window as any).submitForm = function (e: any) {
       e.preventDefault();
-      const btn = e.target.querySelector('.btn-submit');
-      if (!btn) return;
-      btn.textContent = 'שולחת...';
-      btn.style.opacity = '.75';
+      const form = e.target as HTMLFormElement;
+      const errEl = form.querySelector('[data-form-error]') as HTMLElement | null;
+      const showErr = (msg: string) => {
+        if (errEl) { errEl.textContent = msg; errEl.style.display = 'block'; }
+      };
+      if (errEl) { errEl.textContent = ''; errEl.style.display = 'none'; }
+
+      const nameInput = form.querySelector('input[name="fullName"]') as HTMLInputElement | null;
+      const phoneInput = form.querySelector('input[name="phone"]') as HTMLInputElement | null;
+      const branchInput = form.querySelector('select[name="branch"]') as HTMLSelectElement | null;
+
+      const name = (nameInput?.value || '').trim();
+      const phone = (phoneInput?.value || '').replace(/[\s-]/g, '');
+      const branch = branchInput?.value || '';
+
+      // שם בעברית תקין: לפחות 2 תווים, רק אותיות עבריות ורווחים, ולפחות שתי מילים מומלץ
+      const hebrewNameRe = /^[\u0590-\u05FF]{2,}(?:[ '\-][\u0590-\u05FF]{2,})+$/;
+      if (!name) return showErr('יש להזין שם מלא');
+      if (!hebrewNameRe.test(name)) return showErr('יש להזין שם מלא בעברית (שם פרטי ושם משפחה)');
+
+      // טלפון: מתחיל ב-05 ובסך הכל 10 ספרות (05X-XXXXXXX)
+      const phoneRe = /^05\d{8}$/;
+      if (!phone) return showErr('יש להזין מספר טלפון');
+      if (!phoneRe.test(phone)) return showErr('מספר טלפון לא תקין — חייב להתחיל ב-05 ולכלול 10 ספרות');
+
+      if (!branch) return showErr('יש לבחור סניף');
+
+      const btn = form.querySelector('.btn-submit') as HTMLButtonElement | null;
+      if (btn) {
+        btn.textContent = 'שולחת...';
+        btn.style.opacity = '.75';
+        btn.disabled = true;
+      }
       setTimeout(() => {
-        btn.textContent = '✓ פרטייך נשלחו! נחזור אלייך בקרוב';
-        btn.style.background = 'linear-gradient(135deg,#4ade80,#22c55e)';
-        btn.style.opacity = '1';
-      }, 1300);
+        form.innerHTML = `
+          <div style="text-align:center;padding:18px 8px">
+            <div style="font-size:42px;margin-bottom:10px">✓</div>
+            <div style="font-size:20px;font-weight:600;color:#fff;margin-bottom:10px">תודה שהשארת לנו פרטים!</div>
+            <div style="font-size:15px;color:#d4c4c0;line-height:1.7">
+              נציגה מטעם המכללה המובילה ללימודי איפור תחזור אלייך עם כל הפרטים.<br/>
+              בהצלחה! 💕
+            </div>
+          </div>`;
+      }, 900);
     };
 
     // Scroll reveal observer
