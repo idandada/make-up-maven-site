@@ -1570,13 +1570,23 @@ function LandingPage() {
         source: typeof window !== 'undefined' ? window.location.pathname : '/',
       };
 
-      // Save locally (visible in /admin)
+      // Save locally (backup, visible in /admin if DB fails)
       try {
         const key = 'mua_leads_v1';
         const existing = JSON.parse(localStorage.getItem(key) || '[]');
         existing.unshift(lead);
         localStorage.setItem(key, JSON.stringify(existing.slice(0, 1000)));
       } catch {}
+
+      // Save to Lovable Cloud database
+      supabase.from('leads').insert({
+        name: lead.name,
+        phone: lead.phone,
+        branch: lead.branch,
+        source: lead.source,
+      }).then(({ error }) => {
+        if (error) console.error('DB insert failed:', error.message);
+      });
 
       // Forward to Zapier webhook (if configured)
       try {
