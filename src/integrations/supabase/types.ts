@@ -32,11 +32,69 @@ export type Database = {
         }
         Relationships: []
       }
+      landing_pages: {
+        Row: {
+          body_html: string
+          branches: Json
+          created_at: string
+          cta_text: string
+          hero_heading: string
+          hero_sub: string
+          id: string
+          images: Json
+          is_published: boolean
+          meta_description: string
+          slug: string
+          subtitle: string
+          theme: Json
+          title: string
+          updated_at: string
+          zapier_webhook_url: string
+        }
+        Insert: {
+          body_html?: string
+          branches?: Json
+          created_at?: string
+          cta_text?: string
+          hero_heading?: string
+          hero_sub?: string
+          id?: string
+          images?: Json
+          is_published?: boolean
+          meta_description?: string
+          slug: string
+          subtitle?: string
+          theme?: Json
+          title?: string
+          updated_at?: string
+          zapier_webhook_url?: string
+        }
+        Update: {
+          body_html?: string
+          branches?: Json
+          created_at?: string
+          cta_text?: string
+          hero_heading?: string
+          hero_sub?: string
+          id?: string
+          images?: Json
+          is_published?: boolean
+          meta_description?: string
+          slug?: string
+          subtitle?: string
+          theme?: Json
+          title?: string
+          updated_at?: string
+          zapier_webhook_url?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           branch: string
           created_at: string
           id: string
+          landing_page_id: string | null
           name: string
           phone: string
           source: string | null
@@ -45,6 +103,7 @@ export type Database = {
           branch: string
           created_at?: string
           id?: string
+          landing_page_id?: string | null
           name: string
           phone: string
           source?: string | null
@@ -53,11 +112,20 @@ export type Database = {
           branch?: string
           created_at?: string
           id?: string
+          landing_page_id?: string | null
           name?: string
           phone?: string
           source?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "leads_landing_page_id_fkey"
+            columns: ["landing_page_id"]
+            isOneToOne: false
+            referencedRelation: "landing_pages"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
