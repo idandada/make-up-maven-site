@@ -232,3 +232,20 @@ export const deleteLeadForPage = createServerFn({ method: 'POST' })
     if (error) throw new Error(error.message);
     return { ok: true };
   });
+
+/** ADMIN — manually run the brief processor for a single page */
+export const processBriefNow = createServerFn({ method: 'POST' })
+  .inputValidator((d: unknown) => z.object({ password: z.string(), slug: SlugSchema }).parse(d))
+  .handler(async ({ data }) => {
+    if (data.password !== ADMIN_PASS) throw new Error('Unauthorized');
+    const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
+    const { data: page } = await supabaseAdmin
+      .from('landing_pages')
+      .select('id')
+      .eq('slug', data.slug)
+      .maybeSingle();
+    if (!page) throw new Error('Page not found');
+    const { processBriefForPage } = await import('./brief-processor.server');
+    return processBriefForPage(page.id);
+  });
+
