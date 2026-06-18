@@ -200,3 +200,35 @@ export const testPageWebhook = createServerFn({ method: 'POST' })
     });
     return { ok: true, status: res.status };
   });
+
+/** ADMIN — list leads for a specific landing page */
+export const listLeadsForPage = createServerFn({ method: 'POST' })
+  .inputValidator((d: unknown) => z.object({ password: z.string(), slug: SlugSchema }).parse(d))
+  .handler(async ({ data }) => {
+    if (data.password !== ADMIN_PASS) throw new Error('Unauthorized');
+    const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
+    const { data: page } = await supabaseAdmin
+      .from('landing_pages')
+      .select('id')
+      .eq('slug', data.slug)
+      .maybeSingle();
+    if (!page) return [];
+    const { data: rows, error } = await supabaseAdmin
+      .from('leads')
+      .select('id,name,phone,branch,source,created_at')
+      .eq('landing_page_id', page.id)
+      .order('created_at', { ascending: false });
+    if (error) throw new Error(error.message);
+    return rows ?? [];
+  });
+
+/** ADMIN — delete a single lead */
+export const deleteLeadForPage = createServerFn({ method: 'POST' })
+  .inputValidator((d: unknown) => z.object({ password: z.string(), id: z.string().uuid() }).parse(d))
+  .handler(async ({ data }) => {
+    if (data.password !== ADMIN_PASS) throw new Error('Unauthorized');
+    const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
+    const { error } = await supabaseAdmin.from('leads').delete().eq('id', data.id);
+    if (error) throw new Error(error.message);
+    return { ok: true };
+  });
