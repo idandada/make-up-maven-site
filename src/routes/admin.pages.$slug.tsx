@@ -82,6 +82,7 @@ function AdminPageEditor() {
             theme: page.theme || {},
             is_published: !!page.is_published,
             brief: page.brief || '',
+            brief_auto_apply: page.brief_auto_apply !== false,
           },
         },
       });
