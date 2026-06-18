@@ -43,6 +43,22 @@ function LandingPageView() {
   const branches: string[] = Array.isArray((page as any).branches) ? (page as any).branches : [];
   const images: string[] = Array.isArray((page as any).images) ? (page as any).images : [];
 
+  // Meta Pixel — load base code once
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if ((window as any).fbq) return;
+    const s = document.createElement('script');
+    s.innerHTML = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1477108497508059');fbq('track','PageView');`;
+    document.head.appendChild(s);
+  }, []);
+
+  // Meta Pixel — fire Lead event on successful submission
+  useEffect(() => {
+    if (status === 'done' && typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'Lead');
+    }
+  }, [status]);
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErr('');

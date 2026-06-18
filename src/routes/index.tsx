@@ -1533,8 +1533,17 @@ const BODY_HTML = `
 </div>
 `;
 
+const FB_PIXEL_BASE = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1477108497508059');fbq('track','PageView');`;
+
 function LandingPage() {
   useEffect(() => {
+    // Meta Pixel — init base code once
+    if (typeof window !== 'undefined' && !(window as any).fbq) {
+      const s = document.createElement('script');
+      s.innerHTML = FB_PIXEL_BASE;
+      document.head.appendChild(s);
+    }
+
     (window as any).submitForm = function (e: any) {
       e.preventDefault();
       const form = e.target as HTMLFormElement;
@@ -1619,6 +1628,10 @@ function LandingPage() {
       })();
 
       setTimeout(() => {
+        // Meta Pixel — fire Lead conversion on successful form submission
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          (window as any).fbq('track', 'Lead');
+        }
         // Reset grid/flex so success card is centered across full width
         form.setAttribute('style', 'display:block;width:100%');
         form.innerHTML = `
