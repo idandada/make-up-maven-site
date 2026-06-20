@@ -106,7 +106,7 @@ function AdminPagesList() {
             <p style={S.sub}>{pages.length} דפים סך הכל</p>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <Link to="/admin" style={S.btnGhost}>לידים</Link>
+            <Link to="/admin/leads" style={S.btnGhost}>לידים (דף ראשי)</Link>
             <button onClick={() => refresh(currentPass())} style={S.btnGhost}>{loading ? 'טוען...' : 'רענון'}</button>
           </div>
         </header>

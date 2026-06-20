@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as LpSlugRouteImport } from './routes/lp.$slug'
 import { Route as AdminPagesRouteImport } from './routes/admin.pages'
+import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 import { Route as ApiPublicCronProcessBriefsRouteImport } from './routes/api/public/cron-process-briefs'
 import { Route as AdminPagesSlugRouteImport } from './routes/admin.pages.$slug'
 
@@ -36,6 +37,11 @@ const AdminPagesRoute = AdminPagesRouteImport.update({
   path: '/admin/pages',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminLeadsRoute = AdminLeadsRouteImport.update({
+  id: '/admin/leads',
+  path: '/admin/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicCronProcessBriefsRoute =
   ApiPublicCronProcessBriefsRouteImport.update({
     id: '/api/public/cron-process-briefs',
@@ -50,6 +56,7 @@ const AdminPagesSlugRoute = AdminPagesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/admin/pages': typeof AdminPagesRouteWithChildren
   '/lp/$slug': typeof LpSlugRoute
   '/admin/': typeof AdminIndexRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/admin/pages': typeof AdminPagesRouteWithChildren
   '/lp/$slug': typeof LpSlugRoute
   '/admin': typeof AdminIndexRoute
@@ -67,6 +75,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/admin/pages': typeof AdminPagesRouteWithChildren
   '/lp/$slug': typeof LpSlugRoute
   '/admin/': typeof AdminIndexRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin/leads'
     | '/admin/pages'
     | '/lp/$slug'
     | '/admin/'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin/leads'
     | '/admin/pages'
     | '/lp/$slug'
     | '/admin'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/admin/leads'
     | '/admin/pages'
     | '/lp/$slug'
     | '/admin/'
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminLeadsRoute: typeof AdminLeadsRoute
   AdminPagesRoute: typeof AdminPagesRouteWithChildren
   LpSlugRoute: typeof LpSlugRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPagesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/leads': {
+      id: '/admin/leads'
+      path: '/admin/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AdminLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/cron-process-briefs': {
       id: '/api/public/cron-process-briefs'
       path: '/api/public/cron-process-briefs'
@@ -169,6 +189,7 @@ const AdminPagesRouteWithChildren = AdminPagesRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminLeadsRoute: AdminLeadsRoute,
   AdminPagesRoute: AdminPagesRouteWithChildren,
   LpSlugRoute: LpSlugRoute,
   AdminIndexRoute: AdminIndexRoute,
@@ -177,13 +198,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
