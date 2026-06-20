@@ -1598,54 +1598,37 @@ function LandingPage() {
         localStorage.setItem(key, JSON.stringify(existing.slice(0, 1000)));
       } catch {}
 
-      // Save to Lovable Cloud database
-      supabase.from('leads').insert({
-        name: lead.name,
-        phone: lead.phone,
-        branch: lead.branch,
-        source: lead.source,
-      }).then(({ error }) => {
-        if (error) console.error('DB insert failed:', error.message);
-      });
-
-      // Forward to Zapier webhook (fetched from DB so all visitors use it)
-      (async () => {
-        try {
-          const { data: row } = await supabase
-            .from('app_settings')
-            .select('value')
-            .eq('key', 'zapier_webhook')
-            .maybeSingle();
-          const hook = (row?.value as string | undefined)?.trim() || '';
-          if (hook) {
-            fetch(hook, {
-              method: 'POST',
-              mode: 'no-cors',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(lead),
-            }).catch(() => {});
+      // Server function: saves to DB + forwards to Zapier (no CORS, reliable)
+      submitHomeLead({
+        data: {
+          name: lead.name,
+          phone: lead.phone,
+          branch: lead.branch,
+          source: lead.source,
+        },
+      })
+        .catch((err: any) => {
+          console.error('submitHomeLead failed:', err?.message || err);
+        })
+        .finally(() => {
+          // Meta Pixel — fire Lead conversion
+          if (typeof window !== 'undefined' && (window as any).fbq) {
+            (window as any).fbq('track', 'Lead');
           }
-        } catch {}
-      })();
-
-      setTimeout(() => {
-        // Meta Pixel — fire Lead conversion on successful form submission
-        if (typeof window !== 'undefined' && (window as any).fbq) {
-          (window as any).fbq('track', 'Lead');
-        }
-        // Reset grid/flex so success card is centered across full width
-        form.setAttribute('style', 'display:block;width:100%');
-        form.innerHTML = `
-          <div style="grid-column:1/-1;text-align:center;padding:28px 16px;background:rgba(232,168,180,.06);border:1px solid rgba(232,168,180,.25);border-radius:16px;max-width:520px;margin:0 auto">
-            <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#e8a8b4,#c98594);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:32px;color:#fff;font-weight:700">✓</div>
-            <div style="font-size:22px;font-weight:700;color:#fff;margin-bottom:12px">תודה שהשארת לנו פרטים!</div>
-            <div style="font-size:15px;color:#d4c4c0;line-height:1.8">
-              נציגה מטעם המכללה המובילה ללימודי איפור תחזור אלייך עם כל הפרטים.<br/>
-              בהצלחה! 💕
-            </div>
-          </div>`;
-      }, 700);
+          // Reset grid/flex so success card is centered across full width
+          form.setAttribute('style', 'display:block;width:100%');
+          form.innerHTML = `
+            <div style="grid-column:1/-1;text-align:center;padding:28px 16px;background:rgba(232,168,180,.06);border:1px solid rgba(232,168,180,.25);border-radius:16px;max-width:520px;margin:0 auto">
+              <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#e8a8b4,#c98594);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:32px;color:#fff;font-weight:700">✓</div>
+              <div style="font-size:22px;font-weight:700;color:#fff;margin-bottom:12px">תודה שהשארת לנו פרטים!</div>
+              <div style="font-size:15px;color:#d4c4c0;line-height:1.8">
+                נציגה מטעם המכללה המובילה ללימודי איפור תחזור אלייך עם כל הפרטים.<br/>
+                בהצלחה! 💕
+              </div>
+            </div>`;
+        });
     };
+
 
 
     // Scroll reveal observer
